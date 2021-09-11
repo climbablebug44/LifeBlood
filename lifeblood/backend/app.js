@@ -36,6 +36,12 @@ app.post('/login', (req, res) => {
 	//res.send("Got a POST request to /login")
 })
 
+app.post('/register', (req, res) => {
+	console.log(req.body)
+	users.push(req.body)	
+	res.send("Registration successful! You can <a href='/login.html'>login</a> now.")
+})
+
 app.listen(port, () => {
 	console.log(`App listening at http://localhost:${port}`)
 })
