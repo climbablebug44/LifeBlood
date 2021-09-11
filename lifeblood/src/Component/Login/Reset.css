@@ -1,0 +1,35 @@
+.resetFormContainer{
+    display: flex;
+    justify-content: center;
+
+}
+.resetFormFill{
+    position: relative;
+    top: 3rem;
+}
+.resetFormFill span{
+    position: relative;
+    float:left;
+    
+}
+.resetFormFill input{
+    border-radius: 5px;
+    
+}
+.resetForm button{
+    position: relative;
+    top: 4rem;
+    width: 15vw;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+    cursor: pointer;
+    color: black;
+    border-color: rgb(64, 101, 224);
+    background: transparent;
+}
+.resetForm button:hover{
+    background: rgb(64,101,224);
+    color: white;
+}
