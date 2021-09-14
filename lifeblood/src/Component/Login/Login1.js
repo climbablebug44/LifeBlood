@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+
 import './Login1.css';
 import useInput from '../../Hooks/use-input';
 const Login1 = (props)=>{
@@ -43,7 +43,7 @@ const Login1 = (props)=>{
                             {passwordHasError && <p className='error-text'>Password must be of length greater than 8</p>}
 
                             <button type="submit">Continue</button>
-                            <span className="span1"><a href="/"><Link to="/reset-password">Forget password?</Link></a></span>
+                            <span className="span1"><a href="/">Forget password?</a></span>
                         </div>
                         
                    </form>

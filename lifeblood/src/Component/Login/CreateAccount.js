@@ -1,7 +1,7 @@
 import React from 'react';
 import './CreateAccount.css';
 import useInput from '../../Hooks/use-input';
-import {Link} from 'react-router-dom';
+import Login1 from './Login1';
 const CreateAccount = (props)=>{
   const {value:enteredName,
     isValid:enterednameIsValid,
@@ -58,7 +58,7 @@ const {value:enteredEmail,
                  <input type="password"  name="confirmPassword" value={enteredPassword1} onBlur={passwordBlurHandler1} onChange={passwordChangeHandler1}></input>
              
                  <button type="submit">Continue</button>
-                <p className="span3"> Already have an account?</p><a href="/"><Link to="/login">Login</Link></a>
+                <p className="span3"> Already have an account?</p><a href="/">Login</a>
                  </div>
                  
             </form>
