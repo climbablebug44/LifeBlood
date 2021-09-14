@@ -1,9 +1,10 @@
-import './App.css';
+import Login from './Component/Login/Login';
+import Login1 from './Component/Login/Login1';
 import CreateAccount from './Component/Login/CreateAccount';
 function App() {
   return (
     <div className="App">
-      <CreateAccount/>
+      <Login1/>
     </div>
   );
 }
