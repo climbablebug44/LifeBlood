@@ -1,4 +1,6 @@
 const express = require('express')
+const cookieParser = require('cookie-parser')
+
 const app = express()
 const port = 3000
 
@@ -14,17 +16,29 @@ app.use(express.static('backend/public'))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser('secret'))
 
-app.get('/', (req, res) => {
-	res.send('Hello World!')
+app.get(
+
+app.get('/dashboard', (req, res) => {
+	console.log('Cookies: ', req.signedCookies)
+	res.send(`Welcome ${req.signedCookies.username} <br> <a href="/">Home</a>`)
 })
 
 app.post('/login', (req, res) => {
-	//console.log(req.body)
+	console.log(req.signedCookies)
+	
+	if(req.hasOwnProperty('signedCookies') && ('username' in req.signedCookies))
+	{
+		console.log(`Signed in username: ${req.signedCookies.username}`)
+		res.redirect('/dashboard')
+	}
+
 	for(let i = 0;i<users.length;i++)
 	{
 		if(users[i].username == req.body.username && users[i].password == req.body.password)
 		{
+			res.cookie('username', users[i].username, { signed: true })
 			res.send(`Welcome ${users[i].username} <br> Blood Group: ${users[i].blood_group}`);
 			
 		}
@@ -32,12 +46,9 @@ app.post('/login', (req, res) => {
 	
 	if(!res.headersSent)
 		res.send("Username/password invalid")
-
-	//res.send("Got a POST request to /login")
 })
 
 app.post('/register', (req, res) => {
-	console.log(req.body)
 	users.push(req.body)	
 	res.send("Registration successful! You can <a href='/login.html'>login</a> now.")
 })
