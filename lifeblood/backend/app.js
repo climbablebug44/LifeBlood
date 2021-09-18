@@ -30,6 +30,20 @@ async function checkCredentials(email, password)
 	}
 }
 
+async function insertUser(name, email, password, blood_group)
+{
+	try
+	{
+		const result = await db.collection('users').insertOne({'_id': email, 'name': name, 'email': email, 'password': password, 'blood_group': blood_group});
+		return result;
+	}
+	catch(err)
+	{
+		console.log('Error in insertUser: ', err);
+		return null
+	}
+}
+
 users = [
 	{
 		email: "admin",
@@ -93,9 +107,18 @@ app.post('/login', async (req, res) => {
 	*/
 })
 
-app.post('/register', (req, res) => {
-	users.push(req.body);	
-	res.send("Registration successful! You can <a href='/login.html'>login</a> now.");
+app.post('/register', async (req, res) => {
+	name = req.body.name
+	email = req.body.email
+	password = req.body.password
+	blood_group = req.body.blood_group
+
+	result = await insertUser(name, email, password, blood_group);
+	
+	if(result != null)
+		res.send("Registration successful! You can <a href='/login.html'>login</a> now.");
+	else
+		res.send("Registration failed. This email is already registered.");
 })
 
 /*
