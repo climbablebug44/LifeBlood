@@ -21,7 +21,6 @@ async function checkCredentials(email, password)
 	try
 	{
 		const result = await db.collection('users').findOne({'email': email, 'password': password });
-		//console.log(result);
 		return result;
 	}
 	catch(err)
@@ -43,15 +42,6 @@ async function insertUser(name, email, password, blood_group)
 		return null
 	}
 }
-
-users = [
-	{
-		email: "admin",
-		password: "1234",
-		blood_group: "A+",
-	},
-];
-
 
 app.use(express.static('backend/public'));
 
@@ -82,7 +72,6 @@ app.post('/login', async (req, res) => {
 	result = await checkCredentials(email, password);
 	if(result != null)
 	{
-		//console.log('result not null');
 		res.cookie('email', result.email, { signed: true });
 		res.send(`Welcome ${result.email} <br> Blood Group: ${result.blood_group}`);
 	}
@@ -90,21 +79,6 @@ app.post('/login', async (req, res) => {
 	{
 		res.send('Username/Pasword invalid');
 	}
-
-	/*
-	for(let i = 0;i<users.length;i++)
-	{
-		if(users[i].username == req.body.username && users[i].password == req.body.password)
-		{
-			res.cookie('username', users[i].username, { signed: true });
-			res.send(`Welcome ${users[i].username} <br> Blood Group: ${users[i].blood_group}`);
-			
-		}
-	}
-	
-	if(!res.headersSent)
-		res.send("Username/password invalid");
-	*/
 })
 
 app.post('/register', async (req, res) => {
@@ -120,13 +94,6 @@ app.post('/register', async (req, res) => {
 	else
 		res.send("Registration failed. This email is already registered.");
 })
-
-/*
-app.listen(port, () => {
-	console.log(`App listening at http://localhost:${port}`);
-})
-*/
-
 
 ;(async function() {
 	try
