@@ -8,14 +8,14 @@ const containerStyle = {
 };
 
 const center = {
-  lat: -3.745,
-  lng: -38.523
+  lat: 21.3556753145426,
+  lng: 81.3531356014102
 };
 
 const GoogleMaps = () => {
   return (
     <LoadScript
-      googleMapsApiKey="">
+      googleMapsApiKey="USE YOUR OWN API KEY HERE">
       <GoogleMap
         class='map'
         mapContainerStyle={containerStyle}
