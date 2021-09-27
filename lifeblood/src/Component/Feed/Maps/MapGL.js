@@ -79,7 +79,7 @@ export default class RMapGL extends Component{
         {...viewport}
         width="100vw"
         height="100vh"
-        mapStyle="mapbox://styles/mapbox/light-v10"
+        mapStyle="mapbox://styles/mapbox/navigation-day-v1"
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={MAPBOX_TOKEN}
       >
