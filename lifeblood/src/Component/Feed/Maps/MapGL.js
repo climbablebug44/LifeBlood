@@ -14,8 +14,6 @@ import './MapGL.css';
 // enter mapboxgl api key
 const MAPBOX_TOKEN = '';
 
-
-
 export default class RMapGL extends Component{
   constructor(props){
     super(props);
@@ -74,8 +72,6 @@ export default class RMapGL extends Component{
     );
   }
 
-  
-
   render() {
     const { viewport } = this.state;
 
@@ -100,14 +96,14 @@ export default class RMapGL extends Component{
 
             {this._renderPopup()}
 
-            <div class="fullscreen" >
+            <div className="fullscreen" >
               <FullscreenControl />
             </div>
             <div className="nav">
               <NavigationControl />
             </div>
           </ReactMapGL>
-          </div>
+        </div>
     );
   }
 }

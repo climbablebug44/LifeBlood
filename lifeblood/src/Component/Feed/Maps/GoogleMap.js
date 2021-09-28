@@ -17,7 +17,7 @@ const GoogleMaps = () => {
     <LoadScript
       googleMapsApiKey="">
       <GoogleMap
-        class='map'
+        className='map'
         mapContainerStyle={containerStyle}
         center={center}
         zoom={10}

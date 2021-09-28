@@ -22,8 +22,7 @@ export default class Pin extends PureComponent {
           ...pinStyle,
           transform: `translate(${-size / 2}px,${-size}px)`
         }}
-        onClick={onClick}
-      >
+        onClick={onClick}>
         <path d={ICON} />
       </svg>
     );
