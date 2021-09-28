@@ -3,14 +3,17 @@ import ReactMapGL, {
   Marker,
   Popup,
   NavigationControl,
-  FullscreenControl
+  FullscreenControl,
+  GeolocateControl
 } from "react-map-gl";
 import PinInfo from "./mapPins/pinInfo";
 import Pin from "./mapPins/Pin";
-import PEOPLE from './mapPins/people.json'
+import PEOPLE from './mapPins/people.json';
+import './MapGL.css';
 
 // enter mapboxgl api key
 const MAPBOX_TOKEN = '';
+
 
 
 export default class RMapGL extends Component{
@@ -18,9 +21,9 @@ export default class RMapGL extends Component{
     super(props);
     this.state = {
       viewport: {
-        latitude: 37.785164,
-        longitude: -100,
-        zoom: 3.5,
+        latitude: 0,
+        longitude: 0,
+        zoom: 5,
       },
       popupInfo: null
     };
@@ -34,6 +37,7 @@ export default class RMapGL extends Component{
         }
       });
     };
+
   }
 
   _updateViewport = viewport =>{
@@ -70,63 +74,40 @@ export default class RMapGL extends Component{
     );
   }
 
+  
 
   render() {
     const { viewport } = this.state;
 
     return (
-      <ReactMapGL
-        {...viewport}
-        width="100vw"
-        height="100vh"
-        mapStyle="mapbox://styles/mapbox/navigation-day-v1"
-        onViewportChange={this._updateViewport}
-        mapboxApiAccessToken={MAPBOX_TOKEN}
-      >
-        {PEOPLE.map(this._renderPin)}
+      <div className="map-container">
+        <ReactMapGL
+            {...viewport}
+            width="100vw"
+            height="90vh"
+            mapStyle="mapbox://styles/mapbox/navigation-day-v1"
+            onViewportChange={this._updateViewport}
+            mapboxApiAccessToken={MAPBOX_TOKEN}
+          >
+            <GeolocateControl
+              className="geolocate"
+              positionOptions={{enableHighAccuracy: false}}
+              trackUserLocation={true}
+              fitBoundsOptions={{maxZoom: 13}}
+              auto
+            />
+            {PEOPLE.map(this._renderPin)}
 
-        {this._renderPopup()}
+            {this._renderPopup()}
 
-        <div class="fullscreen" >
-          <FullscreenControl />
-        </div>
-        <div className="nav">
-          <NavigationControl />
-        </div>
-      </ReactMapGL>
+            <div class="fullscreen" >
+              <FullscreenControl />
+            </div>
+            <div className="nav">
+              <NavigationControl />
+            </div>
+          </ReactMapGL>
+          </div>
     );
   }
 }
-
-
-  
-
-
-
-
-
-
-/*const MapGL = () => {
-  const [viewport, setViewport] = useState({
-    latitude: 37.8,
-    longitude: -122.4,
-    zoom: 14,
-    bearing: 0,
-    pitch: 0
-  });
-
-
-  return(
-    <ReactMapGL
-      {...viewport}
-      width="100vw"
-      height="100vh"
-      mapStyle="mapbox://styles/mapbox/dark-v9"
-      onViewportChange={setViewport}
-      mapboxApiAccessToken={MAPBOX_TOKEN}
-    />
-  );
-  
-}
-
-export default  MapGL;*/

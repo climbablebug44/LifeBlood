@@ -16,3 +16,9 @@
   left: 0;
   padding: "10px";
 }
+
+.geolocate{
+    float: 'left';
+    margin: '50px';
+    padding: '10px';
+}
