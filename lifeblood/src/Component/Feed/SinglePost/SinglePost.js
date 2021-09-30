@@ -11,16 +11,16 @@ const SinglePost = (props)=>{
                 <br></br>
                 <br></br>
               
-                <span>Name: Ashish sharma</span>
+                <span>Name: {props.name}</span>
                 <br></br>
                 <br></br>
-                <span>Blood Group: o+</span>
+                <span>Blood Group: {props.bloodGrp}</span>
                 <br></br>
                 <br></br>
-                <span>Age: 22</span>
+                <span>Age: {props.Age}</span>
                 <br></br>
                 <br></br>
-                <span>Health Issues: Nill</span>
+                <span>Health Issues: {props.HealthIssue}</span>
             </div>
       
   </div>

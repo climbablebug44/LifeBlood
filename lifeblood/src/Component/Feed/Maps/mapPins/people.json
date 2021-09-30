@@ -1,0 +1,44 @@
+[
+    {
+      "name": "Aashish Sharma",
+      "bloodG": "A+",
+      "latitude": 40.6643,
+      "longitude": -73.9385
+    },
+    {
+      "name": "Aman Sahu",
+      "bloodG": "AB-",
+      "latitude": 34.0194,
+      "longitude": -118.4108
+    },
+    {
+        "name": "Ashwin",
+        "bloodG": "A+",
+        "latitude": 21.25681,
+        "longitude": 81.62687
+    },
+    {
+        "name": "Jeetesh",
+        "bloodG": "C++",
+        "latitude": 22.9507,
+        "longitude": 76.0610
+    },
+    {
+        "name": "Abhimanyu",
+        "bloodG": "hisss",
+        "latitude": 19.96732,
+        "longitude": 72.8058
+    },
+    {
+        "name": "Nimit",
+        "bloodG": "weeb",
+        "latitude": 26.133,
+        "longitude":  73.020
+    },
+    {
+        "name": "Aman Verma",
+        "bloodG": "?????",
+        "latitude": 40.947, 
+        "longitude":  126.5015
+    }
+]
