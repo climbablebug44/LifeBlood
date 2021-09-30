@@ -1,4 +1,6 @@
 import React, { PureComponent } from "react";
+import './pinInfo.css'
+import './drop.png'
 
 export default class PinInfo extends PureComponent {
   render() {
@@ -7,8 +9,14 @@ export default class PinInfo extends PureComponent {
     const bloodGroup = `${info.bloodG}`
 
     return (
-        <div>
-          {displayName}{" : "}{bloodGroup}
+        <div className="pin-div-popup">
+          <div className="head">
+            <img src={ require('./drop.png') }/>
+            <h2>{bloodGroup}</h2>
+          </div>
+          <div className="body">
+            {displayName}
+          </div>
         </div>
     );
   }

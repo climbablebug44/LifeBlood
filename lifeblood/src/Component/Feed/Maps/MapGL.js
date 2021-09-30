@@ -22,6 +22,7 @@ export default class RMapGL extends Component{
         latitude: 0,
         longitude: 0,
         zoom: 5,
+        pitch: 20
       },
       popupInfo: null
     };
@@ -40,6 +41,7 @@ export default class RMapGL extends Component{
 
   _updateViewport = viewport =>{
     this.setState({viewport});
+    //console.log(viewport.pitch, viewport.roll)
   };
 
   _renderPin = (pin, index) => {
@@ -89,7 +91,7 @@ export default class RMapGL extends Component{
               className="geolocate"
               positionOptions={{enableHighAccuracy: false}}
               trackUserLocation={true}
-              fitBoundsOptions={{maxZoom: 13}}
+              fitBoundsOptions={{maxZoom: 13, minZoom: 10}}
               auto
             />
             {PEOPLE.map(this._renderPin)}
