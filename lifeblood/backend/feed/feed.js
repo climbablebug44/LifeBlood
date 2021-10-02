@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router()
 
-const { get_all  } = require('../database/db_utils');
+const { get_all, insert_one } = require('../database/db_utils');
 
 let db;
 
@@ -11,9 +11,9 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-	name = req.body.name;
-	blood_group = req.body.blood_group;
-	result = await addFeed(name, blood_group);
+	let name = req.body.name;
+	let blood_group = req.body.blood_group;
+	result = await insert_one(db, 'feed', {name, blood_group});
 	if(result != null)
 		res.send('Request added successfully!');
 	else

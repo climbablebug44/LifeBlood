@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
 		html_to_send = 
 		`Welcome ${result.email} <br> Blood Group: ${result.blood_group} <br>
 		<br> Add a Blood request :- <br>
-		<form method="post" action="/feed">
+		<form method="post" action="/api/feed">
 			Name: <input type="text" name="name"> <br>
 			Blood Group: <input type="text" name="blood_group"> <br>
 			<input type="submit" value="Add Request">

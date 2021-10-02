@@ -8,13 +8,15 @@ const port = 3000;
 const DB_URL = 'mongodb://localhost/LifeBlood';
 
 const LOC_API = '/api';
-const LOC_CHECK_USER = LOC_API + '/check_user';
-const LOC_SIGN_OUT = LOC_API + '/sign_out';
 const LOC_LOGIN = LOC_API + '/login';
 const LOC_FEED = LOC_API + '/feed';
+const LOC_SIGN_UP = LOC_API + '/sign_up';
+const LOC_CHECK_USER = LOC_API + '/check_user';
+const LOC_LOG_OUT = LOC_API + '/log_out';
 
 let db;
 
+/*
 async function checkCredentials(email, password)
 {
 	try
@@ -41,6 +43,7 @@ async function insertUser(name, email, password, blood_group)
 		return null
 	}
 }
+
 
 async function getFeed()
 {
@@ -70,12 +73,15 @@ async function addFeed(name, blood_group)
 		return null;
 	}
 }
+*/
 
 function set_routes()
 {
 	const router_check_user = require('./check_user.js');
 	const router_login = require('./login/login')(db);
 	const router_feed = require('./feed/feed')(db);
+	const router_sign_up = require('./sign_up/sign_up')(db);
+	const router_log_out = require('./log_out/log_out');
 
 	app.use(express.static('backend/public'));
 
@@ -86,12 +92,16 @@ function set_routes()
 	app.use(LOC_CHECK_USER, router_check_user);
 	app.use(LOC_LOGIN, router_login);
 
-	app.get(LOC_SIGN_OUT, (req, res) => {
+	app.use(LOC_SIGN_UP, router_sign_up);
+	app.use(LOC_LOG_OUT, router_log_out);
+
+	/*
+	app.get(LOC_LOG_OUT, (req, res) => {
 		res.clearCookie('email');
 		res.redirect('/');
 	})
 
-
+	
 	app.post('/register', async (req, res) => {
 		name = req.body.name
 		email = req.body.email
@@ -105,7 +115,7 @@ function set_routes()
 		else
 			res.send("Registration failed. This email is already registered.");
 	})
-
+	*/
 	app.use(LOC_FEED, router_feed);
 	/*
 	app.get('/feed', async (req, res) => {

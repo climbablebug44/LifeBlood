@@ -7,7 +7,7 @@ const {  } = require('../database/db_utils');
 let db;
 */
 
-router.get('/', (req, res) {
+router.get('/', async (req, res) => {
 
 });
 
@@ -15,6 +15,6 @@ function 12_module_name(_db)
 {
 	db = _db;
 	return router;
-]
+}
 
 module.exports = router; // 12_module_name
