@@ -1,12 +1,61 @@
 <html> 
 	<head>
 		<title> LifeBlood </title>
-	
+		<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  		<script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+		
+		<script type="text/javascript">
+			async function check_user()	
+			{
+				const response = await fetch('/api/check_user');
+				response_json = await response.json();
+				return response_json;
+			}
+		</script>
 	</head>
 
 	<body>
-		<p>Welcome to LifeBlood</p>
-		<a href="/login.html"><button>Login</button></a> <br>
-		<a href="/register.html"><button>Register</button></a>
+		<p>Welcome to LifeBlood</p> 
+		
+		<div id="contents"></div>
+		<script type="text/babel">
+			//let result;
+			async function check()
+			{
+				let result = await check_user();
+				
+				console.log("status:", result.status);
+
+				let element;
+				if(result.status == "not_logged_in")
+				{
+					element = (
+					<>
+					<h3>Not Logged In</h3>
+					<a href="/login.html"><button>Login</button></a><br /> 
+					<a href="/register.html"><button>Register</button></a><br />
+					</>
+					);
+				}
+				else
+				{
+					element = (
+					<>
+					<h3> Logged in </h3>
+					<h4> Email: {result.email} </h4>
+					<a href="/api/sign_out"><button>Sign Out</button></a><br />	
+					</>					
+					);
+				}
+
+				ReactDOM.render(element, document.getElementById('contents'));
+			}
+
+			check();
+		</script>
+
+		
+		<a href="/api/feed"><button>Feed</button></a>
 	</body>
 </html>
