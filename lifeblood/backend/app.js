@@ -16,65 +16,6 @@ const LOC_LOG_OUT = LOC_API + '/log_out';
 
 let db;
 
-/*
-async function checkCredentials(email, password)
-{
-	try
-	{
-		const result = await db.collection('users').findOne({'email': email, 'password': password });
-		return result;
-	}
-	catch(err)
-	{
-		console.log('Error in checkCredentials:', err);
-	}
-}
-
-async function insertUser(name, email, password, blood_group)
-{
-	try
-	{
-		const result = await db.collection('users').insertOne({'_id': email, 'name': name, 'email': email, 'password': password, 'blood_group': blood_group});
-		return result;
-	}
-	catch(err)
-	{
-		console.log('Error in insertUser: ', err);
-		return null
-	}
-}
-
-
-async function getFeed()
-{
-	try
-	{
-		const result = await db.collection('feed').find({}).toArray();
-		//console.log(result);
-		return result;
-	}
-	catch(err)
-	{
-		console.log('Error in getFeed:', err);
-		return null;
-	}
-}
-
-async function addFeed(name, blood_group)
-{
-	try
-	{
-		const result = await db.collection('feed').insertOne({'name': name, 'blood_group': blood_group });
-		return result;
-	}
-	catch(err)
-	{
-		console.log('Error in addFeed:', err);
-		return null;
-	}
-}
-*/
-
 function set_routes()
 {
 	const router_check_user = require('./check_user.js');
@@ -95,46 +36,7 @@ function set_routes()
 	app.use(LOC_SIGN_UP, router_sign_up);
 	app.use(LOC_LOG_OUT, router_log_out);
 
-	/*
-	app.get(LOC_LOG_OUT, (req, res) => {
-		res.clearCookie('email');
-		res.redirect('/');
-	})
-
-	
-	app.post('/register', async (req, res) => {
-		name = req.body.name
-		email = req.body.email
-		password = req.body.password
-		blood_group = req.body.blood_group
-
-		result = await insertUser(name, email, password, blood_group);
-		
-		if(result != null)
-			res.send("Registration successful! You can <a href='/login.html'>login</a> now.");
-		else
-			res.send("Registration failed. This email is already registered.");
-	})
-	*/
 	app.use(LOC_FEED, router_feed);
-	/*
-	app.get('/feed', async (req, res) => {
-		result = await getFeed();
-
-		res.json(result);
-	})
-
-	app.post('/feed', async (req, res) => {
-		name = req.body.name;
-		blood_group = req.body.blood_group;
-		result = await addFeed(name, blood_group);
-		if(result != null)
-			res.send('Request added successfully!');
-		else
-			res.send('Cannot add request!');
-
-	})
-	*/
 }
 
 ;(async function() {

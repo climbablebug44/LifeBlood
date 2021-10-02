@@ -11,7 +11,6 @@ router.get('/', (req, res) => {
 	}
 	else
 		ret.status = "not_logged_in";
-	//res.send(`Welcome ${req.signedCookies.email} <br> <a href="/">Home</a>`);
 	res.json(ret);
 });
 
