@@ -1,16 +1,9 @@
 .pin-div-popup{
-    text-align: center;
+    text-align: left;
 }
 
 .pin-div-popup h2{
     color: red;
-}
-
-.head h2{
-    float: right;
-}
-
-.head img{
-    height: 4vh;
-    width: 1.5vw;
+    height:auto;
+    width: 15vw;
 }

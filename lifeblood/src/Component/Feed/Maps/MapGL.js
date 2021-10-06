@@ -8,19 +8,20 @@ import ReactMapGL, {
 } from "react-map-gl";
 import PinInfo from "./mapPins/pinInfo";
 import Pin from "./mapPins/Pin";
-import PEOPLE from './mapPins/people.json';
 import './MapGL.css';
+import API_KEY from './api_key.json'
 
 // enter mapboxgl api key
-const MAPBOX_TOKEN = '';
+const MAPBOX_TOKEN = API_KEY.mapboxgl;
 
 export default class RMapGL extends Component{
   constructor(props){
     super(props);
+    this.props = props;
     this.state = {
       viewport: {
-        latitude: 0,
-        longitude: 0,
+        latitude: this.props.lat,
+        longitude: this.props.long,
         zoom: 5,
         pitch: 20
       },
@@ -74,8 +75,27 @@ export default class RMapGL extends Component{
     );
   }
 
+  popupPeople(people){
+    if(people!= null)
+      return(
+        people.map(this._renderPin)
+      );
+  }
+
+  shouldGeoLocate(permission){
+    if(permission)
+      return(<GeolocateControl
+        className="geolocate"
+        positionOptions={{enableHighAccuracy: false}}
+        trackUserLocation={true}
+        fitBoundsOptions={{maxZoom: 13, minZoom: 10}}
+        auto
+      />);
+  }
+
   render() {
     const { viewport } = this.state;
+
 
     return (
       <div className="map-container">
@@ -87,15 +107,8 @@ export default class RMapGL extends Component{
             onViewportChange={this._updateViewport}
             mapboxApiAccessToken={MAPBOX_TOKEN}
           >
-            <GeolocateControl
-              className="geolocate"
-              positionOptions={{enableHighAccuracy: false}}
-              trackUserLocation={true}
-              fitBoundsOptions={{maxZoom: 13, minZoom: 10}}
-              auto
-            />
-            {PEOPLE.map(this._renderPin)}
-
+            {this.shouldGeoLocate(this.props.should_GeoLocate)}
+            {this.popupPeople(this.props.people)}
             {this._renderPopup()}
 
             <div className="fullscreen" >
