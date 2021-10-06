@@ -17,23 +17,28 @@ const MAPBOX_TOKEN = API_KEY.mapboxgl;
 export default class RMapGL extends Component{
   constructor(props){
     super(props);
-    this.props = props;
+
+    const lat = props.lat, long=props.lang;
+    this.geolocate = this.props.should_GeoLocate;
+    this.PEOPLE = this.props.people;
+    this.height = props.height, this.width = props.width;
+
     this.state = {
       viewport: {
-        latitude: this.props.lat,
-        longitude: this.props.long,
-        zoom: 5,
-        pitch: 20
+        latitude: lat,
+        longitude: long,
+        zoom: 10
       },
       popupInfo: null
     };
+
 
     window.test = () => {
       this.setState({
         ...this.state,
         viewport: {
           ...this.state.viewport,
-          zoom: this.state.viewport.zoom === 5 ? 1 : 5
+          zoom: this.state.viewport.zoom === 5 ? 1 : 10
         }
       });
     };
@@ -95,20 +100,19 @@ export default class RMapGL extends Component{
 
   render() {
     const { viewport } = this.state;
-
-
     return (
-      <div className="map-container">
+      <div style={{height: this.height+'vh', width: this.width+'vw'}}>
         <ReactMapGL
             {...viewport}
-            width="100vw"
-            height="90vh"
+            width="100%"
+            height="100%"
+            style={{position:'relative'}}
             mapStyle="mapbox://styles/mapbox/navigation-day-v1"
             onViewportChange={this._updateViewport}
             mapboxApiAccessToken={MAPBOX_TOKEN}
           >
-            {this.shouldGeoLocate(this.props.should_GeoLocate)}
-            {this.popupPeople(this.props.people)}
+            {this.shouldGeoLocate(this.geolocate)}
+            {this.popupPeople(this.PEOPLE)}
             {this._renderPopup()}
 
             <div className="fullscreen" >

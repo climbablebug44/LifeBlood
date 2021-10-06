@@ -11,10 +11,12 @@ export default class MapPage extends Component{
     render(){
         return(
             <RMapGL
-                people={PEOPLE}             // render these pins
-                should_GeoLocate={false}          //should the person be geolocated
+                people={PEOPLE}                     // render these pins
+                should_GeoLocate={true}            //should the person be geolocated
                 lat={0}
                 long={0}
+                height={100}                        //put size of react-map-gl here
+                width={100}                         //put size of react-map-gl here
             />
         );
 
