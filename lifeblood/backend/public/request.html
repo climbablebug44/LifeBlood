@@ -1,6 +1,6 @@
 <html> 
 	<head>
-		<title> LifeBlood-Login </title>
+		<title> Request for Donor </title>
 		<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
   		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
   		<script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
@@ -15,7 +15,7 @@
 
 				console.log(body);
 
-				const response = await fetch('/api/login',{
+				const response = await fetch('/api/feed',{
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -42,11 +42,12 @@
 	<body>
 		<p>Welcome to <a href="/">LifeBlood</a></p>
 		<div id="message"></div>
-		Enter your email and password to login :- <br>
-		<form method="POST" action="/api/login">
-			Email: <input type="text" name="email"> <br>
-			Password: <input type="password" name="password"> <br>
-			<input type="submit" value="Login">
+		Fill the form for finding a Donor:-<br>
+		<form>
+			Name: <input type="text" name="name"> <br>
+			Mobile Number: <input type="text" name="number"><br>
+			Blood Group: <input type="text" name="blood_group"><br>
+			<input type="submit" value="Request">
 		</form>
 
 	</body>

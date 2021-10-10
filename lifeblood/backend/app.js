@@ -1,104 +1,51 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const { MongoClient } = require('mongodb');
+const cors = require('cors');
+
+const connectToDB = require('./database/connectToDB');
 
 const app = express();
 const port = 3000;
-const url = 'mongodb://localhost/LifeBlood';
+const DB_URL = 'mongodb://localhost/LifeBlood';
+
+const LOC_API = '/api';
+const LOC_LOGIN = LOC_API + '/login';
+const LOC_FEED = LOC_API + '/feed';
+const LOC_SIGN_UP = LOC_API + '/sign_up';
+const LOC_CHECK_USER = LOC_API + '/check_user';
+const LOC_LOG_OUT = LOC_API + '/log_out';
 
 let db;
 
-async function connectToDB() 
+function set_routes()
 {
-	const client = new MongoClient(url, { useNewUrlParser: true });
-	await client.connect();
-	console.log('Connected to MongoDB at', url);
-	db = client.db();
+	const router_check_user = require('./check_user.js');
+	const router_login = require('./login/login')(db);
+	const router_feed = require('./feed/feed')(db);
+	const router_sign_up = require('./sign_up/sign_up')(db);
+	const router_log_out = require('./log_out/log_out');
+
+	app.use(express.static('backend/public'));
+	app.use(cors());
+
+	app.use(express.json());
+	app.use(express.urlencoded({ extended: true }));
+	app.use(cookieParser('secret'));
+
+	app.use(LOC_CHECK_USER, router_check_user);
+	app.use(LOC_LOGIN, router_login);
+
+	app.use(LOC_SIGN_UP, router_sign_up);
+	app.use(LOC_LOG_OUT, router_log_out);
+
+	app.use(LOC_FEED, router_feed);
 }
-
-async function checkCredentials(email, password)
-{
-	try
-	{
-		const result = await db.collection('users').findOne({'email': email, 'password': password });
-		return result;
-	}
-	catch(err)
-	{
-		console.log('Error in checkCredentials:', err);
-	}
-}
-
-async function insertUser(name, email, password, blood_group)
-{
-	try
-	{
-		const result = await db.collection('users').insertOne({'_id': email, 'name': name, 'email': email, 'password': password, 'blood_group': blood_group});
-		return result;
-	}
-	catch(err)
-	{
-		console.log('Error in insertUser: ', err);
-		return null
-	}
-}
-
-app.use(express.static('backend/public'));
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser('secret'));
-
-
-app.get('/dashboard', (req, res) => {
-	console.log('Cookies: ', req.signedCookies);
-	res.send(`Welcome ${req.signedCookies.email} <br> <a href="/">Home</a>`);
-})
-
-app.post('/login', async (req, res) => {
-	/*
-	console.log(req.signedCookies);
-	
-	if(req.hasOwnProperty('signedCookies') && ('username' in req.signedCookies))
-	{
-		console.log(`Signed in username: ${req.signedCookies.username}`);
-		res.redirect('/dashboard');
-	}
-	*/
-
-	email = req.body.email;
-	password = req.body.password;
-
-	result = await checkCredentials(email, password);
-	if(result != null)
-	{
-		res.cookie('email', result.email, { signed: true });
-		res.send(`Welcome ${result.email} <br> Blood Group: ${result.blood_group}`);
-	}
-	else
-	{
-		res.send('Username/Pasword invalid');
-	}
-})
-
-app.post('/register', async (req, res) => {
-	name = req.body.name
-	email = req.body.email
-	password = req.body.password
-	blood_group = req.body.blood_group
-
-	result = await insertUser(name, email, password, blood_group);
-	
-	if(result != null)
-		res.send("Registration successful! You can <a href='/login.html'>login</a> now.");
-	else
-		res.send("Registration failed. This email is already registered.");
-})
 
 ;(async function() {
 	try
 	{
-		await connectToDB();
+		db = await connectToDB(DB_URL);
+		set_routes();
 		app.listen(port, () => {
 			console.log(`App listening at http://localhost:${port}`);
 		})
