@@ -1,0 +1,72 @@
+[
+    {
+      "id": 1,
+      "name": "Aashish Sharma",
+      "bloodG": "A+",
+      "latitude": 40.6643,
+      "longitude": -73.9385
+    },
+    {
+      "id": 2,
+      "name": "Aman Sahu",
+      "bloodG": "AB-",
+      "latitude": 34.0194,
+      "longitude": -118.4108
+    },
+    {
+        "id": 3,
+        "name": "Ashwin Nair",
+        "bloodG": "A+",
+        "latitude": 21.25681,
+        "longitude": 81.62687
+    },
+    {
+        "id": 4,
+        "name": "Jeetesh",
+        "bloodG": "C++",
+        "latitude": 22.9507,
+        "longitude": 76.0610
+    },
+    {
+        "id": 5,
+        "name": "Abhimanyu",
+        "bloodG": "A+",
+        "latitude": 19.96732,
+        "longitude": 72.8058
+    },
+    {
+        "id": 6,
+        "name": "Nimit",
+        "bloodG": "AB-",
+        "latitude": 26.133,
+        "longitude":  73.020
+    },
+    {
+        "id": 7,
+        "name": "Aman Verma",
+        "bloodG": "?????",
+        "latitude": 40.947, 
+        "longitude":  126.5015
+    },
+    {
+        "id": 8,
+        "name": "tempname1",
+        "bloodG": "AB+",
+        "latitude": 20.25681,
+        "longitude": 87.62687
+    },
+    {
+        "id": 9,
+        "name": "tempname2r",
+        "bloodG": "B+",
+        "latitude": 22.25681,
+        "longitude": 51.62687
+    },
+    {
+        "id": 10,
+        "name": "tempname3",
+        "bloodG": "A-",
+        "latitude": 27.25681,
+        "longitude": 84.62687
+    }
+]

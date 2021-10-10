@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo:wght@500&display=swap");
+.posts_container {
+  width: 100%;
+}
+.posts_Headline {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  top: 8rem;
+}
+.posts_Headline h1 {
+  font-size: 8rem;
+  color: rgb(212, 209, 209);
+  opacity: 0.6;
+}
