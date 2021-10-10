@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import './pinInfo.css'
-import './drop.png'
 
 export default class PinInfo extends PureComponent {
   render() {

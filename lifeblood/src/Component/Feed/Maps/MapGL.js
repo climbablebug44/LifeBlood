@@ -11,17 +11,16 @@ import Pin from "./mapPins/Pin";
 import './MapGL.css';
 import API_KEY from './api_key.json'
 
-// enter mapboxgl api key
 const MAPBOX_TOKEN = API_KEY.mapboxgl;
 
 export default class RMapGL extends Component{
   constructor(props){
     super(props);
 
-    const lat = props.lat, long=props.lang;
+    const lat = props.center.lat, long=props.center.lang;
     this.geolocate = this.props.should_GeoLocate;
     this.PEOPLE = this.props.people;
-    this.height = props.height, this.width = props.width;
+    this.height = props.dimentions.height, this.width = props.dimentions.width;
 
     this.state = {
       viewport: {
@@ -56,7 +55,7 @@ export default class RMapGL extends Component{
         key={`marker-${index}`}
         longitude={pin.longitude}
         latitude={pin.latitude}>
-          <Pin size={20} onClick={() => this.setState({ popupInfo: pin })} />
+          <Pin size={30} onClick={() => this.setState({ popupInfo: pin })} />
         </Marker>
     );
   };

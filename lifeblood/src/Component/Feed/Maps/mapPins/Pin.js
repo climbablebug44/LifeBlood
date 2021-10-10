@@ -19,7 +19,7 @@ export default class Pin extends PureComponent {
       <svg
         className="svg-pin-popup"
         height={size}
-        viewBox="0 0 30 30"
+        viewBox="0 0 40 40"
         style={{
           ...pinStyle,
           transform: `translate(${-size / 2}px,${-size}px)`

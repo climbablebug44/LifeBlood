@@ -47,5 +47,26 @@
         "bloodG": "?????",
         "latitude": 40.947, 
         "longitude":  126.5015
+    },
+    {
+        "id": 8,
+        "name": "tempname1",
+        "bloodG": "AB+",
+        "latitude": 20.25681,
+        "longitude": 87.62687
+    },
+    {
+        "id": 9,
+        "name": "tempname2r",
+        "bloodG": "B+",
+        "latitude": 22.25681,
+        "longitude": 51.62687
+    },
+    {
+        "id": 10,
+        "name": "tempname3",
+        "bloodG": "A-",
+        "latitude": 27.25681,
+        "longitude": 84.62687
     }
 ]
