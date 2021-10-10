@@ -1,0 +1,49 @@
+.container {
+    width: 100%;
+    background: transparent;
+}
+.container h1{
+    text-align: center;
+}
+.features {
+    display: flex;
+    flex-direction: row;
+}
+
+.features-set {
+    background-color: rgb(238, 236, 236);
+    border: none;
+    margin: 5px 20px;
+    border-radius: 20px;
+    box-shadow: 0 14px 30px rgba(43, 42, 42, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    text-align: center;
+}
+
+.feature {
+    color: rgb(70, 66, 66);
+    text-align: left;
+    line-height: 25px;
+    padding: 2px 20px;
+}
+
+.feature h3 {
+    color: rgb(63, 61, 61);
+    text-align: center;
+}
+
+.container h1 {
+    margin: 4% 4% 1%;
+    color: rgb(253, 253, 253);
+    background-color: rgba(14, 13, 13, 0.63);
+    display: inline-block;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 20px;
+    box-shadow: 0px 5px 10px rgba(141, 135, 135, 0.692);
+}
+
+@media screen and (max-width: 756px) {
+    .features {
+        flex-direction: column;
+    }
+  }
