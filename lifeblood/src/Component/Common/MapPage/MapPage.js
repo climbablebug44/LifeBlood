@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { ListItem, ListItemText, Box, Drawer, AppBar, CssBaseline, Toolbar, List, Typography, Divider } from "@mui/material";
 import RMapGL from "../../Feed/Maps/MapGL";
 import PEOPLE from '../../Feed/Maps/mapPins/people.json';
-import Header from "../../Header/Header";
 import './mappage.css'
 
 const drawerWidth = 300;    
