@@ -1,5 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const connectToDB = require('./database/connectToDB');
 
@@ -25,6 +26,7 @@ function set_routes()
 	const router_log_out = require('./log_out/log_out');
 
 	app.use(express.static('backend/public'));
+	app.use(cors());
 
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
