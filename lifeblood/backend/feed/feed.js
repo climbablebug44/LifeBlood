@@ -11,13 +11,31 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+	data_to_send = {}
+	if(!req.signedCookies.email)
+	{
+		data_to_send.status = 'failed';
+		data_to_send.message = 'Please Log in first';
+		res.json(data_to_send);
+		return;
+	}
+
 	let name = req.body.name;
 	let blood_group = req.body.blood_group;
-	result = await insert_one(db, 'feed', {name, blood_group});
+	let number = req.body.number;
+	
+	console.log(name, blood_group, number);
+	result = await insert_one(db, 'feed', {name, blood_group, number});
 	if(result != null)
-		res.send('Request added successfully!');
+	{
+		data_to_send.status = 'success';
+	}
 	else
-		res.send('Cannot add request!');
+	{
+		data_to_send.status = 'failed';
+		data_to_send.message = 'Cannot add Request!';
+	}
+	res.json(data_to_send);
 
 })
 

@@ -15,31 +15,27 @@ router.post('/', async (req, res) => {
 		res.redirect('/dashboard');
 	}
 	*/
+	console.log(req.body);
 
 	email = req.body.email;
 	password = req.body.password;
 	filter = {email, password}
 
 	result = await get_one(db, 'users', filter);
+	data_to_send = {}
 	if(result != null)
-	{
-		html_to_send = 
-		`Welcome ${result.email} <br> Blood Group: ${result.blood_group} <br>
-		<br> Add a Blood request :- <br>
-		<form method="post" action="/api/feed">
-			Name: <input type="text" name="name"> <br>
-			Blood Group: <input type="text" name="blood_group"> <br>
-			<input type="submit" value="Add Request">
-		</form>
-		`;
-
+	{	
+		data_to_send.login_status = 'success';	
 		res.cookie('email', result.email, { signed: true });
-		res.send(html_to_send);
+		data_to_send.redirect_uri = '/';
 	}
 	else
 	{
-		res.send('Username/Pasword invalid');
+		data_to_send.login_status = 'failed';
+		data_to_send.message = 'Username/Password invalid';	
 	}
+	res.json(data_to_send);
+	
 });
 
 function login(_db)
