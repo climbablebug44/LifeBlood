@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Roboto&display=swap');
+
+.col {
+  max-width: 90%;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 5px #888888;
+  border-radius: 40px;
+  margin-top: 0px;
+}
+
+.testimonial {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  background-color: #d1cfcfef;
+}
+
+.testimonial img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100px;
+  width: 100px;
+  object-fit: fill;
+  border-radius: 50%;
+}
+
+.name {
+  font-size: calc(0.8vh + 0.8vw);
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 20px 0;
+  width: 100%;
+  text-align: center;
+  color: rgba(41, 27, 27, 0.678);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.testimonial p {
+  font-size: calc(0.6vh + 0.7vw);
+  font-family: 'Lora', serif;
+  line-height: 23px;
+}

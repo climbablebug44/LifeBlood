@@ -1,15 +1,15 @@
-import React from 'react';
-import MapPage from './Component/Common/MapPage/MapPage';
-import HomePage from './Component/Common/HomePage/homePage';
-
-// feed test currently
+import { BrowserRouter as Router } from 'react-router-dom';
+import Header from "./Components/Header/Header";
+import MainSection from "./Components/HomePage/MainSection";
+import MapPage from './Components/Common/MapPage/MapPage';
 
 function App() {
   return (
-    <div className="App">
-      {/*<MapPage/>*/}
-      <HomePage/>
-    </div>
+    <Router>
+      {/*<Header />
+      <MainSection />*/}
+      <MapPage/>
+    </Router>
   );
 }
 
