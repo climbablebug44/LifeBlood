@@ -6,27 +6,32 @@ import ReactMapGL, {
   FullscreenControl,
   GeolocateControl
 } from "react-map-gl";
+import Geocoder from 'react-map-gl-geocoder'
 import PinInfo from "./mapPins/pinInfo";
 import Pin from "./mapPins/Pin";
 import style from './MapGL.module.css';
-import API_KEY from './api_key.json'
+import API_KEY from './api_key.json';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 const MAPBOX_TOKEN = API_KEY.mapboxgl;
+
+
 
 export default class RMapGL extends Component{
   constructor(props){
     super(props);
 
-    const lat = props.center.lat, long=props.center.lang;
-    this.geolocate = this.props.should_GeoLocate;
-    this.PEOPLE = this.props.people;
+    this.geolocate = this.props.should_GeoLocate;    
     this.height = props.dimentions.height;
     this.width = props.dimentions.width;
+    this.mapRef = React.createRef();
+    this.geoContainerRef = React.createRef();
 
     this.state = {
       viewport: {
-        latitude: lat,
-        longitude: long,
+        latitude: 0,
+        longitude: 0,
         zoom: 10
       },
       popupInfo: null
@@ -44,11 +49,6 @@ export default class RMapGL extends Component{
     };
 
   }
-
-  _updateViewport = viewport =>{
-    this.setState({viewport});
-    //console.log(viewport.pitch, viewport.roll)
-  };
 
   _renderPin = (pin, index) => {
     return(
@@ -98,19 +98,45 @@ export default class RMapGL extends Component{
       />);
   }
 
+  changeViewport = (newViewport) => {
+    this.setState({viewport: newViewport});
+  }
+
+  onSelected(viewport, item){
+    console.log('Selected: ', item);
+}
+
+  
   render() {
     const { viewport } = this.state;
+
     return (
       <div style={{height: this.height+'vh', width: this.width+'vw'}}>
+        <div
+          ref={this.geoContainerRef}
+          style={{ position: "absolute", top: 100, right: 30, zIndex: 1 }}
+        />
         <ReactMapGL
             {...viewport}
+            ref={this.mapRef}
             width="100%"
             height="100%"
             style={{position:'relative'}}
             mapStyle="mapbox://styles/mapbox/navigation-day-v1"
-            onViewportChange={this._updateViewport}
+            onViewportChange={this.changeViewport}
             mapboxApiAccessToken={MAPBOX_TOKEN}
+            
           >
+
+        <Geocoder
+          mapRef={this.mapRef}
+          containerRef={this.geoContainerRef}
+          mapboxApiAccessToken={MAPBOX_TOKEN}
+          onViewportChange={this.changeViewport}
+          position="top-right"
+          transitionDuration={2}
+        />
+            
             {this.shouldGeoLocate(this.geolocate)}
             {this.popupPeople(this.PEOPLE)}
             {this._renderPopup()}
