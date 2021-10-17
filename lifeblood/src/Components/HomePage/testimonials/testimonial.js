@@ -8,14 +8,28 @@ const options = {
   pagination: false,
   transitionMs: 300,
   showArrows: false,
-  itemPadding: [5, 5, 5, 5],
+  itemPadding: [
+    5, 5, 5, 5
+  ],
   autoPlaySpeed: 1000,
-  onNextEnd: (nextItemObject, currentPageIndex) => { nextItemObject = 0; currentPageIndex = 0 },
+  onNextEnd: (nextItemObject, currentPageIndex) => {
+    nextItemObject = 0;
+    currentPageIndex = 0
+  },
   breakPoints: [
-    { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
-    { width: 768, itemsToShow: 3 },
-    { width: 1200, itemsToShow: 4 },
+    {
+      width: 1,
+      itemsToShow: 1
+    }, {
+      width: 550,
+      itemsToShow: 2
+    }, {
+      width: 768,
+      itemsToShow: 3
+    }, {
+      width: 1200,
+      itemsToShow: 4
+    }
   ]
 };
 
