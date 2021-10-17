@@ -1,0 +1,79 @@
+.createFormFill {
+  position: relative;
+  top: 2rem;
+  width: 19rem;
+}
+.createFormFill span {
+  position: relative;
+  float: left;
+  font-size: 1rem;
+}
+.createFormFill input {
+  border: 1px solid rgb(161, 160, 160);
+  border-radius: 5px;
+}
+.createFormFill button {
+  position: relative;
+  top: 0.5rem;
+  width: 19rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  background: rgb(30, 30, 153);
+  color: white;
+  border-color: transparent;
+  border-radius: 5px;
+}
+.span3 {
+  position: relative;
+  top: 2rem;
+}
+
+@media (max-width: 460px) {
+  .createFormFill span {
+    position: relative;
+    left: 3rem;
+    top: -0.6rem;
+    font-size: 0.8rem;
+  }
+  .createFormFill input {
+    border: 1px solid rgb(161, 160, 160);
+    border-radius: 5px;
+    width: 14rem;
+  }
+  .createFormFill input:nth-child(2) {
+    position: relative;
+    left: -1.8rem;
+  }
+  .createFormFill input:nth-child(4) {
+    position: relative;
+    left: -1rem;
+  }
+  .createFormFill input:nth-child(6) {
+    position: relative;
+    left: -1.7rem;
+  }
+  .createFormFill input:nth-child(8) {
+    position: relative;
+    left: 0rem;
+    top: -1rem;
+  }
+  .createFormFill button {
+    position: relative;
+    top: 0.5rem;
+    width: 14rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    background: rgb(30, 30, 153);
+    color: white;
+    border-color: transparent;
+    border-radius: 5px;
+  }
+  .span3 {
+    position: relative;
+    top: 0.5rem;
+  }
+}

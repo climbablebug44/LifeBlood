@@ -38,6 +38,7 @@ export default class MapPage extends Component {
 
   handleListItemClick = (index, event) => {
     this.selected = index;
+    this.forceUpdate();
     this
       .child
       .goTo(index);
@@ -89,7 +90,7 @@ export default class MapPage extends Component {
                 <ListSubheader>{subheadingMessage}</ListSubheader>
                 {PEOPLE.map((person, index) => (
                   <ListItemButton
-                    selected={this.selected == index}
+                    selected={this.selected === index}
                     onClick={(event) => this.handleListItemClick(index, event)}>
                     <ListItemText
                       primary={`${person.id}. ${person.name}`}

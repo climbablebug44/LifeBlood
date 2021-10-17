@@ -20,7 +20,6 @@ const MAPBOX_TOKEN = API_KEY.mapboxgl;
 export default class RMapGL extends Component {
   constructor(props) {
     super(props);
-
     this.PEOPLE = props.people;
     this.geolocate = this.props.should_GeoLocate;
     this.height = props.dimentions.height;
