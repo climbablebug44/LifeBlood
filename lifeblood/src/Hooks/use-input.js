@@ -7,7 +7,7 @@ const useInput = (validateInput)=>{
   const hasError = !valueIsValid && isTouched;
   const valueChangeHandler = (event)=>{
        setEnteredValue(event.target.value);
-       console.log(event);
+       
   }
   const inputBlurHandler = ()=>{
       setIsTouched(true);

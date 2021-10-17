@@ -11,20 +11,20 @@ import Section2 from './testimonials/section2';
 import image from '../../assets/distraction.jpg';
 
 const MainSection = (props) => {
-  return <React.Fragment>
-    <main className={styles.main}>
-      <ImgSlider/>
-      <SectionOneHome/>
-      <SectionTwoHome/>
-      <SectionThirdHome/>
-      <SectionFourHome/>
-      <div className={styles.distraction}>
-        <img src={image} alt='random girl'/>
-      </div>
-      <SectionFiveHome/>
-      <Section2/>
-      <Footer/>
-    </main>
-  </React.Fragment>
+    return <React.Fragment>
+        <main className={styles.main}>
+            <ImgSlider />
+            <SectionOneHome />
+            <SectionTwoHome />
+            <SectionThirdHome />
+            <SectionFourHome />
+            <div className={styles.distraction}>
+                <img src={image} alt='random girl' />
+            </div>
+            <SectionFiveHome />
+            <Section2 />
+            <Footer />
+        </main>
+    </React.Fragment>
 }
 export default MainSection;

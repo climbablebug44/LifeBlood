@@ -1,0 +1,158 @@
+.createFormFill {
+  position: relative;
+  top: 2rem;
+  width: 19rem;
+}
+.facebookContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 50px;
+  background: #21427c;
+  position: relative;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  margin: 10px;
+}
+.facebookContainer img {
+  width: 12.5%;
+  height: 100%;
+  object-fit: contain;
+  left: 10px;
+  border-radius: 3px;
+  position: absolute;
+}
+
+.googleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 50px;
+  background: #4385f4;
+  position: relative;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.googleContainer img {
+  width: 12.5%;
+  height: 100%;
+  object-fit: contain;
+  left: 10px;
+  border-radius: 3px;
+  position: absolute;
+}
+.create-Container {
+  width: 100%;
+  height: 150vh;
+}
+.createForm {
+  position: relative;
+  top: -4rem;
+  height: 100%;
+  width: 100%;
+  background: #187dc0;
+}
+.createFormContainer {
+  display: flex;
+  min-height: 100%;
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+}
+.createFormFill span {
+  position: relative;
+  float: left;
+  font-size: 1rem;
+}
+.createFormFill input {
+  border: 1px solid rgb(161, 160, 160);
+  border-radius: 5px;
+}
+.createFormFill button {
+  position: relative;
+  top: 0.5rem;
+  width: 19rem;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 400;
+  background: rgb(172, 36, 54);
+  color: white;
+  border-color: transparent;
+  border-radius: 5px;
+}
+.span3 {
+  position: relative;
+  top: 0.2rem;
+}
+.login1google1 {
+  cursor: pointer;
+  width: 19rem;
+
+  text-align: center;
+}
+
+@media (max-width: 460px) {
+  .createFormFill span {
+    position: relative;
+    left: 3rem;
+    top: -0.6rem;
+    font-size: 0.8rem;
+  }
+  .createFormFill input {
+    border: 1px solid rgb(161, 160, 160);
+    border-radius: 5px;
+    width: 14rem;
+  }
+  .login1google1 {
+    cursor: pointer;
+    width: 14rem;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .createFormFill input:nth-child(2) {
+    position: relative;
+    left: -1.8rem;
+  }
+  .createFormFill input:nth-child(4) {
+    position: relative;
+    left: -1rem;
+  }
+  .createFormFill input:nth-child(6) {
+    position: relative;
+    left: -1.7rem;
+  }
+  .createFormFill input:nth-child(8) {
+    position: relative;
+    left: 0rem;
+    top: -1rem;
+  }
+  .createFormFill button {
+    position: relative;
+    top: 0.5rem;
+    width: 14rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    background: rgb(30, 30, 153);
+    color: white;
+    border-color: transparent;
+    border-radius: 5px;
+  }
+  .span3 {
+    position: relative;
+    top: 0.5rem;
+  }
+}

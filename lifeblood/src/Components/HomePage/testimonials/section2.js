@@ -7,7 +7,7 @@ const Section2 = () => {
     <React.Fragment>
       <div className={Styles.section2}>
         <div className={Styles.info}>
-          <Testimonial/>
+          <Testimonial />
         </div>
       </div>
     </React.Fragment>

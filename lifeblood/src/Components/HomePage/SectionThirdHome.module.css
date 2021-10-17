@@ -3,7 +3,7 @@
     display: flex;
     margin: 50px auto;
     width: 100%;
-    height: 50vh;
+    height: auto;
     overflow: hidden;
     justify-content: space-around;
     overflow-x: hidden;
@@ -47,3 +47,15 @@
     padding: 0 30px;
     font-size: 26px;
 }
+@media screen and (max-width: 756px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+  }
+
+  @media screen and (max-width: 432px) {
+    .about-us {
+        flex-direction: column;
+    }
+  }
