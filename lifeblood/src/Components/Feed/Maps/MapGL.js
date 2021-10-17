@@ -1,5 +1,12 @@
 import React, {Component} from "react";
-import ReactMapGL, {Marker, Popup, NavigationControl, FullscreenControl, GeolocateControl, FlyToInterpolator} from "react-map-gl";
+import ReactMapGL, {
+  Marker,
+  Popup,
+  NavigationControl,
+  FullscreenControl,
+  GeolocateControl,
+  FlyToInterpolator
+} from "react-map-gl";
 import Geocoder from 'react-map-gl-geocoder'
 import PinInfo from "./mapPins/pinInfo";
 import Pin from "./mapPins/Pin";
@@ -56,10 +63,14 @@ export default class RMapGL extends Component {
   };
 
   componentDidMount() {
-    this.props.onRef(this)
+    this
+      .props
+      .onRef(this)
   }
   componentWillUnmount() {
-    this.props.onRef(undefined)
+    this
+      .props
+      .onRef(undefined)
   }
 
   _renderPopup() {
@@ -102,28 +113,16 @@ export default class RMapGL extends Component {
     this.setState({viewport: newViewport});
   }
 
-  goTo(index){
+  goTo(index) {
     this.changeViewport({
       ...this.state.viewport,
       longitude: this.PEOPLE[index].longitude,
       latitude: this.PEOPLE[index].latitude,
-      zoom: 14,
-      transitionDuration: 5000,
-      transitionInterpolator: new FlyToInterpolator(),
-      
+      transitionDuration: 4000,
+      zoom: 10,
+      transitionInterpolator: new FlyToInterpolator()
     });
   };
-
-  onchangeSelect(select){
-    if(select!=-1){
-      this.state.viewport.latitude = this.PEOPLE[select].latitude;
-      this.state.viewport.longitude = this.PEOPLE[select].longitude;
-    }
-  }
-
-  onSelected(viewport, item) {
-    console.log('Selected: ', item);
-  }
 
   render() {
     const {viewport} = this.state;
@@ -152,7 +151,6 @@ export default class RMapGL extends Component {
           mapStyle="mapbox://styles/mapbox/navigation-day-v1"
           onViewportChange={this.changeViewport}
           mapboxApiAccessToken={MAPBOX_TOKEN}>
-
           <Geocoder
             mapRef={this.mapRef}
             containerRef={this.geoContainerRef}
