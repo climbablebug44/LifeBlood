@@ -16,7 +16,7 @@ import Feed from "./Components/Feed/Feed";
 //import DetailsForm from "./Components/DetailsForm/DetailsForm";
 class App extends Component {
   state={
-    isAuth:true,
+    isAuth:false,
     userId:null,
     userName:"",
     hasError:false
