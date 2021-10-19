@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from '../../assets/logo.jpeg'
 import Styles from "./jeetu.module.css";
-
-const Navbar = () => {
+import Navigation from './Navigation';
+import Dropdown from './Dropdown';
+const Navbar = (props) => {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
@@ -24,8 +25,8 @@ const Navbar = () => {
         <li> <NavLink to="/about" activeClassName={Styles.active}>About</NavLink></li>
         <li> <NavLink to="/feed" activeClassName={Styles.active}>Find Blood</NavLink></li>
         <li> <NavLink to="/nearby" activeClassName={Styles.active}>NearBy User</NavLink></li>
-        <li className={Styles.bakchodi}><a href='/register' className={Styles['login-register']} >Register</a></li>
-        <li className={Styles.bakchodi}><a href='/login' className={Styles['login-register']} >Login</a></li>
+        <Navigation isAuth = {props.isAuth} activeClassName={Styles.active}/>
+        {props.isAuth &&<Dropdown onLogout = {props.onLogout}/>}
       </ul>
     </nav>
   );
