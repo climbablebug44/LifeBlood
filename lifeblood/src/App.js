@@ -32,6 +32,7 @@ class App extends Component {
   componentDidMount() {
     const token = localStorage.getItem("token");
     const expiaryDate = localStorage.getItem("expiryDate");
+    const google = localStorage.getItem("google");
     console.log(token, expiaryDate);
     if (!token || !expiaryDate) {
       return;
@@ -39,6 +40,9 @@ class App extends Component {
     if (new Date() >= new Date(expiaryDate)) {
       this.logoutHandler();
       return;
+    }
+    if (google === 1) {
+      this.setState({ googleLoginCount: 1 })
     }
     const userId = localStorage.getItem("userId");
     const userName = localStorage.getItem("userName");
@@ -119,10 +123,15 @@ class App extends Component {
         this.setState({
           isAuth: true,
           googleLogin: true,
-          googleLoginCount: this.googleLoginCount + 1,
+
           userId: resData.userId,
           userName: resData.userName
         })
+        if (resData.first_time) {
+          this.setState({ googleLoginCount: 1 })
+        }
+        localStorage.setItem("google", 1);
+        localStorage.setItem("googleLoginCount", 1);
         localStorage.setItem("userName", resData.userName);
         localStorage.setItem("userId", resData.userId);
         localStorage.setItem("email", resData.email);
@@ -150,7 +159,7 @@ class App extends Component {
     localStorage.removeItem("expiaryDate");
     localStorage.removeItem("token");
     localStorage.removeItem("email");
-
+    localStorage.removeItem("googleLoginCount")
 
   }
   setAutoLogout = (ms) => {

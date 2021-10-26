@@ -29,12 +29,12 @@ export default class RMapGL extends Component {
 
     this.height = props.dimentions.height;
     this.width = props.dimentions.width;
-    
+
 
     let lat = 0, long = 0;
-    if(props.center !== undefined){
-    lat = props.center.lat;
-    long = props.center.long;
+    if (props.center !== undefined) {
+      lat = props.center.lat;
+      long = props.center.long;
     }
 
     this.mapRef = React.createRef();
@@ -92,21 +92,21 @@ export default class RMapGL extends Component {
   }
 
   componentDidMount() {
-    try{
+    try {
       this
-      .props
-      .onRef(this)
+        .props
+        .onRef(this)
     }
-    catch(err){
+    catch (err) {
     }
   }
   componentWillUnmount() {
-    try{
+    try {
       this
-      .props
-      .onRef(undefined)
+        .props
+        .onRef(undefined)
     }
-    catch(err){
+    catch (err) {
     }
   }
 
@@ -115,7 +115,7 @@ export default class RMapGL extends Component {
       return (<GeolocateControl
         className={style.geolocate}
         positionOptions={{
-        enableHighAccuracy: false
+          enableHighAccuracy: false
         }}
         trackUserLocation={true}
         fitBoundsOptions={{
@@ -136,33 +136,33 @@ export default class RMapGL extends Component {
     });
   };
 
-  isVisibleGeocoder(permission){
-    if(permission)
-      return(
+  isVisibleGeocoder(permission) {
+    if (permission)
+      return (
         <Geocoder
-            mapRef={this.mapRef}
-            containerRef={this.geoContainerRef}
-            mapboxApiAccessToken={MAPBOX_TOKEN}
-            onViewportChange={this.changeViewport}
-            position="top-right"
-            transitionDuration={2} /> 
+          mapRef={this.mapRef}
+          containerRef={this.geoContainerRef}
+          mapboxApiAccessToken={MAPBOX_TOKEN}
+          onViewportChange={this.changeViewport}
+          position="top-right"
+          transitionDuration={2} />
       );
   }
 
   drawInformationLayer = () => {
-    if(this.state.viewport.zoom >= 15)
-      return(this.PEOPLE.features.map((person, index) => (
+    if (this.state.viewport.zoom >= 15)
+      return (this.PEOPLE.features.map((person, index) => (
         <Marker
-        latitude={person.geometry.coordinates[1]}
-        longitude={person.geometry.coordinates[0]}
-        key={`marker-${index}`}
+          latitude={person.geometry.coordinates[1]}
+          longitude={person.geometry.coordinates[0]}
+          key={`marker-${index}`}
         >
-        <div className={style.person_name}>
-          {person.properties.name}
-        </div>
+          <div className={style.person_name}>
+            {person.properties.name}
+          </div>
         </Marker>
       )));
-}
+  }
 
   render() {
     const { viewport } = this.state;

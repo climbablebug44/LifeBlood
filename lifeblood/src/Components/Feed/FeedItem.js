@@ -20,9 +20,9 @@ const FeedItem = (props) => {
                 <p>{props.reason}</p>
                 <div className={styles['map-image']}>
                     <FeedMap
-                        dimentions={{height:60, width: 80}}
-                        center={{lat:10.233, long:10.44}} 
-                        // Access actual data here
+                        dimentions={{ height: 60, width: 80 }}
+                        center={{ lat: 10.233, long: 10.44 }}
+                    // Access actual data here
                     />
                 </div>
             </div>

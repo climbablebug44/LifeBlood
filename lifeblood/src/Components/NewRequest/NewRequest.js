@@ -1,4 +1,5 @@
 import React from "react";
+import RMapGL from '../MapPage/Maps/MapGL';
 import styles from './NewRequest.module.css';
 
 const NewRequest = props => {
