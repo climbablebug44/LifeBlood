@@ -1,0 +1,61 @@
+.connect__container{
+    width: 60%;
+    height: 40vh;
+    background: white;
+    position: fixed;
+    z-index: 1500;
+    left: 19%;
+    top: 30vh;
+    border-radius: 10px;
+}
+.connect__header{
+    width: 100%;
+    position: absolute;
+    background: rgb(194, 57, 57);
+}
+.connect__header h1{
+    color: black;
+    margin-left: 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    
+}
+.connect__span{
+    position: relative;
+    width: 100%;
+    top: 6rem;
+    text-align: center;
+}
+.connect__span span{
+    
+    font-size: 1.5rem;
+    font-weight: 550;
+}
+.connect__button__div{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    top: 6rem;
+}
+.connect__button1 button{
+     padding: 10px;
+     border-radius: 20px;
+     background: rgb(192, 74, 74);
+     color: white;
+     font-size: 1rem;
+     border-color: transparent;
+     width: 8rem;
+     cursor: pointer;
+}
+.connect__button2 button{
+     padding: 10px;
+     border-radius: 20px;
+     background: rgb(192, 74, 74);
+     color: white;
+     font-size: 1rem;
+     border-color: transparent;
+     width: 8rem;
+     cursor: pointer;
+}

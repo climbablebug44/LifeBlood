@@ -23,9 +23,7 @@
   border-radius: 3px;
   position: absolute;
 }
-.google_login{
-  width: 21%;
-}
+
 .googleContainer {
   display: flex;
   align-items: center;
@@ -40,7 +38,9 @@
   cursor: pointer;
   margin: 10px;
 }
-
+.google_login{
+  width: 21%;
+}
 .googleContainer img {
   width: 12.5%;
   height: 100%;
