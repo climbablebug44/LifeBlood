@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import RMapGL from '../MapPage/Maps/MapGL';
 import styles from './NewRequest.module.css';
 
 const NewRequest = props => {
+
     return (
         <React.Fragment>
             <form className={styles.container} method='POST' action='/'>
@@ -46,6 +47,14 @@ const NewRequest = props => {
                 <div>
                     <label htmlFor='hospital'>City:</label>
                     <input name='hospital' id='hospital' type='text' required placeholder='Abhimanyu memorial hospital, Maharashtra' />
+                </div>
+                <div>
+                    <RMapGL
+                    dimentions={{height: 30, width: 30}}
+                    visibleGeocoder={true}
+                    shouldGeolocate={false}
+                    />
+
                 </div>
                 <div>
                     <button type='reset'>Clear</button>

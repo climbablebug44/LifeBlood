@@ -38,7 +38,6 @@ export default class RMapGL extends Component {
     }
 
     this.mapRef = React.createRef();
-    this.sourceRef = React.createRef();
     this.geoContainerRef = React.createRef();
 
     this.state = {
@@ -196,7 +195,6 @@ export default class RMapGL extends Component {
 
           <Source
             id="people"
-            ref={this.sourceRef}
             type="geojson"
             data={this.PEOPLE}
             cluster={true}
