@@ -1,0 +1,24 @@
+.fullscreen{
+  position: "absolute";
+  top: 0;
+  left: 0;
+  padding: "12px";
+}
+
+.nav{
+  position: "absolute";
+  top: 36;
+  left: 0;
+  padding: "10px";
+}
+
+.geolocate{
+    float: 'left';
+    margin: '50px';
+    padding: '10px';
+}
+
+.person_name{
+  color: darkblue;
+  margin-left: -5;
+}

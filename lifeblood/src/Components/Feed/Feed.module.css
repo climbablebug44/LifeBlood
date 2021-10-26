@@ -1,0 +1,101 @@
+.div-container {
+    display: flex;
+    width: 100%;
+    background-color: white;
+}
+
+.feed-container {
+    background-color: rgb(248, 248, 248);
+    flex-basis: 70%;
+    height: 100vh;
+    overflow-y: scroll;
+    border-left: 2px solid rgb(226, 226, 226);
+    border-right: 2px solid rgb(226, 226, 226);
+}
+
+.div-1 {
+    background-color: white;
+    flex-basis: 12%;
+}
+
+.div-3 {
+    background-color: white;
+    flex-basis: 18%;
+}
+
+.div-3 .request {
+    position: absolute;
+    text-decoration: none;
+    bottom: 5%;
+    right: 5%;
+    color: rgb(255, 255, 255);
+    background-color: rgb(201, 53, 53);
+    box-sizing: border-box;
+    box-shadow: 0px 2px 12px rgb(90, 90, 90);
+    padding: 0px 20px;
+    text-align: center;
+    font-size: 45px;
+    font-weight: 400;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.div-3 p {
+    position: absolute;
+    bottom: 13%;
+    margin-left: 10px;
+    background-color: rgb(89, 90, 90);
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: none;
+    text-align: center;
+}
+
+.request:hover+p {
+    display: block;
+}
+
+.sort-by {
+    margin-left: 2%;
+    margin-top: 100px;
+}
+
+.sort-by label {
+    color: rgb(63, 62, 62);
+}
+
+.sort-by select {
+    border: none;
+    outline: none;
+    background-color: rgb(214, 57, 57);
+    padding: 5px 5px;
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    text-align: start;
+}
+
+.sort-by select option {
+    background-color: rgb(214, 57, 57);
+    color: white;
+    font-size: 15px;
+    padding: 5px 10px;
+}
+
+@media only screen and (max-width: 900px) {
+    .div-1 {
+        flex-basis: 0%;
+    }
+
+    .feed-container {
+        flex-basis: 75%;
+    }
+
+    .div-3 {
+        flex-basis: 25%;
+        overflow-y: hidden;
+    }
+
+}

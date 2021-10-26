@@ -1,0 +1,6 @@
+.main {
+    background-color: aqua;
+    min-height: calc(100vh-70px);
+    content: "";
+    width: 100%;
+}

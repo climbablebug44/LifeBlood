@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Ubuntu&display=swap');
+
+/* font-family: 'Lato', sans-serif;
+font-family: 'Ubuntu', sans-serif; */
+
+.list {
+    list-style-type: none;
+    border-bottom: 2px solid rgb(226, 226, 226);
+    margin-bottom: 30px;
+    margin-top: 30px;
+    background-color: (248, 248, 248) !important;
+}
+
+.list:last-child {
+    margin-bottom: 0;
+}
+
+.upper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    display: flex;
+}
+
+.user-image {
+    height: 80px;
+    width: 80px;
+    margin: 0px 15px 0px 10px;
+}
+
+.user-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.upper h4 {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Lato', sans-serif;
+    color: rgb(44, 43, 43);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+    font-size: 17px;
+}
+
+.upper p {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+.upper h5 {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Lato', sans-serif;
+    color: rgb(87, 87, 87);
+    font-size: 14px;
+    letter-spacing: 0.4px;
+    font-weight: 600;
+}
+
+.donate {
+    background-color: rgb(1, 150, 1);
+    padding: 5px 20px;
+    border-radius: 30px;
+    margin-right: 30px;
+    box-shadow: 0px 8px 15px rgb(94, 93, 93);
+}
+
+.donate a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    letter-spacing: 0.4px;
+}
+
+.middle {
+    width: 100%;
+    height: 60vh;
+    margin-bottom: 5px;
+}
+
+.middle p {
+    color: rgb(39, 38, 38);
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.map-image {
+    width: 100%;
+    height: 50vh;
+}
+
+.map-image img {
+    width: 100%;
+    height: 100%;
+    margin: 10px 0px;
+}
+
+.lower {
+    display: flex;
+    height: auto;
+    min-height: 12vh;
+    margin: 0%;
+    padding: 0%;
+    align-items: center;
+    background-color: rgb(216, 216, 216);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-1 {
+    display: flex;
+    align-items: center;
+}
+
+.lower h5 {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    color: rgb(22, 22, 22);
+    margin: 10px 0px 2px;
+}
+
+.lower p {
+    margin: 2px 0 5px;
+    padding: 0px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+}
+
+.unit-blood {
+    color: rgb(97, 97, 97);
+}
+
+.highlight-blood {
+    height: 60px;
+    width: 60px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 45px;
+    background-color: rgb(216, 216, 216);
+    transform: translateY(3px);
+    margin: 0px 10px 0px 20px;
+    font-weight: 500;
+    color: rgb(223, 49, 49);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+@media only screen and (max-width: 600px) {
+    .lower {
+        flex-direction: column;
+    }
+
+
+    .donate {
+        margin: 10px auto;
+        width: 80%;
+        text-align: center;
+    }
+
+    .middle {
+        width: 100%;
+        height: 50vh;
+        margin-bottom: 5px;
+    }
+
+    .map-image {
+        width: 100%;
+        height: 40vh;
+    }
+}

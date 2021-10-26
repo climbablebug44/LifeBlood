@@ -1,0 +1,16 @@
+.Acc_ver_container {
+    width: 100%;
+    background: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Acc_ver_content {
+    display: flex;
+    position: relative;
+    top: 2rem;
+    
+  }
+  
