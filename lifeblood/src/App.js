@@ -15,6 +15,7 @@ import NewRequest from "./Components/NewRequest/NewRequest";
 import Feed from "./Components/Feed/Feed";
 import Updatepassword from "./Updatepassword/Updatepassword";
 import ChatModal from "./Components/ChatModal/ChatModal";
+import MapPage from "./Components/MapPage/MapPage";
 import DetailsForm from "./Components/DetailsForm/DetailsForm";
 import DOUWantTOConnectModal from "./Components/DoUWantToConnectModal/DOUWantToConnectModal";
 class App extends Component {
@@ -329,6 +330,7 @@ class App extends Component {
              <ResetPassword/>
            )}/>
            <Route path='/nearby'>
+             <MapPage/>
             </Route>
             <Route path="/about">
               <AboutUs />
