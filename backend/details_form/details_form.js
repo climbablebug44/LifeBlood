@@ -7,7 +7,9 @@ const { get_one, update_one  } = require('../database/db_utils');
 let db;
 
 router.post('/', async (req, res) => {
-	
+
+	//console.log('details_form');
+	//console.log(req.body);
 	let age = req.body.age
 	let blood_group = req.body.bloodGrp
 	let pincode = req.body.pincode
