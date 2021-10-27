@@ -38,4 +38,17 @@ async function insert_one(db, collection_name, data)
 	}
 }
 
-module.exports = {get_one, get_all, insert_one};
+async function update_one(db, collection_name, filter, data)
+{
+	try
+	{
+		const result = await db.collection(collection_name).updateOne(filter, data);
+		return result;
+	}
+	catch(err)
+	{
+		console.log('Error in update_one:', err);
+	}
+}
+
+module.exports = {get_one, get_all, insert_one, update_one};

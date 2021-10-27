@@ -5,15 +5,20 @@ const cors = require('cors');
 const connectToDB = require('./database/connectToDB');
 
 const app = express();
-const port = 3000;
-const DB_URL = 'mongodb://localhost/LifeBlood';
+const port = 4000;
+const DB_URL = "mongodb+srv://backend_user:backenddbuser@login-credentials.dv01o.mongodb.net/LifeBlood?retryWrites=true&w=majority"; 
+//const DB_URL = "mongodb://localhost:27017/LifeBlood";
 
 const LOC_API = '/api';
 const LOC_LOGIN = LOC_API + '/login';
 const LOC_FEED = LOC_API + '/feed';
-const LOC_SIGN_UP = LOC_API + '/sign_up';
+const LOC_SIGN_UP = LOC_API + '/signup';
 const LOC_CHECK_USER = LOC_API + '/check_user';
 const LOC_LOG_OUT = LOC_API + '/log_out';
+const LOC_VERIFY = LOC_API + '/verify';
+const LOC_RESET_PASSWORD = LOC_API + '/resetpassword';
+const LOC_AUTH = LOC_API + '/auth';
+const LOC_DETAILS_FORM = LOC_API + '/DetailsForm';
 
 let db;
 
@@ -24,6 +29,10 @@ function set_routes()
 	const router_feed = require('./feed/feed')(db);
 	const router_sign_up = require('./sign_up/sign_up')(db);
 	const router_log_out = require('./log_out/log_out');
+	const router_verify = require('./verify/verify.js')(db);
+	const router_reset_password = require('./reset_password/reset_password.js')(db);
+	const router_auth = require('./auth/google.js')(db);
+	const router_details_form = require('./details_form/details_form.js')(db);
 
 	app.use(express.static('backend/public'));
 	app.use(cors());
@@ -39,6 +48,10 @@ function set_routes()
 	app.use(LOC_LOG_OUT, router_log_out);
 
 	app.use(LOC_FEED, router_feed);
+	app.use(LOC_VERIFY, router_verify);
+	app.use(LOC_RESET_PASSWORD, router_reset_password);
+	app.use(LOC_AUTH, router_auth);
+	app.use(LOC_DETAILS_FORM, router_details_form);
 }
 
 ;(async function() {

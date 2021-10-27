@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var jwt = require('jsonwebtoken');
 
 const {get_one} = require('../database/db_utils');
 
@@ -19,22 +20,29 @@ router.post('/', async (req, res) => {
 
 	email = req.body.email;
 	password = req.body.password;
-	filter = {email, password}
+	verified = true;
+
+	filter = {email, password, verified}
 
 	result = await get_one(db, 'users', filter);
-	data_to_send = {}
+	
 	if(result != null)
-	{	
-		data_to_send.login_status = 'success';	
-		res.cookie('email', result.email, { signed: true });
-		data_to_send.redirect_uri = '/';
+	{
+		const token = jwt.sign(
+			{
+				email: result.email,
+				userId: result._id.toString(),
+			},
+			'secret',
+			{expiresIn: '1w'}
+		);
+		console.log('200');
+		res.status(200).json({token, userId: result._id.toString(), userName: result.name});
 	}
 	else
 	{
-		data_to_send.login_status = 'failed';
-		data_to_send.message = 'Username/Password invalid';	
+		res.status(402).end();
 	}
-	res.json(data_to_send);
 	
 });
 
