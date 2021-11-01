@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import FeedMap from "../MapPage/Maps/feedMap";
 import RMapGL from "../MapPage/Maps/MapGL";
 import Input from "./Input";
 import styles from './NewRequest.module.css';
