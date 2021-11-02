@@ -11,7 +11,7 @@ import ErrorHandler from './Components/ErrorHandler/ErrorHandler';
 import AccountVerification from "./Components/Verification/Verification";
 import DisplayModal from "./Components/DisplayModal/DisplayModal";
 import ResetPassword from "./Components/ResetPassword/ResetPassword";
-import NewRequest from "./Components/NewRequest/NewRequest";
+import NewRequest from "./Components/NewRequest/NewRequest/NewRequest";
 import Feed from "./Components/Feed/Feed";
 import Updatepassword from "./Updatepassword/Updatepassword";
 import ChatModal from "./Components/ChatModal/ChatModal";
@@ -130,16 +130,15 @@ class App extends Component {
         userName:resData.userName
       })
       if(resData.first_time)
-      {
-        
-      this.setState({googleLoginCount:1})
+      {   
+         this.setState({googleLoginCount:1})
       }
       
       localStorage.setItem("google",1);
       localStorage.setItem("googleLoginCount",1);  
       localStorage.setItem("userName",resData.userName);
       localStorage.setItem("userId",resData.userId);
-      localStorage.setItem("email",resData.email);
+     // localStorage.setItem("email",resData.email);
       localStorage.setItem("token",resData.token);
       this.props.history.push("/");
         const remainingMilliseconds = 60*60*1000;
@@ -165,6 +164,7 @@ class App extends Component {
       localStorage.removeItem("token");
       localStorage.removeItem("email");
       localStorage.removeItem("googleLoginCount")
+      localStorage.removeItem("google")
 
   }
   setAutoLogout = (ms)=>{
@@ -212,7 +212,7 @@ class App extends Component {
     .then(resData=>{
       this.setState({isAuth:false});
       console.log(resData);
-      localStorage.setItem("email",resData.email);
+      localStorage.setItem("email",data.email);
       this.props.history.push('/verify');
 
     })
@@ -241,10 +241,11 @@ class App extends Component {
             {
                 throw new Error("User already exists");
             }
+            this.setState({googleLoginCount:0})
             return res.json();
         })
         .then(resData=>{
-            this.setState({googleLoginCount:0})
+            console.log(resData);
         })
         .catch(err=>{
             console.log(err);
@@ -301,6 +302,7 @@ class App extends Component {
            <ResetPassword/>
          )}/>
          <Route path='/nearby'>
+           <MapPage/>
           </Route>
           <Route path="/about">
             <AboutUs />
