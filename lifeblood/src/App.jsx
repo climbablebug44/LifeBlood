@@ -293,6 +293,7 @@ class App extends Component {
 					<ResetPassword />
 				)} />
 				<Route path='/nearby'>
+					<MapPage />
 				</Route>
 				<Route path="/about">
 					<AboutUs />
