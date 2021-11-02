@@ -153,8 +153,10 @@ const NewRequest = props => {
                 reason:enteredReason,
                 aadhar:enteredAadhar,
                 pincode:enteredPin,
-                hospital:enteredHospital
-
+                hospital:enteredHospital,
+              /*  latitude:ashwin daale ga,
+                longitude:ashwin daale ga
+                */
             }),
             headers:{
                 "content-Type":"application/json"
