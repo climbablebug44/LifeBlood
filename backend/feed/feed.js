@@ -8,14 +8,16 @@ let db;
 router.get('/', async (req, res) => {
 	result = await get_all(db, 'feed');
 	console.log(result);
+	/*
 	let feed_arr = [];
 	for(i=0;i<result.length;i++)
 	{
 		feed_arr.push(result[i].data);
 	}
-	
-	const feed = {'type': 'FeatureCollection', 'features': feed_arr };
+	*/
+	const feed = {'type': 'FeatureCollection', 'features': result };
 	console.log('Feed -----');
+	
 	console.log(feed);
 
 	res.json(feed);
@@ -23,17 +25,23 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
 	
-	const data = req.body.data;
+	console.log('POST TO /feed');
+	const { name, age, state, contact, city, bloodGrp, reason, aadhar, pincode, hospital, latitude, longitude } = req.body;
+	const data = {};
+	data.type = 'Feature';
+	data.geometry = { type: 'Point', coordinates: [longitude, latitude] };
+	data.properties = { name, age, state, contact, city, bloodGrp, reason, aadhar, pincode, hospital };
+
 	data_to_send = {}
 
-	result = await insert_one(db, 'feed', {data} );
+	result = await insert_one(db, 'feed', {...data} );
 	if(result != null)
 	{
 		data_to_send.status = 'success';
 		const feed_id = result.insertedId.toString();
 		data_to_send.feed_id = feed_id;
 		
-		result2 = await update_one(db, 'feed', {'_id': result.insertedId}, { '$set': { 'data.properties.id': feed_id }});
+		result2 = await update_one(db, 'feed', {'_id': result.insertedId}, { '$set': { 'properties.id': feed_id }});
 
 		res.status(200).json(data_to_send);
 	}

@@ -141,7 +141,7 @@ const NewRequest = props => {
 
     const requestFormSubmitHandler = (event)=>{
         event.preventDefault();
-        fetch("http://localhost:4000/api/newRequest",{
+        fetch("http://localhost:4000/api/feed",{
             method:"POST",
             body:JSON.stringify({
                 name:enteredName,
@@ -154,9 +154,9 @@ const NewRequest = props => {
                 aadhar:enteredAadhar,
                 pincode:enteredPin,
                 hospital:enteredHospital,
-              /*  latitude:ashwin daale ga,
-                longitude:ashwin daale ga
-                */
+              	latitude:1.0,
+                longitude:1.0,
+                
             }),
             headers:{
                 "content-Type":"application/json"
