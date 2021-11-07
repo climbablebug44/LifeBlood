@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router()
 var ObjectId = require('mongodb').ObjectId;
 
+const bcrypt = require('bcrypt');
 const { get_one, update_one } = require('../database/db_utils');
 const send_mail = require('../mail/send_mail');
 
@@ -18,7 +19,7 @@ router.post('/sendlink', async (req, res) => {
 		console.log(reset_url);
 		send_mail({
 			to: result.email,
-			subject: 'Reset you LifeBlood Password',
+			subject: 'Reset your LifeBlood Password',
 			html: `Click <a href= '${reset_url}'>here</a> to reset your LifeBlood account Pasword.`
 		});
 	}
@@ -37,13 +38,16 @@ router.post('/updatepassword', async (req, res) => {
 	const userid = req.body.token;
 	const password = req.body.password;
 
-	filter = { '_id': new ObjectId(userid)};
-	let result = await update_one(db, 'users', filter, { $set: { 'password': password } });
+	bcrypt.hash(password, 1, async (err, hash) =>
+	{
+		filter = { '_id': new ObjectId(userid)};
+		let result = await update_one(db, 'users', filter, { $set: { 'password': hash } });
 
-	if(result != null)
-		res.status(200).json( { "result": "success"} );
-	else
-		res.status(422).json( { "result": "failed" } );
+		if(result != null)
+			res.status(200).json( { "result": "success"} );
+		else
+			res.status(422).json( { "result": "failed" } );
+	});
 });
 
 function reset_password(_db)

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router()
 
+const bcrypt = require('bcrypt');
 const { get_one, insert_one  } = require('../database/db_utils');
 const send_mail = require('../mail/send_mail');
 
@@ -22,23 +23,25 @@ router.post('/', async (req, res) => {
 		res.status(402).end();
 		return;
 	}
+	
+	bcrypt.hash(password, 1, async (err, hash) => {
+		result = await insert_one(db, 'users', {email, name, password: hash, blood_group, pincode, phone_number, verified});	
 
-	result = await insert_one(db, 'users', {email, name, password, blood_group, pincode, phone_number, verified});	
-
-	if(result != null)
-	{
-		//console.log(result.insertedId.toString());
-		const verification_url = 'http://localhost:4000/api/verify/' + result.insertedId.toString();
-		console.log(verification_url);
-		send_mail({
-			to: email,
-			subject: 'Verify your LifeBlood account',
-			html: `Click <a href = '${verification_url}'>here</a> to verify your email.`
-		});
-		res.status(201).json({'message': 'Registration successful'});
-	}
-	else
-		res.status(402).end();
+		if(result != null)
+		{
+			//console.log(result.insertedId.toString());
+			const verification_url = 'http://localhost:4000/api/verify/' + result.insertedId.toString();
+			console.log(verification_url);
+			send_mail({
+				to: email,
+				subject: 'Verify your LifeBlood account',
+				html: `Click <a href = '${verification_url}'>here</a> to verify your email.`
+			});
+			res.status(201).json({'message': 'Registration successful'});
+		}
+		else
+			res.status(402).end();
+	});
 });
 
 function sign_up(_db)

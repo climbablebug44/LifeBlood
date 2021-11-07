@@ -5,8 +5,9 @@ const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client();
 
 const {get_one, insert_one} = require('../database/db_utils');
+const { GOOGLE_CLIENT_ID, JWT_SECRET } = require('../backend_api_key.json');
 
-const CLIENT_ID = "800856205553-351o7icho2859rhvnsoltva3r4ek1c6c.apps.googleusercontent.com";
+//const CLIENT_ID = "800856205553-351o7icho2859rhvnsoltva3r4ek1c6c.apps.googleusercontent.com";
 
 let db;
 
@@ -15,7 +16,7 @@ router.post('/google', async (req, res) => {
 
 	const ticket = await client.verifyIdToken({
 		idToken: token,
-		audience: CLIENT_ID,
+		audience: GOOGLE_CLIENT_ID,
 	});
 
 	const { name, email } = ticket.getPayload();
@@ -38,7 +39,7 @@ router.post('/google', async (req, res) => {
 				email,
 				userId,
 			},
-			'secret',
+			JWT_SECRET,
 			{expiresIn: '1w'}
 		);
 

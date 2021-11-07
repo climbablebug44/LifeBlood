@@ -1,8 +1,9 @@
 const nodemailer = require('nodemailer');
 
-USER_VERIFICATION_TOKEN = "dgfgpspdifgskdfngussj490385jsp8ms"
-EMAIL_USERNAME = "lifeblood.synergy@gmail.com"
-EMAIL_PASSWORD = "eYzx345ituvy@903"
+const { EMAIL_USERNAME, EMAIL_PASSWORD } = require('../backend_api_key.json'); 
+
+//EMAIL_USERNAME = "lifeblood.synergy@gmail.com"
+//EMAIL_PASSWORD = "eYzx345ituvy@903"
 
 const transporter = nodemailer.createTransport({
       service: "Gmail",
