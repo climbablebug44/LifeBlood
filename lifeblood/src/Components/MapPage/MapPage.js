@@ -14,7 +14,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import RMapGL from "./Maps/MapGL";
 import Navbar from "../temp/jeetu";
 import geojson from './Maps/people';
-import style from './mappage.module.css';
 
 const drawerWidth = 300;
 const subheadingMessage = "Available Donors nearby";
@@ -114,6 +113,7 @@ export default class MapPage extends Component {
 							width: 77
 						}} //height width as vh and vw
 						visibleGeocoder={true}
+						geocoder={{top: 100, right: 30}}
 					/>
 				</Box>
 			</Box>
