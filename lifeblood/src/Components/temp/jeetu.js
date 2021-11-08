@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import logo from '../../assets/logo.jpeg'
 import Styles from "./jeetu.module.css";
@@ -7,25 +7,25 @@ import Dropdown from './Dropdown';
 import Message from '../../Images/message.png';
 const Navbar = (props) => {
   const [clicked, setClicked] = useState(false);
-  const [message,setMessage] = useState([]);
-  const [open,setOpen] = useState(false);
-   //useEffect(()=>{
-   // props.socket.on("getMessage",(data)=>{
-     // setMessage((prev)=>[...prev,data]);
-   // })
-   //},[props.socket]);
-   
+  const [message, setMessage] = useState([]);
+  const [open, setOpen] = useState(false);
+  //useEffect(()=>{
+  // props.socket.on("getMessage",(data)=>{
+  // setMessage((prev)=>[...prev,data]);
+  // })
+  //},[props.socket]);
+
   const handleClick = () => {
     setClicked(!clicked);
   };
-  const displayMessage = ({senderName})=>{
-     return (
-       <span className="notification">
-         {`${senderName} wants to contact you .`}
-       </span>
-     )
+  const displayMessage = ({ senderName }) => {
+    return (
+      <span className="notification">
+        {`${senderName} wants to contact you .`}
+      </span>
+    )
   }
-  const handleRead = ()=>{
+  const handleRead = () => {
     setMessage([]);
     setOpen(false);
   }
@@ -43,31 +43,31 @@ const Navbar = (props) => {
         <li> <NavLink to="/about" activeClassName={Styles.active}>About</NavLink></li>
         <li> <NavLink to="/feed" activeClassName={Styles.active}>Find Blood</NavLink></li>
         <li> <NavLink to="/nearby" activeClassName={Styles.active}>NearBy User</NavLink></li>
-        <Navigation isAuth = {props.isAuth} activeClassName={Styles.active}/>
+        <Navigation isAuth={props.isAuth} activeClassName={Styles.active} />
         {props.isAuth && (
-          <div className={Styles.icon} onClick = {()=>setOpen(!open)}>
-            <img src={Message} className={Styles.iconImg} alt=""/>
+          <div className={Styles.icon} onClick={() => setOpen(!open)}>
+            <img src={Message} className={Styles.iconImg} alt="" />
             {
-              message.length>0 && <div className={Styles.iconCounter}>{message.length}</div>
+              message.length > 0 && <div className={Styles.iconCounter}>{message.length}</div>
             }
           </div>
         )
         }
         {
-          props.isAuth && open &&(
+          props.isAuth && open && (
             <div className="notifications">
-              {message.map((n)=>displayMessage(n))}
+              {message.map((n) => displayMessage(n))}
               {
-              message.length && 
-              <button className={Styles.messageButton} onClick = {handleRead}>
-                Mark as read
-              </button>
+                message.length &&
+                <button className={Styles.messageButton} onClick={handleRead}>
+                  Mark as read
+                </button>
               }
-              
-            </div>  
+
+            </div>
           )
         }
-        {props.isAuth &&<Dropdown onLogout = {props.onLogout}/>}
+        {props.isAuth && <Dropdown onLogout={props.onLogout} />}
       </ul>
     </nav>
   );

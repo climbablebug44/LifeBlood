@@ -30,13 +30,24 @@
 }
 
 .textarea label,
-.select label {
+.select label
+ {
     font-family: 'Lora', serif;
     font-size: 16px;
     font-weight: 700;
     color: rgba(24, 24, 24, 0.945);
     letter-spacing: 0.5px;
     margin: 3px 0px;
+}
+
+.tempLabel{
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(24, 24, 24, 0.945);
+    letter-spacing: 0.5px;
+    margin-left: 20px;
+    padding-bottom: 5px;
 }
 
 .textarea textarea {

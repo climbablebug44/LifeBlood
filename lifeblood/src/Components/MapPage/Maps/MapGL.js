@@ -23,8 +23,10 @@ export default class RMapGL extends Component {
 		this.PEOPLE = props.people;
 		this.height = props.dimentions.height;
 		this.width = props.dimentions.width;
+		this.permission = props.should_GeoLocate;
 		this.mapRef = React.createRef();
 		this.geoContainerRef = React.createRef();
+
 
 		this.state = {
 			viewport: {
@@ -95,13 +97,6 @@ export default class RMapGL extends Component {
 		}
 	}
 
-	returnViewportLatLong()
-	{
-		//var x = this.state.viewport;
-		return "hello";
-//		return [x.latitude, x.longitude];
-	}
-
 	goTo(index) {
 		this.changeViewport({
 			...this.state.viewport,
@@ -114,15 +109,18 @@ export default class RMapGL extends Component {
 	};
 
 	drawInformationLayer = () => {
-		if (this.state.viewport.zoom >= 15)
+		if (this.PEOPLE !== undefined && this.state.viewport.zoom >= 15)
 			return (this.PEOPLE.features.map((person, index) => (
 				<Marker
 					latitude={person.geometry.coordinates[1]}
 					longitude={person.geometry.coordinates[0]}
 					key={`marker-${index}`}
 				>
-					<div className={style.person_name}>
-						{person.properties.name}
+					<div className={style.person_name} style={{position: "relative", left: "-2.5vw"}}>
+						<a style={{textDecoration: "none"}} 
+						href={"https://google.com"}>
+							{person.properties.name}
+						</a>
 					</div>
 				</Marker>
 			)));
@@ -166,7 +164,7 @@ export default class RMapGL extends Component {
 						position="top-right"
 						transitionDuration={2} />
 
-					<GeolocateControl
+					{this.permission && <GeolocateControl
 						className={style.geolocate}
 						positionOptions={{
 							enableHighAccuracy: false
@@ -176,7 +174,7 @@ export default class RMapGL extends Component {
 							maxZoom: 13,
 							minZoom: 10
 						}}
-						auto />
+						auto />}
 
 					<Source
 						id="people"

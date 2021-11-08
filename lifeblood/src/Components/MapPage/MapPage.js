@@ -10,23 +10,13 @@ import {
 	ListSubheader,
 	ListItemButton
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import RMapGL from "./Maps/MapGL";
 import Navbar from "../temp/jeetu";
 import geojson from './Maps/people';
+import style from './mappage.module.css';
 
 const drawerWidth = 300;
 const subheadingMessage = "Available Donors nearby";
-const Theme = createTheme({
-	palette: {
-		primary: {
-			light: '#ff7961',
-			main: '#f44336',
-			dark: '#ba000d',
-			contrastText: '#000'
-		}
-	}
-});
 
 export default class MapPage extends Component {
 	constructor(props) {
@@ -49,14 +39,18 @@ export default class MapPage extends Component {
 					display: "flex",
 					maxWidth: 360,
 					bgcolor: 'background.paper'
-				}}>
+				}}
+				style={{ backgroundColor: "white" }}
+			>
 				<CssBaseline />
 				<AppBar
 					position="fixed"
 					sx={{
 						zIndex: (theme) => theme.zIndex.drawer + 1
 					}}>
-					<Navbar />
+					<Navbar
+						{...this.props.navbar}
+					/>
 				</AppBar>
 				<Drawer
 					variant="permanent"
@@ -82,38 +76,43 @@ export default class MapPage extends Component {
 							width: '100%',
 							maxWidth: 360,
 							bgcolor: 'background.paper'
-						}}>
-						<ThemeProvider theme={Theme}>
-							<List component="nav" aria-label="list" color="primary">
-								<ListSubheader>{subheadingMessage}</ListSubheader>
-								{geojson.features.map((person, index) => (
-									<ListItemButton
-										selected={this.selected === index}
-										onClick={(event) => this.handleListItemClick(index, event)}>
-										<ListItemText
-											primary={`${person.properties.id}. ${person.properties.name}`}
-											secondary={person.properties.bloodG} />
-									</ListItemButton>
-								))}
-							</List>
-						</ThemeProvider>
+						}}
+						style={{ backgroundColor: "white" }}
+					>
+						<List component="nav" aria-label="list"
+							className={style.listitem}
+						>
+							<ListSubheader className={style.listitem}>{subheadingMessage}</ListSubheader>
+							{geojson.features.map((person, index) => (
+								<ListItemButton
+									className={style.item}
+									selected={this.selected === index}
+									onClick={(event) => this.handleListItemClick(index, event)}>
+									<ListItemText
+										primary={`${person.properties.id}. ${person.properties.name}`}
+										secondary={person.properties.bloodG} />
+								</ListItemButton>
+							))}
+						</List>
 					</Box>
 				</Drawer>
 
 				<Box component="main" sx={{
 					flexGrow: 1,
 					p: 3
-				}}>
+				}}
+					style={{ backgroundColor: "white", marginLeft: "5px" }}
+				>
 					<Toolbar />
 					<RMapGL people={geojson}
 						should_GeoLocate={true}
 						onRef={ref => (this.child = ref)}
 						dimentions={{
-							height: 82,
+							height: 84,
 							width: 77
 						}} //height width as vh and vw
 						visibleGeocoder={true}
-						geocoder={{top: 100, right: 30}}
+						geocoder={{ top: 100, right: 30 }}
 					/>
 				</Box>
 			</Box>

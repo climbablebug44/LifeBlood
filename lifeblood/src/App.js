@@ -293,7 +293,9 @@ class App extends Component {
 					<ResetPassword />
 				)} />
 				<Route path='/nearby'>
-					<MapPage />
+					<MapPage
+						navbar={{ isAuth: this.state.isAuth, onLogout: this.logoutHandler, socket: this.state.socket }}
+					/>
 				</Route>
 				<Route path="/about">
 					<AboutUs />
@@ -323,7 +325,9 @@ class App extends Component {
 						<ResetPassword />
 					)} />
 					<Route path='/nearby'>
-						<MapPage />
+						<MapPage
+							navbar={{ isAuth: this.state.isAuth, onLogout: this.logoutHandler, socket: this.state.socket }}
+						/>
 					</Route>
 					<Route path="/about">
 						<AboutUs />
