@@ -24,4 +24,5 @@ yarn-error.log*
 
 # my-file
 api_key.json
+backend_api_key.json
 *.zip
