@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router";
 import RMapGL from "../MapPage/Maps/MapGL";
 import Input from "./Input";
 import styles from './NewRequest.module.css';
@@ -7,8 +8,9 @@ import styles from './NewRequest.module.css';
 export default class NewReq extends Component {
     constructor(props) {
         super(props);
-        this.props = props;
+        //this.props = props;
         this.state = {
+            redirect: false,
             enteredName: "",
             nameIsValid: false,
             enteredAge: "",
@@ -26,7 +28,7 @@ export default class NewReq extends Component {
             enteredAadhar: "",
             aadharIsValid: false,
             formIsValid: false,
-            enteredGroup: "",
+            enteredGroup: "A+",
         }
     }
 
@@ -114,7 +116,6 @@ export default class NewReq extends Component {
 
     groupChangeHandler = event => {
         this.setState({
-            ...this.state,
             enteredGroup: event.target.value
         });
     }
@@ -196,8 +197,9 @@ export default class NewReq extends Component {
     }
 
     requestFormSubmitHandler = (event) => {
+        console.log("state", this.state);
         event.preventDefault();
-        fetch("http://localhost:4000/api/newRequest", {
+        fetch("http://localhost:4000/api/feed", {
             method: "POST",
             body: JSON.stringify({
                 name: this.state.enteredName,
@@ -209,9 +211,8 @@ export default class NewReq extends Component {
                 reason: this.state.enteredReason,
                 aadhar: this.state.enteredAadhar,
                 pincode: this.state.enteredPin,
-                hospital: this.state.enteredHospital,
-                latitude: this.child.viewport.latitude,
-                longitude: this.child.viewport.longitude
+                latitude: this.child.state.viewport.latitude,
+                longitude: this.child.state.viewport.longitude
             }),
             headers: {
                 "content-Type": "application/json"
@@ -224,103 +225,110 @@ export default class NewReq extends Component {
                 return res.json();
             })
             .then(resData => {
-                this.props.history.goBack();
+                console.log("reached");
+                this.setState({
+                    ...this.state,
+                    redirect: true
+                });
             }).catch(error => { console.log(error); });
     }
 
 
     render() {
-        return (
-            <div className={styles.container}>
-                <form className={styles.form} method='POST' onSubmit={this.requestFormSubmitHandler}>
-                    <Input label="Requester's Full Name  " input={{
-                        id: 'requesterName',
-                        name: 'requesterName',
-                        type: 'text', placeholder: 'Aman Sahu'
+        if (this.state.redirect)
+            return (<Redirect to="/feed" />);
+        else
+            return (
+                <div className={styles.container}>
+                    <form className={styles.form} method='POST' onSubmit={this.requestFormSubmitHandler}>
+                        <Input label="Requester's Full Name  " input={{
+                            id: 'requesterName',
+                            name: 'requesterName',
+                            type: 'text', placeholder: 'Aman Sahu'
 
-                    }} onChange={this.nameChangeHandler} value={this.state.enteredName} onBlur={this.CheckNameIsValid} />
-                    <Input label="Patient Age  " input={{
-                        id: 'patientAge',
-                        name: 'patientAge',
-                        type: 'number', placeholder: '25',
-                        min: '1',
-                        max: '100',
-                        step: '1',
+                        }} onChange={this.nameChangeHandler} value={this.state.enteredName} onBlur={this.CheckNameIsValid} />
+                        <Input label="Patient Age  " input={{
+                            id: 'patientAge',
+                            name: 'patientAge',
+                            type: 'number', placeholder: '25',
+                            min: '1',
+                            max: '100',
+                            step: '1',
 
-                    }} onChange={this.ageChangeHandler} value={this.state.enteredAge} onBlur={this.checkAgeIsValid} />
+                        }} onChange={this.ageChangeHandler} value={this.state.enteredAge} onBlur={this.checkAgeIsValid} />
 
-                    <Input label="Your Contact no.  " input={{
-                        id: 'contact',
-                        name: 'contact',
-                        type: 'number',
-                        placeholder: '8989898989'
-                    }} onChange={this.contactChangeHandler} value={this.state.enteredContact} onBlur={this.checkContactIsValid} />
+                        <Input label="Your Contact no.  " input={{
+                            id: 'contact',
+                            name: 'contact',
+                            type: 'number',
+                            placeholder: '8989898989'
+                        }} onChange={this.contactChangeHandler} value={this.state.enteredContact} onBlur={this.checkContactIsValid} />
 
-                    <Input label="Your Aadhar no.  " input={{
-                        id: 'aadhar',
-                        name: 'aadhar',
-                        type: 'number',
-                        placeholder: '1234 5678 9012 3456'
-                    }} onChange={this.aadharChangeHandler} value={this.state.enteredAadhar} onBlur={this.checkAagharIsvalid} />
+                        <Input label="Your Aadhar no.  " input={{
+                            id: 'aadhar',
+                            name: 'aadhar',
+                            type: 'number',
+                            placeholder: '1234 5678 9012 3456'
+                        }} onChange={this.aadharChangeHandler} value={this.state.enteredAadhar} onBlur={this.checkAagharIsvalid} />
 
-                    <div className={styles.textarea}>
-                        <label htmlFor='reason'>Reason for blood requirement </label>
-                        <textarea name='reason' id='reason' rows='3' cols='50' required placeholder='write your reason here ....' maxLength='120' onChange={this.reasonChangeHandler} value={this.state.enteredReason} onBlur={this.checkReasonIsValid} />
-                    </div>
-                    <div className={styles.select}>
-                        <label htmlFor='bloodGrp'>Required Blood Grp </label>
-                        <select required defaultValue='A+' onChange={this.groupChangeHandler} value={this.state.enteredGroup}>
-                            <option>A+</option>
-                            <option>A-</option>
-                            <option>B+</option>
-                            <option>B-</option>
-                            <option>AB+</option>
-                            <option>AB-</option>
-                            <option>O+</option>
-                            <option>O-</option>
-                        </select>
-                    </div>
-                    <Input label="Postal Code  " input={{
-                        id: 'pincode',
-                        name: 'pincode',
-                        type: 'number', placeholder: '464651'
+                        <div className={styles.textarea}>
+                            <label htmlFor='reason'>Reason for blood requirement </label>
+                            <textarea name='reason' id='reason' rows='3' cols='50' required placeholder='write your reason here ....' maxLength='120' onChange={this.reasonChangeHandler} value={this.state.enteredReason} onBlur={this.checkReasonIsValid} />
+                        </div>
+                        <div className={styles.select}>
+                            <label htmlFor='bloodGrp'>Required Blood Grp </label>
+                            <select required defaultValue='A+' onChange={this.groupChangeHandler} value={this.state.enteredGroup}>
+                                <option>A+</option>
+                                <option>A-</option>
+                                <option>B+</option>
+                                <option>B-</option>
+                                <option>AB+</option>
+                                <option>AB-</option>
+                                <option>O+</option>
+                                <option>O-</option>
+                            </select>
+                        </div>
+                        <Input label="Postal Code  " input={{
+                            id: 'pincode',
+                            name: 'pincode',
+                            type: 'number', placeholder: '464651'
 
-                    }} onChange={this.pinChangeHandler} value={this.state.enteredPin} onBlur={this.checkPinIsValid} />
+                        }} onChange={this.pinChangeHandler} value={this.state.enteredPin} onBlur={this.checkPinIsValid} />
 
-                    <Input label="City  " input={{
-                        id: 'city',
-                        name: 'city',
-                        type: 'text', placeholder: 'Boisar'
+                        <Input label="City  " input={{
+                            id: 'city',
+                            name: 'city',
+                            type: 'text', placeholder: 'Boisar'
 
-                    }} onChange={this.cityChangeHandler} value={this.state.enteredCity} onBlur={this.checkCityIsValid} />
+                        }} onChange={this.cityChangeHandler} value={this.state.enteredCity} onBlur={this.checkCityIsValid} />
 
-                    <Input label="State  " input={{
-                        id: 'state',
-                        name: 'state',
-                        type: 'text', placeholder: 'Maharashtra'
+                        <Input label="State  " input={{
+                            id: 'state',
+                            name: 'state',
+                            type: 'text', placeholder: 'Maharashtra'
 
-                    }} onChange={this.stateChangeHandler} value={this.state.enteredState} onBlur={this.checkStateIsValid} />
-                    <label className={styles.tempLabel}>
-                        Locate Yourself On Map
-                    </label>
+                        }} onChange={this.stateChangeHandler} value={this.state.enteredState} onBlur={this.checkStateIsValid} />
+                        <label className={styles.tempLabel}>
+                            Locate Yourself On Map
+                        </label>
 
-                    <div style={{ paddingLeft: 1.2 + "vw" }}>
-                        <RMapGL
-                            center={{ lat: 0, long: 0 }}
-                            dimentions={{ height: 43, width: 41 }}
-                            geocoder={{ top: 115 + "vh", right: 29 + "vw" }}
-                            onRef={ref => (this.child = ref)}
-                        />
-                    </div>
+                        <div style={{ paddingLeft: 1.2 + "vw" }}>
+                            <RMapGL
+                                center={{ lat: 0, long: 0 }}
+                                dimentions={{ height: 43, width: 41 }}
+                                geocoder={{ top: 115 + "vh", right: 29 + "vw" }}
+                                onRef={ref => (this.child = ref)}
+                            />
+                        </div>
 
 
-                    <div className={styles.buttons}>
-                        <button type='reset'>Clear</button>
-                        <button type='submit' >Submit</button>
-                    </div>
-                </form>
-            </div>
-        );
+                        <div className={styles.buttons}>
+                            <button type='reset'>Clear</button>
+                            <button type='submit' >Submit</button>
+                        </div>
+                    </form>
+                </div>
+            );
     }
 
 }
