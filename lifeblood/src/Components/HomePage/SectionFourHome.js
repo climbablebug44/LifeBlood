@@ -25,7 +25,7 @@ const SectionFourHome = props => {
                         </li>
                         <li>
                             <h3 className={styles.myth}>
-                                <span>Myth: </span>Heavy people are healthier and have more blood give.
+                                <span>Myth: </span>Heavy people are healthier and have more blood to give.
                             </h3>
                             <p className={styles['myth-buster']}>
                                 <span>Fact: </span>Being overweight makes people less healthy. Overweight people do not have more blood.
