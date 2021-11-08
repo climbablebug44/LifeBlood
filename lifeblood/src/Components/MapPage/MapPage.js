@@ -104,7 +104,7 @@ export default class MapPage extends Component {
 					style={{ backgroundColor: "white", marginLeft: "5px" }}
 				>
 					<Toolbar />
-					<RMapGL people={geojson}
+					<RMapGL people={geojson} //{/* fetch from server */}
 						should_GeoLocate={true}
 						onRef={ref => (this.child = ref)}
 						dimentions={{

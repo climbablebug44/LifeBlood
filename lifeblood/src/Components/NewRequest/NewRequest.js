@@ -7,6 +7,7 @@ import styles from './NewRequest.module.css';
 export default class NewReq extends Component {
     constructor(props) {
         super(props);
+        this.props = props;
         this.state = {
             enteredName: "",
             nameIsValid: false,
@@ -194,16 +195,44 @@ export default class NewReq extends Component {
         });
     }
 
-    onSubmitHandler = () => {
-        console.log(this.state);
-        console.log("viewport: ", this.child.state.viewport);
-        // TODO : send data to backend
+    requestFormSubmitHandler = (event) => {
+        event.preventDefault();
+        fetch("http://localhost:4000/api/newRequest", {
+            method: "POST",
+            body: JSON.stringify({
+                name: this.state.enteredName,
+                age: this.state.enteredAge,
+                state: this.state.enteredState,
+                contact: this.state.enteredContact,
+                city: this.state.enteredCity,
+                bloodGrp: this.state.enteredGroup,
+                reason: this.state.enteredReason,
+                aadhar: this.state.enteredAadhar,
+                pincode: this.state.enteredPin,
+                hospital: this.state.enteredHospital,
+                latitude: this.child.viewport.latitude,
+                longitude: this.child.viewport.longitude
+            }),
+            headers: {
+                "content-Type": "application/json"
+            }
+        })
+            .then(res => {
+                if (res.status !== 200) {
+                    throw new Error("Error accured");
+                }
+                return res.json();
+            })
+            .then(resData => {
+                this.props.history.goBack();
+            }).catch(error => { console.log(error); });
     }
+
 
     render() {
         return (
             <div className={styles.container}>
-                <form className={styles.form} method='POST' action='/'>
+                <form className={styles.form} method='POST' onSubmit={this.requestFormSubmitHandler}>
                     <Input label="Requester's Full Name  " input={{
                         id: 'requesterName',
                         name: 'requesterName',
@@ -274,7 +303,7 @@ export default class NewReq extends Component {
                     <label className={styles.tempLabel}>
                         Locate Yourself On Map
                     </label>
-                    
+
                     <div style={{ paddingLeft: 1.2 + "vw" }}>
                         <RMapGL
                             center={{ lat: 0, long: 0 }}
@@ -287,7 +316,7 @@ export default class NewReq extends Component {
 
                     <div className={styles.buttons}>
                         <button type='reset'>Clear</button>
-                        <button type='submit' onClick={this.onSubmitHandler} >Submit</button>
+                        <button type='submit' >Submit</button>
                     </div>
                 </form>
             </div>
