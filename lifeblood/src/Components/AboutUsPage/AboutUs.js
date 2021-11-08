@@ -38,7 +38,7 @@ const AboutUs = props => {
                             <p>Phasellus eu nibh ligula. Sed in nisl velit. Sed non orci id purus consequat accumsan quis vel nunc. Vivamus et tristique augue. Integer quis mattis purus, non faucibus magna. Curabitur imperdiet arcu sit amet mi elementum rhoncus.</p>
                         </div>
                         <div className={styles.member}>
-                            <h4>Nimit Gour</h4>
+                            <h4>Nimit Gaur</h4>
                             <p>Phasellus eu nibh ligula. Sed in nisl velit. Sed non orci id purus consequat accumsan quis vel nunc. Vivamus et tristique augue. Integer quis mattis purus, non faucibus magna. Curabitur imperdiet arcu sit amet mi elementum rhoncus.</p>
                         </div>
                         <div className={styles.member}>
@@ -56,7 +56,7 @@ const AboutUs = props => {
                             <p>Phasellus eu nibh ligula. Sed in nisl velit. Sed non orci id purus consequat accumsan quis vel nunc. Vivamus et tristique augue. Integer quis mattis purus, non faucibus magna. Curabitur imperdiet arcu sit amet mi elementum rhoncus.</p>
                         </div>
                         <div className={styles.member}>
-                            <h4>Ashish Sharma</h4>
+                            <h4>Aashish Sharma</h4>
                             <p>Phasellus eu nibh ligula. Sed in nisl velit. Sed non orci id purus consequat accumsan quis vel nunc. Vivamus et tristique augue. Integer quis mattis purus, non faucibus magna. Curabitur imperdiet arcu sit amet mi elementum rhoncus.</p>
                         </div>
                         <div className={styles.member}>

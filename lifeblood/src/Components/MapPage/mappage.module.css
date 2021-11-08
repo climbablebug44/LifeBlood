@@ -1,0 +1,11 @@
+.listitem{
+    background-color:#e04646;
+    color: #000;
+    text-align: center;
+}
+
+.listitem :hover{
+    background-color: #ff7961;
+    color: #000;
+}
+

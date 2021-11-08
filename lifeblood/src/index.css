@@ -10,5 +10,10 @@ html {
 
 body {
   margin: 0;
+  padding: 0;
   background-color: #e04646 !important;
+}
+
+::-webkit-scrollbar {
+  display: 'none'
 }
