@@ -18,7 +18,7 @@ import ChatModal from "./Components/ChatModal/ChatModal";
 import MapPage from "./Components/MapPage/MapPage";
 import DetailsForm from "./Components/DetailsForm/DetailsForm";
 import DOUWantTOConnectModal from "./Components/DoUWantToConnectModal/DOUWantToConnectModal";
-
+import DonorForm from "./Components/DonorForm/DonorForm";
 
 class App extends Component {
 	state = {
@@ -307,6 +307,7 @@ class App extends Component {
 				<Route path='/request'>
 					<NewRequest />
 				</Route>
+        
 				<Route path="/feed">
 					<Feed />
 				</Route>
@@ -332,7 +333,7 @@ class App extends Component {
 					<Route path="/about">
 						<AboutUs />
 					</Route>
-
+          <Route path="/donorForm"><DonorForm/></Route>
 					<Route path='/request'>
 						<NewRequest />
 					</Route>

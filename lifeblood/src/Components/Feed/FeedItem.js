@@ -1,9 +1,22 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import styles from './FeedItem.module.css';
 import profile from '../../assets/feedProfile.jpg';
 import ChatModal from '../ChatModal/ChatModal';
 import FeedMap from '../MapPage/Maps/feedMap';
+//import DonorForm from '../DonorForm/DonorForm';
 const FeedItem = (props) => {
+    const history = useHistory();
+    const clickHandler = (event)=>{
+        const token = localStorage.getItem("token");
+        console.log(token);
+        if(!token)
+        {
+            history.replace('/login');
+            return;
+        }
+        history.replace('/donorForm');
+    }
     return (
         <li className={styles.list}>
             <div className={styles.upper}>
@@ -38,7 +51,7 @@ const FeedItem = (props) => {
                 </div>
                 <div className={styles['section-2']}></div>
                 <div className={styles.donate}>
-                    <a onClick={<ChatModal />}>Donate</a>
+                    <a onClick={<ChatModal />} onClick={clickHandler}>Donate</a>
                 </div>
             </div>
         </li>
