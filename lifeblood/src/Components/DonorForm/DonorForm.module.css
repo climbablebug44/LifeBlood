@@ -7,7 +7,7 @@ body {
 
 .container {
     position: relative;
-    top: 0;
+    top: 70px;
     bottom: 0%;
     left: 0;
     display: flex;
