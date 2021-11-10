@@ -26,6 +26,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
 	
 	console.log('POST TO /feed');
+	//console.log(req.body);
 	const { name, age, state, contact, city, bloodGrp, reason, aadhar, pincode, hospital, latitude, longitude } = req.body;
 	const data = {};
 	data.type = 'Feature';
