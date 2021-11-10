@@ -21,6 +21,7 @@ const LOC_RESET_PASSWORD = LOC_API + '/resetpassword';
 const LOC_AUTH = LOC_API + '/auth';
 const LOC_DETAILS_FORM = LOC_API + '/DetailsForm';
 const LOC_PROFILE = LOC_API + '/profile';
+const LOC_DONOR_FORM = LOC_API + '/donorform';
 
 let db;
 
@@ -36,6 +37,7 @@ function set_routes()
 	const router_auth = require('./auth/google.js')(db);
 	const router_details_form = require('./details_form/details_form.js')(db);
 	const router_profile = require('./profile/profile.js')(db);
+	const router_donor_form = require('./donor_form/donor_form')(db);
 
 	app.use(express.static('backend/public'));
 	app.use(cors());
@@ -56,6 +58,7 @@ function set_routes()
 	app.use(LOC_AUTH, router_auth);
 	app.use(LOC_DETAILS_FORM, router_details_form);
 	app.use(LOC_PROFILE, router_profile);
+	app.use(LOC_DONOR_FORM, router_donor_form);
 }
 
 ;(async function() {
