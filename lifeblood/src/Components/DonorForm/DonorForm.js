@@ -54,6 +54,7 @@ const DonorForm = props => {
     }
     const formSubmitHandler = (event)=>{
         event.preventDefault();
+        const userId = localStorage.getItem("userId")
         fetch('http://localhost:4000/api/donorform',{
             method:"POST",
             "content-Type":"application-json",
@@ -69,7 +70,8 @@ const DonorForm = props => {
                 hiv,
                 drugs,
                 pregnant,
-                medicine
+                medicine,
+                userId
 
             })
         })
