@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,700&family=Poppins:wght@200;400;700&family=Roboto:wght@400;700&display=swap');
+
+body {
+    margin: 0%;
+    padding: 0%;
+    position: relative;
+}
+
+.container {
+    position: absolute;
+    top: 70px;
+    left: 0%;
+    min-height: calc(100vh - 70px);
+    width: 100%;
+    background-color: #e04646d2;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    margin: 0%;
+    padding: 0%;
+}
+
+.inner-container {
+    margin: 40px auto 20px;
+    min-height: 70vh;
+    max-width: 1000px;
+    width: 98%;
+    background-color: transparent;
+    border: none;
+}
+
+.inner-container p {
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: capitalize;
+    letter-spacing: 0.2px;
+    word-spacing: 2px;
+    text-align: center;
+    color: black;
+}
+
+.form {
+    width: 60%;
+    margin: auto;
+}
+
+.form .inputTxt {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputTxt {
+    margin-bottom: 10px;
+}
+
+.inputTxt label {
+    height: 20px;
+    line-height: 20px;
+    font-size: 17px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    word-spacing: 1.5px;
+    font-weight: 700;
+    text-transform: capitalize;
+    text-align: center;
+    margin-bottom: 1.5%;
+    color: rgb(26, 26, 26);
+}
+
+.inputTxt input {
+    margin-top: 5px;
+    height: 35px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding-left: 8px;
+    text-transform: capitalize;
+    font-size: 15px;
+}
+
+.form textarea {
+    width: 100%;
+    height: 90px;
+    resize: none;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-top: 3px;
+    text-transform: capitalize;
+    font-size: 15px;
+}
+
+.form button {
+    display: block;
+    margin: auto;
+}
+
+.form button {
+    min-width: 150px;
+    width: 26%;
+    margin-top: 10px;
+    height: 38px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    background-color: rgb(3, 187, 3);
+    color: white;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.form button:hover,
+.form button:active {
+    color: black;
+    transform: translateY(-1px);
+}
+
+.experiences {
+    width: 98%;
+    max-width: 800px;
+    margin: 50px auto 20px;
+    padding: 20px auto;
+    background-color: transparent;
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}

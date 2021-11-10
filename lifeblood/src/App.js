@@ -19,7 +19,7 @@ import MapPage from "./Components/MapPage/MapPage";
 import DetailsForm from "./Components/DetailsForm/DetailsForm";
 import DOUWantTOConnectModal from "./Components/DoUWantToConnectModal/DOUWantToConnectModal";
 import DonorForm from "./Components/DonorForm/DonorForm";
-
+import ExperiencePage from './Components/UserExperience/ExperiencePage'
 class App extends Component {
 	state = {
 		isAuth: false,
@@ -297,6 +297,7 @@ class App extends Component {
 						navbar={{ isAuth: this.state.isAuth, onLogout: this.logoutHandler, socket: this.state.socket }}
 					/>
 				</Route>
+				<Route path="/experience" exact><ExperiencePage/></Route>
 				<Route path="/about">
 					<AboutUs />
 				</Route>
@@ -330,6 +331,7 @@ class App extends Component {
 							navbar={{ isAuth: this.state.isAuth, onLogout: this.logoutHandler, socket: this.state.socket }}
 						/>
 					</Route>
+					<Route path="/experience" exact><ExperiencePage/></Route>
 					<Route path="/about">
 						<AboutUs />
 					</Route>
