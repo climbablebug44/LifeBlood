@@ -1,9 +1,9 @@
 
-async function get_one(db, collection_name, filters)
+async function get_one(db, collection_name, filters, fields = {})
 {
 	try
 	{
-		const result = await db.collection(collection_name).findOne(filters);
+		const result = await db.collection(collection_name).findOne(filters, {projection: fields});
 		return result;
 	}
 	catch(err)
