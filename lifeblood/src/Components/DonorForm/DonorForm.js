@@ -29,7 +29,7 @@ const DonorForm = props => {
         console.log("check->", ...checkBox);
     }
     const tattooHandler = (event)=>{
-        setTattoo(event.tatget.value);
+        setTattoo(event.target.value);
     }
     const hemoglobinHandler = (event)=>{
         setHemoglobin(event.target.value);
