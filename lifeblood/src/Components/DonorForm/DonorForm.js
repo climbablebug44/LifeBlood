@@ -4,7 +4,7 @@ import styles from './DonorForm.module.css';
 const DonorForm = props => {
     const [age,setAge] = useState(null)
     const [weight,setWeight] = useState(null);
-    const [radio,setRadio] = useState(null);
+    const [health,setHealth] = useState(null);
     const [checkBox,setCheckBox] = useState([]);
     const [tattoo,setTattoo] = useState(null);
     const [hemoglobin,setHemoglobin] = useState(null);
@@ -20,8 +20,8 @@ const DonorForm = props => {
     const weightChangeHandler = (event)=>{
         setWeight(event.target.value)
     } 
-    const radioChangeHandler = (event)=>{
-        setRadio(event.target.value)
+    const healthChangeHandler = (event)=>{
+        setHealth(event.target.value)
         console.log(event.target.value);
     }
     const checkBoxHandler = (event)=>{
@@ -63,7 +63,7 @@ const DonorForm = props => {
             body:JSON.stringify({
                 age:age,
                 weight,
-                radio,
+                health,
                 checkBox,
                 tattoo,
                 hemoglobin,
@@ -104,8 +104,8 @@ const DonorForm = props => {
             <div className={styles['input-radio']}>
                 <p>Are you in good health right now?</p>
                 <div className={styles['radio-buttons']}>
-                    <input type='radio' id='yes' name='goodHealth' value='yes' required onClick={radioChangeHandler} ></input><label htmlFor='yes'>Yes</label>
-                    <input type='radio' id='no' name='goodHealth' value='no' onClick={radioChangeHandler} ></input><label htmlFor='no'>No</label>
+                    <input type='radio' id='yes' name='goodHealth' value='yes' required onClick={healthChangeHandler} ></input><label htmlFor='yes'>Yes</label>
+                    <input type='radio' id='no' name='goodHealth' value='no' onClick={healthChangeHandler} ></input><label htmlFor='no'>No</label>
                 </div>
             </div>
             <div className={styles['input-checkbox']}>
@@ -173,8 +173,8 @@ const DonorForm = props => {
             <div className={styles['input-radio']}>
                 <p>Have you ever tested positive for HIV?</p>
                 <div className={styles['radio-buttons']}>
-                    <input type='radio' id='yes' name='everHIV' value='yes' required ></input><label htmlFor='yes' onClick={hivHandler}>Yes</label>
-                    <input type='radio' id='no' name='everHIV' value='no' ></input><label htmlFor='no' onClick={hivHandler}>No</label>
+                    <input type='radio' id='yes' name='everHIV' value='yes' required onClick={hivHandler}></input><label htmlFor='yes' >Yes</label>
+                    <input type='radio' id='no' name='everHIV' value='no'onClick={hivHandler} ></input><label htmlFor='no' >No</label>
                 </div>
             </div>
             <div className={styles['input-radio']}>

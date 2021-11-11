@@ -16,11 +16,11 @@ router.post('/', async (req, res) => {
 		return;
 	}
 
-	const { age, weight, radio, checkBox, tattoo, hemoglobin, sexual, std, hiv, drugs, pregnant, medicine } = req.body;
+	const { age, weight, health, checkBox, tattoo, hemoglobin, sexual, std, hiv, drugs, pregnant, medicine } = req.body;
 
 	filter = {'_id': new ObjectID(user_id)};
 
-	let result = await update_one(db, 'users', filter, { $set: {donor_status: {age, weight, radio, checkBox, tattoo, hemoglobin, sexual, std, hiv, drugs, pregnant, medicine}} });	
+	let result = await update_one(db, 'users', filter, { $set: {donor_status: {age, weight, health, checkBox, tattoo, hemoglobin, sexual, std, hiv, drugs, pregnant, medicine}} });	
 
 	if(result != null)
 	{	
