@@ -7,6 +7,7 @@ const { update_one  } = require('../database/db_utils');
 let db;
 
 router.post('/', async (req, res) => {
+	console.log(req.body);
 	let user_id = req.body.userId;
 
 	if(user_id.length != 24)

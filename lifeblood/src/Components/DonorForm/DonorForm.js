@@ -57,7 +57,9 @@ const DonorForm = props => {
         const userId = localStorage.getItem("userId")
         fetch('http://localhost:4000/api/donorform',{
             method:"POST",
-            "content-Type":"application-json",
+            headers: {
+		"content-Type": "application/json",
+	    },
             body:JSON.stringify({
                 age:age,
                 weight,
