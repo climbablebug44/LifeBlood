@@ -7,7 +7,7 @@ let db;
 
 router.get('/', async (req, res) => {
 	result = await get_all(db, 'feed');
-	console.log(result);
+	//console.log(result);
 	/*
 	let feed_arr = [];
 	for(i=0;i<result.length;i++)
@@ -16,9 +16,9 @@ router.get('/', async (req, res) => {
 	}
 	*/
 	const feed = {'type': 'FeatureCollection', 'features': result };
-	console.log('Feed -----');
+	//console.log('Feed -----');
 	
-	console.log(feed);
+	//console.log(feed);
 
 	res.json(feed);
 })
