@@ -3,9 +3,6 @@ import RMapGL from "./Maps/MapGL";
 import styles from './mappage.module.css';
 import Loader from "../LoadingPage/loader";
 
-const drawerWidth = 300;
-const subheadingMessage = "Available Donors nearby";
-
 export default class MapPage extends Component {
 	constructor(props) {
 		super(props);
