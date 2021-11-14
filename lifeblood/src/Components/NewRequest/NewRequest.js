@@ -212,7 +212,8 @@ export default class NewReq extends Component {
                 aadhar: this.state.enteredAadhar,
                 pincode: this.state.enteredPin,
                 latitude: this.child.state.viewport.latitude,
-                longitude: this.child.state.viewport.longitude
+                longitude: this.child.state.viewport.longitude,
+                userId:localStorage.getItem("userId");
             }),
             headers: {
                 "content-Type": "application/json"
