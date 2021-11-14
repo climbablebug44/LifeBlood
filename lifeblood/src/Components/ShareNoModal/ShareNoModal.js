@@ -20,6 +20,7 @@ const ShareNoModal = (props)=>{
         })
         .then(data=>{
             console.log(data);
+            props.handleClose();
         })
         .catch(err=>{
             console.log(err);
