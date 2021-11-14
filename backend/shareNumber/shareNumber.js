@@ -13,7 +13,9 @@ router.post('/',async (req,res)=>{
 	
   filter = {'_id': new ObjectID(feedId)};
   let result = await get_one(db,'feed',filter);
-  const receiverId = result.receiverId;
+  console.log("//");
+  console.log(result.properties,"//");
+  const receiverId = result.feedId;
 	console.log("revcid: ",receiverId);
   console.log("***");
   client.messages.create({

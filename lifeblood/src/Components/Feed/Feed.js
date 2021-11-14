@@ -26,15 +26,7 @@ export default class Feed extends Component {
         }
     }
 
-    componentDidUpdate() {
-        const verified_ = localStorage.getItem("isVerified");
-        if (verified_ === 'true') {
-            this.setState({
-                ...this.state,
-                verified: true
-            })
-        }
-    }
+   
 
     closeHandler = () => {
         this.setState({
