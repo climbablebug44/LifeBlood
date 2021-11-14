@@ -163,7 +163,7 @@ const DonorForm = props => {
 
             </div>
             <div className={styles['input-radio']}>
-                <p>Do you have a tattoo or body pierced in past 6 months?</p>
+                <p>Do you have a tattoo or had your body pierced in past 6 months?</p>
                 <div className={styles['radio-buttons']}>
                     <input type='radio' id='yes' name='tattoo' value='yes' onClick={tattooHandler} required ></input><label htmlFor='yes'>Yes</label>
                     <input type='radio' id='no' name='tattoo' value='no' onClick={tattooHandler} ></input><label htmlFor='no'>No</label>
@@ -171,9 +171,9 @@ const DonorForm = props => {
             </div>
 
             <div className={styles['input-radio']}>
-                <p className={styles.special}>Is Your Current Hemoglobin level is higher than 13(for Male Donor) 12(for Female Donor) ?</p>
+                <p className={styles.special}>Is Your Current Hemoglobin level is higher than 13(for Male Donors) 12(for Female Donors) ?</p>
 
-                <h5><span>Note : </span>A test will be administrator at the time of donation</h5>
+                <h5><span>Note : </span>A test will be administered at the time of donation</h5>
                 <div className={styles['radio-buttons']}>
                     <input type='radio' id='yes' name='hemoglobin' value='yes' required onClick={hemoglobinHandler}></input><label htmlFor='yes' >Yes</label>
                     <input type='radio' id='no' name='hemoglobin' value='no'onClick={hemoglobinHandler} ></input><label htmlFor='no' >No</label>
@@ -182,21 +182,21 @@ const DonorForm = props => {
             </div>
 
             <div className={styles['input-radio']}>
-                <p className={styles.special}>Have you engaged in any “at risk” sexual activity in past 12 months?</p>
+                <p className={styles.special}>Did you engage in any “at risk” sexual activity in past 12 months?</p>
                 <div className={styles['radio-buttons']}>
                     <input type='radio' id='yes' name='sexualRisk' value='yes' required onClick={sexualHandler}></input><label htmlFor='yes' >Yes</label>
                     <input type='radio' id='no' name='sexualRisk' value='no' onClick={sexualHandler}></input><label htmlFor='no' >No</label>
                 </div>
             </div>
             <div className={styles['input-radio']}>
-                <p>Have you ever tested positive for HIV?</p>
+                <p>Have you ever been tested positive for HIV?</p>
                 <div className={styles['radio-buttons']}>
                     <input type='radio' id='yes' name='everHIV' value='yes' required onClick={hivHandler}></input><label htmlFor='yes' >Yes</label>
                     <input type='radio' id='no' name='everHIV' value='no'onClick={hivHandler} ></input><label htmlFor='no' >No</label>
                 </div>
             </div>
             <div className={styles['input-radio']}>
-                <p className={styles.special}>Have you been ever diagnosed for any other Sexually transmitted disease (STDs)?
+                <p className={styles.special}>Have you ever been diagnosed for any other Sexually transmitted disease (STDs)?
                 </p>
                 <div className={styles['radio-buttons']}>
                     <input type='radio' id='yes' name='STDDiagnosed' value='yes' required onClick = {stdHandler}></input><label htmlFor='yes' >Yes</label>
@@ -205,7 +205,7 @@ const DonorForm = props => {
             </div>
 
             <div className={styles['input-radio']}>
-                <p>Have you ever injected recreation drugs?
+                <p>Have you ever injected recreational drugs?
                 </p>
                 <div className={styles['radio-buttons']}>
                     <input type='radio' id='yes' name='drugs' value='yes' required onClick={drugsHandler}></input><label >Yes</label>
@@ -213,9 +213,9 @@ const DonorForm = props => {
                 </div>
             </div>
             <div className={styles['input-radio']}>
-                <p>Are you pregnant or still breast-feeding you child?
+                <p>Are you pregnant or still breast-feeding?
                 </p>
-                <h5><span>Note : </span>Only Applicable for female Donor</h5>
+                <h5><span>Note : </span>Only Applicable for female Donors</h5>
                 <div className={styles['radio-buttons']}>
                     <input type='radio' id='yes' name='pregnant' value='yes' onClick={pregnantHandler}></input><label htmlFor='yes'>Yes</label>
                     <input type='radio' id='no' name='pregnant' value='no' onClick={pregnantHandler}></input><label htmlFor='no'>No</label>
