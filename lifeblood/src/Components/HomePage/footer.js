@@ -30,7 +30,7 @@ const Footer = () => {
             <h4>Contact us</h4>
             <form className={Styles.emailform}>
               <span><i className="far fa-envelope" aria-hidden="true"></i></span>
-              <input type="email" placeholder="jeeteshgandu69@bsdka.com" required />
+              <input type="email" placeholder="amansahu@gmail.com" required />
               <button type="submit"><i className="fas fa-arrow-right" aria-hidden="true"></i></button>
             </form>
             <div className={Styles.sociallinks}>
