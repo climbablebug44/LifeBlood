@@ -13,13 +13,16 @@ router.post('/',async (req,res)=>{
 	
   filter = {'_id': new ObjectID(feedId)};
   let result = await get_one(db,'feed',filter);
-  let user = await get_one(db,'users',{'_id':new ObjectID(donorId)});
-  console.log(user,"user");
+  let user = await get_one(db,'users',{'_id':new ObjectID(donorId)});  
+	console.log(user,"user");
   console.log("//");
   console.log(result,"//");
   const receiverId = result.receiverId;
 	console.log("revcid: ",receiverId);
   console.log("***");
+  let receiver = await get_one(db, 'users', {'_id': new ObjectID(receiverId)});
+	console.log('Receiver:', receiver);
+
   client.messages.create({
       body:`${user.name} Wants to donote blood. visit "http://localhost:3000"`,
       from :'+18503671022',
