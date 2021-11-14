@@ -1,9 +1,22 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import styles from './Feed.module.css';
 import FeedItems from "./FeedItems";
-
+import ModalForShare from "../modalForShare/ModalForShare";
 
 const Feed = props => {
+    const [verify,setVerify] = useState(false);
+    const verified = localStorage.getItem("isVerified");
+    console.log(verified)
+    useEffect(()=>{
+        if(verified==='true')
+        {
+            setVerify(true)
+        }
+        
+    },[])
+    const closeHandler = ()=>{
+        setVerify(false);
+    }
     return (
         <React.Fragment>
 
@@ -24,6 +37,7 @@ const Feed = props => {
                     <p>Post Blood Request</p>
                 </div>
             </div>
+            {verify && <ModalForShare handleClose = {closeHandler}/>}
         </React.Fragment>
     );
 }

@@ -238,6 +238,7 @@ class App extends Component {
 			})
 			.then(resData => {
 				this.setState({ googleLoginCount: 0 })
+				this.props.history.replace('/');
 			})
 			.catch(err => {
 				console.log(err);
@@ -348,10 +349,11 @@ class App extends Component {
 		return (
 			<React.Fragment>
 				<Navbar isAuth={this.state.isAuth} onLogout={this.logoutHandler} socket={this.state.socket} />
+				<ErrorHandler error={this.state.error} onHandle={this.errorHandle} />
 				{routes}
 				{this.state.googleLogin && this.state.googleLoginCount === 1 && <DisplayModal Details={this.DetailsFormHandler} />}
 
-				<ErrorHandler error={this.state.error} onHandle={this.errorHandle} />
+				
 			</React.Fragment>
 		);
 

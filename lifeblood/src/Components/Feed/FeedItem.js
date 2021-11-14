@@ -15,6 +15,7 @@ const FeedItem = (props) => {
             history.replace('/login');
             return;
         }
+        localStorage.setItem("receiverId",props.id);
         history.replace('/donorForm');
     }
     return (

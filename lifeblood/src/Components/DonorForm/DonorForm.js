@@ -1,7 +1,9 @@
+//import requirePropFactory from "@mui/utils/requirePropFactory";
 import React,{useState} from "react";
 import styles from './DonorForm.module.css';
-
+import { useHistory } from "react-router";
 const DonorForm = props => {
+    const history = useHistory();
     const [age,setAge] = useState(null)
     const [weight,setWeight] = useState(null);
     const [health,setHealth] = useState(null);
@@ -78,14 +80,18 @@ const DonorForm = props => {
             })
         })
         .then(res=>{
-            if(res.status!==201)
+            if(res.status!==200)
             {
                 throw new Error("error");
             }
             return res.json();
         })
         .then(data=>{
-
+            console.log(data);
+               localStorage.setItem("isVerified",true)
+                history.replace('/feed');
+                return ;
+            
         })
         .catch(err=>{
             console.log(err);

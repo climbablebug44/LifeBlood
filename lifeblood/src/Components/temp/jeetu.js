@@ -7,14 +7,8 @@ import Dropdown from './Dropdown';
 import Message from '../../Images/message.png';
 const Navbar = (props) => {
   const [clicked, setClicked] = useState(false);
-  const [message, setMessage] = useState([]);
+  const [message, setMessage] = useState([1,2]);
   const [open, setOpen] = useState(false);
-  //useEffect(()=>{
-  // props.socket.on("getMessage",(data)=>{
-  // setMessage((prev)=>[...prev,data]);
-  // })
-  //},[props.socket]);
-
   const handleClick = () => {
     setClicked(!clicked);
   };
