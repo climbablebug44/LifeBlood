@@ -10,7 +10,8 @@ const ShareNoModal = (props)=>{
             method:"POST",
             headers:{"content-Type":"application/json"},
             body:JSON.stringify({
-                receiverId:receiverId
+                feedId:receiverId,
+                donorId:localStorage.getItem("userId")
             })
         })
         .then(res=>{

@@ -234,6 +234,29 @@ export default class NewReq extends Component {
             }).catch(error => { console.log(error); });
     }
 
+    onResetHandler = () =>{
+        this.setState({
+            redirect: false,
+            enteredName: "",
+            nameIsValid: false,
+            enteredAge: "",
+            ageIsValid: false,
+            enteredReason: "",
+            reasonIsValid: false,
+            enteredPin: "",
+            pinIsValid: false,
+            enteredContact: "",
+            contactIsValid: false,
+            enteredCity: "",
+            cityIsValid: false,
+            enteredState: "",
+            stateIsValid: false,
+            enteredAadhar: "",
+            aadharIsValid: false,
+            formIsValid: false,
+            enteredGroup: "A+",
+        });
+    }
 
     render() {
         if (this.state.redirect)
@@ -315,6 +338,7 @@ export default class NewReq extends Component {
 
                         <div style={{ paddingLeft: 1.2 + "vw" }}>
                             <RMapGL
+                                should_GeoLocate
                                 center={{ lat: 0, long: 0 }}
                                 dimentions={{ height: 43, width: 41 }}
                                 geocoder={{ top: 115 + "vh", right: 29 + "vw" }}
@@ -324,7 +348,7 @@ export default class NewReq extends Component {
 
 
                         <div className={styles.buttons}>
-                            <button type='reset'>Clear</button>
+                            <button type='reset' onClick={this.onResetHandler}>Clear</button>
                             <button type='submit' >Submit</button>
                         </div>
                     </form>

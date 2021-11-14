@@ -7,16 +7,26 @@ let db;
 const send_mail = require('../mail/send_mail');
 var ObjectID = require('mongodb').ObjectId;
 router.post('/',async (req,res)=>{
-  const id = req.body.receiverId;
-  console.log(id);
-  filter = {'_id': new ObjectID(id)};
-  const user = await get_one(db,'users',filter);
-  console.log(user);
+	console.log(req.body);
+  const feedId = req.body.feedId;
+  const donorId = req.body.donorId;
+	
+  filter = {'_id': new ObjectID(feedId)};
+  let result = await get_one(db,'feed',filter);
+  let user = await get_one(db,'users',{'_id':new ObjectID(donorId)});  
+	console.log(user,"user");
+  console.log("//");
+  console.log(result,"//");
+  const receiverId = result.receiverId;
+	console.log("revcid: ",receiverId);
   console.log("***");
+  let receiver = await get_one(db, 'users', {'_id': new ObjectID(receiverId)});
+	console.log('Receiver:', receiver);
+
   client.messages.create({
-      body:`aashish Wants to donote blood. visit "http://localhost:3000"`,
+      body:`${user.name} Wants to donote blood. visit "http://localhost:3000"`,
       from :'+18503671022',
-      to:'+916376780265'
+      to:`+91${user.phone_number}`
   })
   .then(mess=>{
       console.log(mess);
@@ -25,7 +35,7 @@ router.post('/',async (req,res)=>{
       console.log(err);
   })
   if(user!==null)
-  {
+  { console.log("wewe3//")
     send_mail({
         to:user.email,
         html:`${user.name} wants to donate blood visit: http://localhost:3000`,
