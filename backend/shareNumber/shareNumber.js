@@ -13,17 +13,19 @@ router.post('/',async (req,res)=>{
 	
   filter = {'_id': new ObjectID(feedId)};
   let result = await get_one(db,'feed',filter);
+  let receiverId = result.properties.id
   let user = await get_one(db,'users',{'_id':new ObjectID(donorId)});
   console.log(user,"user");
+  let user1 = await get_one(db,'users',{'_id':new ObjectID(receiverId)});
   console.log("//");
-  console.log(result.properties,"//");
-  const receiverId = result.feedId;
+  console.log(user1,"//");
+
 	console.log("revcid: ",receiverId);
   console.log("***");
   client.messages.create({
       body:`${user.name} Wants to donote blood. visit "http://localhost:3000"`,
       from :'+18503671022',
-      to:`+91${user.phone_number}`
+      to:`+918076066296`
   })
   .then(mess=>{
       console.log(mess);
@@ -34,7 +36,7 @@ router.post('/',async (req,res)=>{
   if(user!==null)
   { console.log("wewe3//")
     send_mail({
-        to:user.email,
+        to:result.properties.email,
         html:`${user.name} wants to donate blood visit: http://localhost:3000`,
         subject:'SomeOne wants to connects You'
     });
