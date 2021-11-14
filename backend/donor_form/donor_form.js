@@ -17,14 +17,31 @@ router.post('/', async (req, res) => {
 	}
 
 	const { age, weight, health, checkBox, tattoo, hemoglobin, sexual, std, hiv, drugs, pregnant, medicine } = req.body;
+	
+	let eligible = false;
+	if(health == 'yes' &&
+		checkBox.length == 1 &&
+		checkBox[0] == 'notSuffering' &&
+		tattoo == 'no' &&
+		hemoglobin == 'yes' &&
+		sexual == 'no' &&
+		std == 'no' &&
+		hiv == 'no' &&
+		drugs == 'no' &&
+		pregnant == 'no' &&
+		medicine.length == 0	)
+	{
+		eligible = true;
+	}
+	
 
 	filter = {'_id': new ObjectID(user_id)};
 
-	let result = await update_one(db, 'users', filter, { $set: {donor_status: {age, weight, health, checkBox, tattoo, hemoglobin, sexual, std, hiv, drugs, pregnant, medicine}} });	
+	let result = await update_one(db, 'users', filter, { $set: {donor_status: {age, weight, health, checkBox, tattoo, hemoglobin, sexual, std, hiv, drugs, pregnant, medicine, eligible}} });	
 
 	if(result != null)
 	{	
-		res.status(200).json({'message': 'success'});
+		res.status(200).json({'eligible': eligible});
 	}
 	else
 		res.status(402).end();
