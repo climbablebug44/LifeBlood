@@ -7,11 +7,14 @@ let db;
 const send_mail = require('../mail/send_mail');
 var ObjectID = require('mongodb').ObjectId;
 router.post('/',async (req,res)=>{
-  const id = req.body.receiverId;
-  console.log(id);
-  filter = {'_id': new ObjectID(id)};
-  const user = await get_one(db,'users',filter);
-  console.log(user);
+	console.log(req.body);
+  const feedId = req.body.feedId;
+  const donorId = req.body.donorId;
+	
+  filter = {'_id': new ObjectID(feedId)};
+  let result = await get_one(db,'feed',filter);
+  const receiverId = result.receiverId;
+	console.log("revcid: ",receiverId);
   console.log("***");
   client.messages.create({
       body:`aashish Wants to donote blood. visit "http://localhost:3000"`,
