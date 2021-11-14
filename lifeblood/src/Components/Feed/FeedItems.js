@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './FeedItems.module.css';
 import FeedItem from './FeedItem';
 
 export default class FeedItems extends React.Component {
@@ -36,7 +35,7 @@ export default class FeedItems extends React.Component {
 
         if (sortBy !== undefined && this.props.selectedOption === "blood") {
             var suffix = sortBy.substring(sortBy.length - 1);
-            if (suffix == "+")
+            if (suffix === "+")
                 suffix = "p";
             else
                 suffix = "n";

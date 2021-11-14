@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component } from "react";
 import styles from './Feed.module.css';
 import FeedItems from "./FeedItems";
 import ModalForShare from "../modalForShare/ModalForShare";
