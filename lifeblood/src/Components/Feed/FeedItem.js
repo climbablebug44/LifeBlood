@@ -5,17 +5,17 @@ import profile from '../../assets/feedProfile.jpg';
 import ChatModal from '../ChatModal/ChatModal';
 import FeedMap from '../MapPage/Maps/feedMap';
 //import DonorForm from '../DonorForm/DonorForm';
+
 const FeedItem = (props) => {
     const history = useHistory();
-    const clickHandler = (event)=>{
+    const clickHandler = (event) => {
         const token = localStorage.getItem("token");
         console.log(token);
-        if(!token)
-        {
+        if (!token) {
             history.replace('/login');
             return;
         }
-        localStorage.setItem("receiverId",props.id);
+        localStorage.setItem("receiverId", props.id);
         history.replace('/donorForm');
     }
     return (
