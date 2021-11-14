@@ -35,7 +35,7 @@ class App extends Component {
 		const token = localStorage.getItem("token");
 		const expiaryDate = localStorage.getItem("expiryDate");
 		const google = localStorage.getItem("google");
-
+		
 		if (!token || !expiaryDate) {
 			return;
 		}

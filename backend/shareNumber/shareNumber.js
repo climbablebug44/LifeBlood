@@ -10,7 +10,7 @@ router.post('/',async (req,res)=>{
   const id = req.body.receiverId;
   console.log(id);
   filter = {'_id': new ObjectID(id)};
-  const user = await get_one(db,'users',{_id:id.toString()});
+  const user = await get_one(db,'users',filter);
   console.log(user);
   console.log("***");
   client.messages.create({

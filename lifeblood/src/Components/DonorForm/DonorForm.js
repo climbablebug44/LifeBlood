@@ -1,6 +1,7 @@
 //import requirePropFactory from "@mui/utils/requirePropFactory";
 import React,{useState} from "react";
 import styles from './DonorForm.module.css';
+import ErrorHandler from "../ErrorHandler/ErrorHandler";
 import { useHistory } from "react-router";
 const DonorForm = props => {
     const history = useHistory();
@@ -16,6 +17,7 @@ const DonorForm = props => {
     const [drugs,setDrugs] = useState(null);
     const [pregnant,setPregnant] = useState(null);
     const [medicine,setMedicine] = useState([]);
+    const [error,setError] = useState(null);
     const ageChangeHandler = (event)=>{
         setAge(event.target.value);
     } 
@@ -75,7 +77,7 @@ const DonorForm = props => {
                 drugs,
                 pregnant,
                 medicine,
-                userId
+                userId,
 
             })
         })
@@ -88,16 +90,26 @@ const DonorForm = props => {
         })
         .then(data=>{
             console.log(data);
+            if(data.eligible===true)
+            {
                localStorage.setItem("isVerified",true)
                 history.replace('/feed');
                 return ;
-            
+            }
+            else{
+                throw new Error("You are not eligible")
+            }
         })
         .catch(err=>{
-            console.log(err);
+            setError(err);
         })
     }
-    return <div className={styles.container}>
+    const errorHandler = ()=>{
+        setError(null);
+    }
+    return( 
+        <React.Fragment>
+    <div className={styles.container}>
         <form className={styles.form} onSubmit={formSubmitHandler}>
             <div className={styles['input-text']}>
                 <label htmlFor='age'>What is your age?</label>
@@ -251,6 +263,9 @@ const DonorForm = props => {
             </div>
         </form>
     </div>
+    <ErrorHandler error={error} onHandle={errorHandler} />
+    </React.Fragment>
+    )
 
 }
 

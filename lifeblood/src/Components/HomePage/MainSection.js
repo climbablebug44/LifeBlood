@@ -11,6 +11,7 @@ import Section2 from './testimonials/section2';
 import image from '../../assets/distraction.jpg';
 
 const MainSection = (props) => {
+    localStorage.removeItem("isVerified");
     return <React.Fragment>
         <main className={styles.main}>
             <ImgSlider />
