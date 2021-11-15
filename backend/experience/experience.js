@@ -1,8 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Experience = require('../models/post_model');
+const Experience = require('./models/post_model');
+
+const { DB_URL } = require('../backend_api_key.json');
 
 const router = express.Router();
+
+mongoose.connect(DB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then(() => {
+        console.log("Successfully connected to mongodb.");
+    })
+    .catch((err) => {
+        console.log("Error connecting to mongodb.");
+        console.error(err);
+    })
 
 router.get('/give', (req, res) => {
     Experience.find()

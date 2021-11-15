@@ -22,7 +22,8 @@ const LOC_AUTH = LOC_API + '/auth';
 const LOC_DETAILS_FORM = LOC_API + '/DetailsForm';
 const LOC_PROFILE = LOC_API + '/profile';
 const LOC_DONOR_FORM = LOC_API + '/donorform';
-const LOC_SEND_NUMBER = LOC_API+'/shareNumber'
+const LOC_SEND_NUMBER = LOC_API +'/shareNumber'
+const LOC_EXPERIENCE = LOC_API + '/experience';
 
 let db;
 
@@ -40,6 +41,7 @@ function set_routes()
 	const router_profile = require('./profile/profile.js')(db);
 	const router_donor_form = require('./donor_form/donor_form')(db);
 	const router_send_number = require('./shareNumber/shareNumber')(db);
+	const router_experience = require('./experience/experience.js');
 
 	app.use(express.static('backend/public'));
 	app.use(cors());
@@ -61,7 +63,8 @@ function set_routes()
 	app.use(LOC_DETAILS_FORM, router_details_form);
 	app.use(LOC_PROFILE, router_profile);
 	app.use(LOC_DONOR_FORM, router_donor_form);
-	app.use(LOC_SEND_NUMBER,router_send_number);
+	app.use(LOC_SEND_NUMBER, router_send_number);
+	app.use(LOC_EXPERIENCE, router_experience);
 }
 
 ;(async function() {
