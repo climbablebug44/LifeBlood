@@ -7,14 +7,19 @@ import Dropdown from './Dropdown';
 import Message from '../../Images/message.png';
 const Navbar = (props) => {
   const [clicked, setClicked] = useState(false);
-  const [message, setMessage] = useState([1,2]);
+  //const [message, setMessage] = useState([]);
+  let message = []
   const [open, setOpen] = useState(false);
   fetch("http://localhost:4000/api/shareNumber/"+localStorage.getItem("userId"))
   .then(res=>{
     return res.json();
   })
   .then(resData=>{
-    console.log(resData.messages[0]);
+    console.log(resData.messages);
+    message.push(resData.messages.map(obj=>{
+      return obj;
+    }))
+    console.log(message);
   })
   .catch(err=>{
     console.log(err);
@@ -37,7 +42,7 @@ const Navbar = (props) => {
     .then(resData=>{
       console.log(resData);
     })
-    setMessage([]);
+    
     setOpen(false);
   }
   return (
@@ -49,6 +54,7 @@ const Navbar = (props) => {
       <div className={Styles["menu-icon"]} onClick={handleClick}>
         <i className={clicked ? `fas fa-times ${Styles.onn}` : `fas fa-bars ${Styles.off}`}></i>
       </div>
+      
       <ul className={clicked ? Styles["menu-list"] : `${Styles["menu-list"]} ${Styles["close"]}`}>
         <li> <NavLink to="/home" activeClassName={Styles.active}>Home</NavLink></li>
         <li> <NavLink to="/about" activeClassName={Styles.active}>About</NavLink></li>
@@ -57,6 +63,7 @@ const Navbar = (props) => {
         <Navigation isAuth={props.isAuth} activeClassName={Styles.active} />
         {props.isAuth && (
           <div className={Styles.icon} onClick={() => setOpen(!open)}>
+           
             <img src={Message} className={Styles.iconImg} alt="" />
             {
               message.length > 0 && <div className={Styles.iconCounter}>{message.length}</div>
@@ -67,7 +74,7 @@ const Navbar = (props) => {
         {
           props.isAuth && open && (
             <div className="notifications">
-              {message.map((n) => displayMessage(n))}
+              {message.map((n) => displayMessage(n.name))}
               {
                 message.length &&
                 <button className={Styles.messageButton} onClick={handleRead}>
