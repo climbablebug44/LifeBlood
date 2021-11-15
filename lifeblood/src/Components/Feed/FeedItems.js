@@ -12,6 +12,7 @@ export default class FeedItems extends React.Component {
 
         this.prevReq = "A+";
         this.prevSortBy = "blood";
+        this.firstFetch = true;
     }
 
     componentDidMount() {
@@ -51,7 +52,7 @@ export default class FeedItems extends React.Component {
         }
 
 
-        console.log("[fetch from] : ", req);
+        console.log("[fetching from] : ", req);
 
         fetch(req).then(
             response => {
@@ -65,28 +66,38 @@ export default class FeedItems extends React.Component {
                 data: data_
             })
         }).catch(error => {
-            console.log("abcd", error);
+            console.log("[error-log]: ", error);
         });
+
+        this.forceUpdate();
     }
 
     render() {
 
         const sortBy = this.props.bgReq;
         const prevSortBY = this.props.selectedOption;
-        if (this.state.canFetch && (this.prevReq !== sortBy || this.prevSortBy !== prevSortBY)) {
+
+        if (this.state.canFetch && (this.firstFetch ||this.prevReq !== sortBy || this.prevSortBy !== prevSortBY)) {
             this.fetchData(sortBy);
             this.prevReq = sortBy;
             this.prevSortBy = prevSortBY;
+            this.firstFetch = false;
+        }
+        else if(!this.state.canFetch)
+        {
+            //loading page
         }
 
-        if (this.state.data !== null) {
+        if (this.state.data !== null && this.state.data.features.length !== 0) {
             const data = this.state.data.features;
             return (data.map((person, index) => {
                 const x = person.properties;
                 return <FeedItem center={{ long: person.geometry.coordinates[0], lat: person.geometry.coordinates[1] }} id={x.id} key={x.id} name={x.name} reason={x.reason} age={x.age} blood={x.bloodGrp} unit={1} />
             }));
         }
-        return (<React.Fragment />);
+        return (<React.Fragment>
+            <h1>No Requests Found...</h1>
+        </React.Fragment>);
 
 
 
