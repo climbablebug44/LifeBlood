@@ -1,5 +1,5 @@
 const express = require("express");
-const { get_one } = require("../database/db_utils");
+const { get_one, update_one } = require("../database/db_utils");
 require('dotenv').config();
 const client = require('twilio')(process.env.TWILIO_ACCOUNT_SID,process.env.TWILIO_AUTH_TOKEN);
 const router = express.Router();
@@ -22,6 +22,16 @@ router.post('/',async (req,res)=>{
   console.log("***");
   let receiver = await get_one(db, 'users', {'_id': new ObjectID(receiverId)});
 	console.log('Receiver:', receiver);
+	
+	// Adding message({ feedId, donorId }) to db
+	filter = {'_id': new ObjectID(receiverId)};
+	let push_message = { 
+		$push: {
+			"messages": { feedId, donorId }
+		}
+	};
+	result = await update_one(db, 'users', filter, push_message);
+	console.log("result",result);
 
   client.messages.create({
       body:`${user.name} Wants to donote blood. visit "http://localhost:3000"`,
