@@ -25,9 +25,10 @@ router.post('/',async (req,res)=>{
 	
 	// Adding message({ feedId, donorId }) to db
 	filter = {'_id': new ObjectID(receiverId)};
+  var name = user.name
 	let push_message = { 
 		$push: {
-			"messages": { feedId, donorId }
+			"messages": { feedId, donorId, name}
 		}
 	};
 	result = await update_one(db, 'users', filter, push_message);
@@ -36,7 +37,7 @@ router.post('/',async (req,res)=>{
   client.messages.create({
       body:`${user.name} Wants to donote blood. visit "http://localhost:3000"`,
       from :'+18503671022',
-      to:`+91${user.phone_number}`
+      to:`+916376780265`
   })
   .then(mess=>{
       res.status(200).json({'message':'send'})
@@ -53,6 +54,23 @@ router.post('/',async (req,res)=>{
         subject:'SomeOne wants to connects You'
     });
   }
+})
+router.get('/:id',async (req,res)=>{
+        let filter = {'_id': new ObjectID(req.params.id)};
+        let result = await get_one(db,'users',filter);
+        console.log(result.messages);
+        res.status(200).json({"messages":result.messages}); 
+})
+router.get('/delete/:id/:donorId/:feedId/',async (req,res)=>{
+  let filter = {'_id': new ObjectID(req.params.id)};
+  let result = await get_one(db,'users',filter);
+  let new_messages = result.messages.filter(obj=>{
+    obj.feedId!=req.params.feedId && obj.donorId!=req.params.donorId
+  })
+  result = await update_one(db,'users',filter,{$set:{'messages':new_messages}})
+  console.log(result);
+  res.status(200).json({"messages":new_messages});
+
 
 })
 function sendNumber(_db){

@@ -9,6 +9,16 @@ const Navbar = (props) => {
   const [clicked, setClicked] = useState(false);
   const [message, setMessage] = useState([1,2]);
   const [open, setOpen] = useState(false);
+  fetch("http://localhost:4000/api/shareNumber/"+localStorage.getItem("userId"))
+  .then(res=>{
+    return res.json();
+  })
+  .then(resData=>{
+    console.log(resData.messages[0]);
+  })
+  .catch(err=>{
+    console.log(err);
+  })
   const handleClick = () => {
     setClicked(!clicked);
   };
@@ -19,7 +29,14 @@ const Navbar = (props) => {
       </span>
     )
   }
-  const handleRead = () => {
+  const handleRead = (donorId,feedId) => {
+    fetch(`http://localhost:4000/api/shareNumber/delete/${localStorage.getItem("userId")}/${donorId}/${feedId}`)
+    .then(res=>{
+      return res.json()
+    })
+    .then(resData=>{
+      console.log(resData);
+    })
     setMessage([]);
     setOpen(false);
   }
