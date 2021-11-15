@@ -29,11 +29,12 @@
 }
 
 .iconCounter {
-  width: 5px;
-  height: 5px;
+  width: 10px;
+  height: 10px;
   background-color: red;
   border-radius: 50%;
-  padding: 5px;
+  padding: 7px;
+  color: white;
   font-size: 12px;
   display: flex;
   align-items: center;
@@ -49,7 +50,7 @@
   border-top: transparent;
   background: white;
   width: 244px;
-
+  height: 100%;
   text-align: center;
   font-size: 1rem;
   top: 4rem;
