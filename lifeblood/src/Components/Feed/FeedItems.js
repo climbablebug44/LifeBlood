@@ -32,6 +32,7 @@ export default class FeedItems extends React.Component {
     fetchData(sortBy) {
         var req = "http://localhost:4000/api/feed/";
 
+        const { lat, long } = this.props.location;
 
         if (sortBy !== undefined && this.props.selectedOption === "blood") {
             var suffix = sortBy.substring(sortBy.length - 1);
@@ -41,6 +42,12 @@ export default class FeedItems extends React.Component {
                 suffix = "n";
             suffix = sortBy.substring(0, sortBy.length - 1) + suffix;
             req += suffix.toLowerCase() + "/";
+        }
+        else if (this.props.selectedOption === "location" && lat !== null && long != null) {
+            var suffix_ = "";
+            suffix_ += "?lat=" + lat;
+            suffix_ += "&long=" + long;
+            req += suffix_;
         }
 
 

@@ -1,22 +1,7 @@
 import React, { Component } from "react";
-import {
-	ListItemText,
-	Box,
-	Drawer,
-	AppBar,
-	CssBaseline,
-	Toolbar,
-	List,
-	ListSubheader,
-	ListItemButton
-} from "@mui/material";
 import RMapGL from "./Maps/MapGL";
-import Navbar from "../temp/jeetu";
-import style from './mappage.module.css';
+import styles from './mappage.module.css';
 import Loader from "../LoadingPage/loader";
-
-const drawerWidth = 300;
-const subheadingMessage = "Available Donors nearby";
 
 export default class MapPage extends Component {
 	constructor(props) {
@@ -52,97 +37,48 @@ export default class MapPage extends Component {
 			.goTo(index);
 	};
 
+
 	render() {
 		if (this.state.data !== null) {
 			return (
-				<Box
-					sx={{
-						display: "flex",
-						maxWidth: 360,
-						bgcolor: 'background.paper'
-					}}
-					style={{ backgroundColor: "white" }}
-				>
-					<CssBaseline />
-					<AppBar
-						position="fixed"
-						sx={{
-							zIndex: (theme) => theme.zIndex.drawer + 1
-						}}>
-						<Navbar
-							{...this.props.navbar}
-						/>
-					</AppBar>
-					<Drawer
-						variant="permanent"
-						sx={{
-							width: drawerWidth,
-							flexShrink: 0,
-							[`& .MuiDrawer-paper`]: {
-								width: drawerWidth,
-								boxSizing: 'border-box',
-								overflowX: 'hidden',
-								overflowY: 'hidden',
-								'&:hover': {
-									overflowY: 'auto'
-								},
-								'&::-webkit-scrollbar': {
-									display: 'none'
-								}
-							}
-						}}>
-						<Toolbar />
-						<Box
-							sx={{
-								width: '100%',
-								maxWidth: 360,
-								bgcolor: 'background.paper'
-							}}
-							style={{ backgroundColor: "white" }}
-						>
-							<List component="nav" aria-label="list"
-								className={style.listitem}
-							>
-								<ListSubheader className={style.listitem}>{subheadingMessage}</ListSubheader>
-								{this.state.data.features.map((person, index) => (
-									<ListItemButton
-										className={style.item}
-										selected={this.selected === index}
-										onClick={(event) => this.handleListItemClick(index, event)}>
-										<ListItemText
-											primary={`${person.properties.bloodGrp}  : ${person.properties.name}`}
-											//secondary={person.properties.} />
-											/>
-									</ListItemButton>
-								))}
-							</List>
-						</Box>
-					</Drawer>
 
-					<Box component="main" sx={{
-						flexGrow: 1,
-						p: 3
-					}}
-						style={{ backgroundColor: "white", marginLeft: "5px" }}
-					>
-						<Toolbar />
+				<div className={styles.container}>
+					<div className={styles.list}>
+						<p>Nearby Available Users</p>
+						<ul>
+							{this.state.data.features.map((person, index) => (
+								<li onClick={(event) => this.handleListItemClick(index, event)} className={styles['list-item']} key={index}>
+									<div className={styles.name}>
+										{person.properties.name}
+									</div>
+									<div className={styles.group}>
+										{person.properties.bloodGrp}
+									</div>
+								</li>
+							))}
+						</ul>
+					</div>
+					<div className={styles.map}>
 						<RMapGL people={this.state.data} //{/* fetch from server */}
 							should_GeoLocate={true}
 							onRef={ref => (this.child = ref)}
 							dimentions={{
-								height: 84,
-								width: 77
+								height: 100,
+								width: 100
 							}} //height width as vh and vw
 							visibleGeocoder={true}
-							geocoder={{ top: 100, right: 30 }}
+							geocoder={{ top: 20, right: 5 }}
 						/>
-					</Box>
-				</Box>
+					</div>
+
+				</div>
 			);
+
+
 		}
-		else{
-			return(<React.Fragment>
-				<Loader/>
+		else {
+			return (<React.Fragment>
+
 			</React.Fragment>);
 		}
 	}

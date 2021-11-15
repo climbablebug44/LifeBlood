@@ -1,11 +1,111 @@
-.listitem{
-    background-color:#e04646;
-    color: #000;
+.container {
+    position: absolute;
+    background-color: white;
+    display: flex;
+    top: 80px;
+    left: 0%;
+    width: 100%;
+    height: calc(100vh - 80px);
+    padding: 0%;
+    justify-content: space-between;
+}
+
+.list {
+    margin: 1px auto 0 0;
+    height: calc(100vh - 80px);
+    width: 26%;
+    background-color: rgb(212, 11, 11);
+    overflow-y: scroll;
+}
+
+.map {
+    margin-top: 2px;
+    background-color: rgb(248, 248, 248);
+    height: 100%;
+    width: auto;
+    overflow-y: scroll;
+}
+
+
+
+.list p {
+    background-color: rgb(165, 1, 1);
+    line-height: 30px;
+    font-size: 20px;
+    width: 90%;
     text-align: center;
+    margin: 10px auto 20px;
+    color: rgb(243, 242, 242);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    letter-spacing: 0.3px;
+    border-radius: 8px;
+    box-shadow: 0px 5px 25px rgba(255, 255, 255, 0.445);
 }
 
-.listitem :hover{
-    background-color: #ff7961;
-    color: #000;
+.list ul {
+    margin: 0%;
+    padding: 0%;
 }
 
+.list .list-item {
+    list-style: none;
+    width: 82%;
+    margin: 15px auto;
+    background-color: rgb(231, 230, 230);
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+    cursor: pointer;
+    box-shadow: 0px 8px 15px rgba(82, 82, 82, 0.459);
+}
+
+.list-item .name {
+    margin: auto 10px;
+    font-family: 'poppins', sans-serif;
+}
+
+.list-item .group {
+    margin-left: 12px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    transform: translateY(2px);
+    color: brown;
+}
+
+.map::-webkit-scrollbar {
+    display: none;
+}
+
+.list::-webkit-scrollbar {
+    display: none;
+}
+
+@media only screen and (max-width: 1180px) {
+    .list {
+        width: 35%;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .list {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .container {
+        flex-direction: column-reverse;
+    }
+
+    .list {
+        width: 100%;
+    }
+
+    .list .list-item {
+        width: 300px;
+    }
+
+    .map {
+        width: 100%;
+    }
+}

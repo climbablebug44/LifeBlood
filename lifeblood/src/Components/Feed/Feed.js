@@ -12,7 +12,11 @@ export default class Feed extends Component {
                 display: true,
                 selectedBG: "A+"
             },
-            verified: false
+            verified: false,
+            geoCoord: {
+                lat: null,
+                long: null
+            }
         };
     }
 
@@ -24,9 +28,20 @@ export default class Feed extends Component {
                 verified: true
             })
         }
+        this.position();
     }
 
-   
+    position = async () => {
+        await navigator.geolocation.getCurrentPosition(
+            position => this.setState({
+                ...this.state,
+                geoCoord: {
+                    lat: position.coords.latitude,
+                    long: position.coords.longitude
+                }
+            }), err => console.log(err)
+        );
+    }
 
     closeHandler = () => {
         this.setState({
@@ -58,15 +73,12 @@ export default class Feed extends Component {
     render() {
         const { selectedOption } = this.state;
         const { display, selectedBG } = this.state.displayList;
-
-        console.log("error message: ", selectedOption, " ", selectedBG)
-
         return (
             <React.Fragment>
                 <div className={styles['div-container']}>
                     <div className={styles['div-1']}></div>
                     <div className={styles['feed-container']}>
-                        <FeedItems selectedOption={selectedOption} bgReq={selectedBG} />
+                        <FeedItems selectedOption={selectedOption} bgReq={selectedBG} location={this.state.geoCoord} />
                     </div>
                     <div className={styles['div-3']}>
                         <form className={styles['sort-by']}>
