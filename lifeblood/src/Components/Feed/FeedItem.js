@@ -46,7 +46,6 @@ const FeedItem = (props) => {
                     <div className={styles['highlight-blood']}>{props.blood}</div>
                     <div>
                         <h5>Blood Donors Needed For</h5>
-                        <p className={styles['unit-blood']}>{props.unit} Unit Blood</p>
                         <p>{props.address}</p>
                     </div>
                 </div>

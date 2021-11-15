@@ -9,19 +9,18 @@ const ExperiencePage = (props) => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredExpe, setEnteredExpe] = useState('');
     fetch("http://localhost:4000/api/experience")
-    .then(res=>{
-        if(res.status!==200)
-        {
-            throw new Error("Error");
-        }
-        return res.json();
-    })
-    .then(resData=>{
-        experienceData.push(resData.data);
-    })
-    .catch(err=>{
-        console.log(err);
-    })
+        .then(res => {
+            if (res.status !== 200) {
+                throw new Error("Error");
+            }
+            return res.json();
+        })
+        .then(resData => {
+            experienceData.push(resData.data);
+        })
+        .catch(err => {
+            console.log(err);
+        })
     const inputChangeHandler = (event) => {
         setEnteredTitle(event.target.value)
     };
@@ -35,29 +34,28 @@ const ExperiencePage = (props) => {
         const userName = localStorage.getItem("userName");
         const date = new Date().toISOString();
         console.log(date);
-        fetch("http://localhost:4000/api/experience",{
-            method:"POSt",
-            "content-Type":"application-json",
-            bosy:JSON.stringify({
-                title:enteredTitle,
-                user:userName,
-                date:date,
-                experience:enteredExpe
+        fetch("http://localhost:4000/api/experience", {
+            method: "POST",
+            "content-Type": "application-json",
+            body: JSON.stringify({
+                title: enteredTitle,
+                user: userName,
+                date: date,
+                experience: enteredExpe
             })
         })
-        .then(res=>{
-            if(res.status!==200)
-            {
-                throw new Error("Error");
-            }
-            return res.json();
-        })
-        .then(resData=>{
-            console.log(resData);
-        })
-        .catch(err=>{
-            console.log(err);
-        })
+            .then(res => {
+                if (res.status !== 200) {
+                    throw new Error("Error");
+                }
+                return res.json();
+            })
+            .then(resData => {
+                console.log(resData);
+            })
+            .catch(err => {
+                console.log(err);
+            })
 
         setEnteredTitle('');
         setEnteredExpe('')

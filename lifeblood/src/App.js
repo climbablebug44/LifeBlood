@@ -20,6 +20,7 @@ import DetailsForm from "./Components/DetailsForm/DetailsForm";
 import DOUWantTOConnectModal from "./Components/DoUWantToConnectModal/DOUWantToConnectModal";
 import DonorForm from "./Components/DonorForm/DonorForm";
 import ExperiencePage from './Components/UserExperience/ExperiencePage'
+import About from "./Components/ProfilePage/about";
 class App extends Component {
 	state = {
 		isAuth: false,
@@ -35,7 +36,7 @@ class App extends Component {
 		const token = localStorage.getItem("token");
 		const expiaryDate = localStorage.getItem("expiryDate");
 		const google = localStorage.getItem("google");
-		
+
 		if (!token || !expiaryDate) {
 			return;
 		}
@@ -299,7 +300,7 @@ class App extends Component {
 						navbar={{ isAuth: this.state.isAuth, onLogout: this.logoutHandler, socket: this.state.socket }}
 					/>
 				</Route>
-				<Route path="/experience" exact><ExperiencePage/></Route>
+				<Route path="/experience" exact><ExperiencePage /></Route>
 				<Route path="/about">
 					<AboutUs />
 				</Route>
@@ -310,7 +311,7 @@ class App extends Component {
 				<Route path='/request'>
 					<NewRequest />
 				</Route>
-        
+
 				<Route path="/feed">
 					<Feed />
 				</Route>
@@ -333,11 +334,14 @@ class App extends Component {
 							navbar={{ isAuth: this.state.isAuth, onLogout: this.logoutHandler, socket: this.state.socket }}
 						/>
 					</Route>
-					<Route path="/experience" exact><ExperiencePage/></Route>
+					<Route path="/experience" exact><ExperiencePage /></Route>
 					<Route path="/about">
 						<AboutUs />
 					</Route>
-          <Route path="/donorForm"><DonorForm/></Route>
+					<Route path="/profile">
+						<About />
+					</Route>
+					<Route path="/donorForm"><DonorForm /></Route>
 					<Route path='/request'>
 						<NewRequest />
 					</Route>
@@ -354,7 +358,7 @@ class App extends Component {
 				{routes}
 				{this.state.googleLogin && this.state.googleLoginCount === 1 && <DisplayModal Details={this.DetailsFormHandler} />}
 
-				
+
 			</React.Fragment>
 		);
 
