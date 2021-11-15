@@ -4,6 +4,7 @@ var router = express.Router()
 const { get_all, insert_one, update_one } = require('../database/db_utils');
 
 let db;
+let user_lat=0, user_long=0;
 
 function compare(a, b)
 {
@@ -17,13 +18,59 @@ function compare(a, b)
 		return 0;
 }
 
+//This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
+function calcCrow(lat1, lon1, lat2, lon2) 
+{
+	var R = 6371; // km
+	var dLat = toRad(lat2-lat1);
+	var dLon = toRad(lon2-lon1);
+	var lat1 = toRad(lat1);
+	var lat2 = toRad(lat2);
+
+	var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+	Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+	var d = R * c;
+	return d;
+}
+
+// Converts numeric degrees to radians
+function toRad(Value) 
+{
+	return Value * Math.PI / 180;
+}
+
+function compare_by_distance(a, b)
+{
+	let c = calcCrow(user_lat, user_long, a.geometry.coordinates[0], a.geometry.coordinates[1]);
+	let d = calcCrow(user_lat, user_long, b.geometry.coordinates[0], b.geometry.coordinates[1]);
+
+	if(c < d)
+		return -1;
+	else if(c > d)
+		return 1;
+	else
+		return 0;
+}
+
 router.get('/', async (req, res) => {
 
 	console.log('Get /feed with params:', req.query);
 	
 	let filter = {} 
 	result = await get_all(db, 'feed', filter);	
-	result.sort(compare);
+
+	if(req.query.lat && req.query.long)
+	{
+		console.log('Coords detected');
+		user_lat = req.query.lat;
+		user_long = req.query.long;
+		result.sort(compare_by_distance);
+		//console.log('------After sorting by distance:------');
+		//console.log(result);
+	}
+	else
+		result.sort(compare);
 	const feed = {'type': 'FeatureCollection', 'features': result };
 	res.json(feed);
 })

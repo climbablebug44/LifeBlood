@@ -56,6 +56,11 @@ router.post('/',async (req,res)=>{
   }
 })
 router.get('/:id',async (req,res)=>{
+	if(req.params.id.length != 24)
+	{
+		res.status(422).json({'messages': 'null'});
+		return;
+	}
         let filter = {'_id': new ObjectID(req.params.id)};
         let result = await get_one(db,'users',filter);
         console.log(result.messages);
