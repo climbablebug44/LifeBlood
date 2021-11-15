@@ -22,6 +22,8 @@
 .iconImg {
   width: 45px;
   height: 40px;
+  position: relative;
+  
   background-color: #fafaf6;
   border-radius: 10px;
 }
@@ -40,29 +42,36 @@
   top: -5px;
   right: -5px;
 }
-
 .notifications {
   position: absolute;
-  top: 50px;
-  right: 0;
-  background-color: white;
+
+  border: 1px solid black;
+  border-top: transparent;
+  background: white;
+  width: 244px;
+
+  text-align: center;
+  font-size: 1rem;
+  top: 4rem;
   color: black;
-  font-weight: 300;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  left: 82vw;
+  
 }
 
 .notification {
   padding: 5px;
-  font-size: 14px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  width: 100%;
+  background: rgb(231, 140, 152);
+  border-bottom: 1px solid black;
+}
+.notification:hover{
+  background: rgb(228, 109, 124);
 }
 
-.messageButton {
-  width: 80%;
-  padding: 5px;
-  margin-top: 10px;
-}
 
 .menu-icon {
   display: none;

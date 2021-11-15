@@ -237,8 +237,9 @@ class App extends Component {
 				return res.json();
 			})
 			.then(resData => {
+				console.log(resData);
 				this.setState({ googleLoginCount: 0 })
-				this.props.history.replace('/');
+				window.location.reload();
 			})
 			.catch(err => {
 				console.log(err);

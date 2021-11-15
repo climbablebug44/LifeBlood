@@ -1,94 +1,118 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import logo from '../../assets/logo.jpeg'
 import Styles from "./jeetu.module.css";
 import Navigation from './Navigation';
 import Dropdown from './Dropdown';
 import Message from '../../Images/message.png';
-const Navbar = (props) => {
-  const [clicked, setClicked] = useState(false);
-  //const [message, setMessage] = useState([]);
-  let message = []
-  const [open, setOpen] = useState(false);
-  fetch("http://localhost:4000/api/shareNumber/"+localStorage.getItem("userId"))
-  .then(res=>{
-    return res.json();
-  })
-  .then(resData=>{
-    console.log(resData.messages);
-    message.push(resData.messages.map(obj=>{
-      return obj;
-    }))
-    console.log(message);
-  })
-  .catch(err=>{
-    console.log(err);
-  })
-  const handleClick = () => {
-    setClicked(!clicked);
+import ShareContact from "../ShareContact/ShareContact";;
+class Navbar extends Component {
+
+  state={
+    clicked:false,
+    open:false,
+    message:[],
+    shareContact:false,
+    donorId:null,
+    feedId:null
+  }
+  componentDidMount(){
+     const token = localStorage.getItem("token")
+    
+    if(token!==null)
+    {
+      fetch("http://localhost:4000/api/shareNumber/"+localStorage.getItem("userId"))
+      .then(res=>{
+        return res.json();
+      })
+      .then(resData=>{
+        console.log(resData.messages);
+        this.setState({
+          message:resData.messages.map(obj=>{
+            return obj;
+          })
+        })
+        console.log(this.state.message);
+      })
+      .catch(err=>{
+        console.log(err);
+      })
+  }
+  }
+
+  handleClick = () => {
+    this.setState({open:!this.state.open});
   };
-  const displayMessage = ({ senderName }) => {
+  displayMessage = ( n ) => {
+   // this.setState({feedId:n.feedId,donorId:n.donorId});
     return (
-      <span className="notification">
-        {`${senderName} wants to contact you .`}
+      <span className={Styles.notification} onClick={()=>{ this.setState({shareContact:true,feedId:n.feedId,donorId:n.donorId})}}>
+        {n.name +' wants to contact you .'}
       </span>
     )
   }
-  const handleRead = (donorId,feedId) => {
-    fetch(`http://localhost:4000/api/shareNumber/delete/${localStorage.getItem("userId")}/${donorId}/${feedId}`)
-    .then(res=>{
-      return res.json()
-    })
-    .then(resData=>{
-      console.log(resData);
-    })
-    
-    setOpen(false);
+  messageLoader = (new_messages)=>{
+    this.setState({message:new_messages.map(obj=>{
+      return obj;
+    })})
   }
-  return (
-    <nav className={Styles.navbar}>
-      <div className={Styles['logo-part']}>
-        <NavLink to="/home" activeClassName={Styles.active}><div className={Styles.logo}><img src={logo} alt='Logo for life blood' /></div></NavLink>
-        <span className={Styles.lifeblood}>LifeBlood</span>
-      </div>
-      <div className={Styles["menu-icon"]} onClick={handleClick}>
-        <i className={clicked ? `fas fa-times ${Styles.onn}` : `fas fa-bars ${Styles.off}`}></i>
-      </div>
-      
-      <ul className={clicked ? Styles["menu-list"] : `${Styles["menu-list"]} ${Styles["close"]}`}>
-        <li> <NavLink to="/home" activeClassName={Styles.active}>Home</NavLink></li>
-        <li> <NavLink to="/about" activeClassName={Styles.active}>About</NavLink></li>
-        <li> <NavLink to="/feed" activeClassName={Styles.active}>Find Blood</NavLink></li>
-        <li> <NavLink to="/nearby" activeClassName={Styles.active}>NearBy User</NavLink></li>
-        <Navigation isAuth={props.isAuth} activeClassName={Styles.active} />
-        {props.isAuth && (
-          <div className={Styles.icon} onClick={() => setOpen(!open)}>
-           
-            <img src={Message} className={Styles.iconImg} alt="" />
-            {
-              message.length > 0 && <div className={Styles.iconCounter}>{message.length}</div>
-            }
-          </div>
-        )
-        }
-        {
-          props.isAuth && open && (
-            <div className="notifications">
-              {message.map((n) => displayMessage(n.name))}
-              {
-                message.length &&
-                <button className={Styles.messageButton} onClick={handleRead}>
-                  Mark as read
-                </button>
-              }
+  closeHandler = () => {
+    this.setState({
+        ...this.state,
+        shareContact: false
+    })
+}
 
+  handleRead = () => {
+    
+    
+    this.setState({open:false})
+  }
+  render(){
+
+  return (
+    <React.Fragment>
+      <nav className={Styles.navbar}>
+        <div className={Styles['logo-part']}>
+          <NavLink to="/home" activeClassName={Styles.active}><div className={Styles.logo}><img src={logo} alt='Logo for life blood' /></div></NavLink>
+          <span className={Styles.lifeblood}>LifeBlood</span>
+        </div>
+        <div className={Styles["menu-icon"]} onClick={this.handleClick}>
+          <i className={this.state.clicked ? `fas fa-times ${Styles.onn}` : `fas fa-bars ${Styles.off}`}></i>
+        </div>
+        
+        <ul className={this.state.clicked ? Styles["menu-list"] : `${Styles["menu-list"]} ${Styles["close"]}`}>
+          <li> <NavLink to="/home" activeClassName={Styles.active}>Home</NavLink></li>
+          <li> <NavLink to="/about" activeClassName={Styles.active}>About</NavLink></li>
+          <li> <NavLink to="/feed" activeClassName={Styles.active}>Find Blood</NavLink></li>
+          <li> <NavLink to="/nearby" activeClassName={Styles.active}>NearBy User</NavLink></li>
+          <Navigation isAuth={this.props.isAuth} activeClassName={Styles.active} />
+          {this.props.isAuth && (
+            <div className={Styles.icon} onClick={() => this.setState({open:!this.state.open})}>
+            
+              <img src={Message} className={Styles.iconImg} alt="" />
+              {
+                this.state.message.length > 0 && <div className={Styles.iconCounter}>{this.state.message.length}</div>
+              }
             </div>
           )
-        }
-        {props.isAuth && <Dropdown onLogout={props.onLogout} />}
-      </ul>
-    </nav>
-  );
-};
+          }
+          {
+            this.props.isAuth && this.state.open &&  this.state.message.length &&(
+              <div className={Styles.notifications}>
+                {this.state.message.map((n) => this.displayMessage(n))}
+                
+
+              </div>
+            )
+          }
+          {this.props.isAuth && <Dropdown onLogout={this.props.onLogout} />}
+        </ul>
+      </nav>
+      {this.state.shareContact && <ShareContact  handleClose = {this.closeHandler} donorId={this.state.donorId} userId={localStorage.getItem("userId")} feedId={this.state.feedId} messageLoader={this.messageLoader}/>}
+      </React.Fragment>
+    );
+  };
+}
 
 export default Navbar;

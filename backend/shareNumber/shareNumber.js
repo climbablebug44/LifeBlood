@@ -47,7 +47,7 @@ router.post('/',async (req,res)=>{
       console.log(err);
   })
   if(user!==null)
-  { console.log("wewe3//")
+  { 
     send_mail({
         to:receiver.email,
         html:`${user.name} wants to donate blood visit: http://localhost:3000`,
@@ -60,6 +60,23 @@ router.get('/:id',async (req,res)=>{
         let result = await get_one(db,'users',filter);
         console.log(result.messages);
         res.status(200).json({"messages":result.messages}); 
+})
+router.post('/123',async (req,res)=>{
+  console.log(req.body)
+  let filter = {'_id': new ObjectID(req.body.donorId)};
+  let filter1 = {'_id':new ObjectID(req.body.userId)}
+  let donor = await get_one(db,'users',filter);
+  let user = await get_one(db,'users',filter1);
+  console.log(user,"hui hui", donor);
+  if(donor!==null)
+  {
+    send_mail({
+      to:donor.email,
+      html:`${user.phone_number} is the contact number of ${user.name} `,
+      subject:'SomeOne wants to connects You'
+  });
+  res.status(200).json({"message Sent":true});
+  }
 })
 router.get('/delete/:id/:donorId/:feedId/',async (req,res)=>{
   let filter = {'_id': new ObjectID(req.params.id)};

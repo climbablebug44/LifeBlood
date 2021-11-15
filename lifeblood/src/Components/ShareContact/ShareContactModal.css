@@ -1,0 +1,76 @@
+.share_big_container{
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+
+    position: fixed;
+    left: 0;
+    transition: opacity 0.3s ease-out;
+   
+}
+.share_container{
+    position: fixed;
+  width: 70%;
+  left: 15%;
+  top: 20vh;
+  height: 25vh;
+  background: rgb(231, 227, 227);
+  border-radius: 15px;
+  z-index: 2000;
+  
+
+}
+.share_Header{
+    width: 100%;
+    background-color: rgb(235, 61, 61);
+    padding: -10px;
+    border-bottom-color: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.share_Header h2{
+    font-size: 1rem;
+    margin-left: 1rem;
+}
+.share_Header i{
+    font-size: 2rem;
+    cursor: pointer;
+}
+.share_btn{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.share_div_connect{
+    width: 100%;
+    text-align: center;
+}
+.share_btn button
+{
+    width: 5rem;
+    border-radius: 10px;
+    border-color: transparent;
+    background-color: rgb(211, 84, 67);;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+}
+@media (min-width: 768px) {
+    .share_container {
+      width: 50rem;
+      left: 25vw;
+
+    }
+    .share_btn button
+{
+    width: 10rem;
+    border-radius: 10px;
+    border-color: transparent;
+    background-color: rgb(211, 84, 67);;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+}
+  }
+  
