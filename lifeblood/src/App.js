@@ -122,6 +122,7 @@ class App extends Component {
 				return res.json()
 			})
 			.then(resData => {
+				console.log(resData);
 				this.setState({
 					isAuth: true,
 					googleLogin: true,
@@ -139,6 +140,7 @@ class App extends Component {
 				localStorage.setItem("userId", resData.userId);
 				localStorage.setItem("email", resData.email);
 				localStorage.setItem("token", resData.token);
+				localStorage.setItem("image",resData.picture);
 				this.props.history.push("/");
 				const remainingMilliseconds = 60 * 60 * 1000;
 				const expiryDate = new Date(

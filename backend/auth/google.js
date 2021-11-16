@@ -7,7 +7,6 @@ const client = new OAuth2Client();
 const {get_one, insert_one} = require('../database/db_utils');
 const { GOOGLE_CLIENT_ID, JWT_SECRET } = require('../backend_api_key.json');
 
-//const CLIENT_ID = "800856205553-351o7icho2859rhvnsoltva3r4ek1c6c.apps.googleusercontent.com";
 
 let db;
 
@@ -19,9 +18,9 @@ router.post('/google', async (req, res) => {
 		audience: GOOGLE_CLIENT_ID,
 	});
 
-	const { name, email } = ticket.getPayload();
+	const { name, email,picture } = ticket.getPayload();
 	const verified = true;
-
+	console.log(picture);
 	let first_time = true;
 	let result = await get_one(db, 'users', { email });
 	if(result != null)
@@ -43,7 +42,7 @@ router.post('/google', async (req, res) => {
 			{expiresIn: '1w'}
 		);
 
-		res.status(200).json({ token, userId, userName: name, email , first_time});
+		res.status(200).json({ token, userId, userName: name, email , first_time,picture});
 	}
 	else
 		res.status(402).end();

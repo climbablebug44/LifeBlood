@@ -4,6 +4,14 @@ import './Dropdown.css';
 import ProfileImg from '../../Images/Img.png';
 const Dropdown = (props)=>{
     const showProfile = useRef();
+    let image = null;
+    if(localStorage.getItem("image")!==null)
+    {
+        image = localStorage.getItem("image")
+    }
+    else{
+        image = ProfileImg
+    }
     const userName = localStorage.getItem("userName");
     const dropDownActive = ()=>{
         showProfile.current.classList.toggle('active');
@@ -12,7 +20,7 @@ const Dropdown = (props)=>{
     return (
         <div className="dropdown_container">
             <div className="dropdown-profile" onClick={dropDownActive}>
-                <img src={ProfileImg} alt="user"/>
+                <img src={image} alt="user"/>
             </div>
             <div className="dropdown_menu" ref={showProfile}>
                 <h3>{userName}</h3>

@@ -17,8 +17,8 @@
     position: absolue;
     top: 0rem;
     left: 0;
-    width: 110%;
-    height: 110%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 .dropdown_menu{

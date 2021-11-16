@@ -6,7 +6,7 @@ const ShareNoModal = (props)=>{
         if (event.target.value==='yes')
         {
             const receiverId = localStorage.getItem("receiverId");
-        fetch("http://localhost:4000/api/shareNumber",{
+            fetch("http://localhost:4000/api/shareNumber",{
             method:"POST",
             headers:{"content-Type":"application/json"},
             body:JSON.stringify({
@@ -16,6 +16,7 @@ const ShareNoModal = (props)=>{
         })
         .then(res=>{
             localStorage.removeItem("receiverId");
+            localStorage.removeItem("isVerified")
             return res.json();
         })
         .then(data=>{
@@ -27,6 +28,8 @@ const ShareNoModal = (props)=>{
         })
         }
         else{
+            localStorage.removeItem("receiverId");
+            localStorage.removeItem("isVerified")
             props.handleClose();
         }
         

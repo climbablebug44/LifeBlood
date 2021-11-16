@@ -44,6 +44,8 @@ export default class Feed extends Component {
     }
 
     closeHandler = () => {
+        localStorage.removeItem("receiverId");
+        localStorage.removeItem("isVerified")
         this.setState({
             ...this.state,
             verified: false
