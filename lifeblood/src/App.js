@@ -164,7 +164,8 @@ class App extends Component {
 		localStorage.removeItem("expiaryDate");
 		localStorage.removeItem("token");
 		localStorage.removeItem("email");
-		localStorage.removeItem("googleLoginCount")
+		localStorage.removeItem("googleLoginCount");
+		localStorage.removeItem("image");
 
 	}
 	setAutoLogout = (ms) => {
