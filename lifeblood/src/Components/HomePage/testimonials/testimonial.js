@@ -28,10 +28,6 @@ const Testimonial = () => {
         <Item>Two</Item>
         <Item>Three</Item>
         <Item>Four</Item>
-        <Item>Five</Item>
-        <Item>Six</Item>
-        <Item>Seven</Item>
-        <Item>Eight</Item>
       </Carousel>
     </div>
   );
