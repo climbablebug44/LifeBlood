@@ -224,7 +224,7 @@ class App extends Component {
 		fetch("http://localhost:4000/api/DetailsForm", {
 			method: "POST",
 			headers: {
-				"content-Type": "application-json",
+				"content-Type": "application/json",
 			},
 			body: JSON.stringify({
 				age: Data.age,
