@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
 	let pincode = req.body.pincode
 	let phone_number = req.body.phoneNumber
 	let verified = false
-	
+	let image = "http://localhost:4000/default_user_image.jpg"
 	let result = await get_one(db, 'users', {email});
 	if(result != null)
 	{
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
 	}
 	
 	bcrypt.hash(password, 1, async (err, hash) => {
-		result = await insert_one(db, 'users', {email, name, password: hash, blood_group, pincode, phone_number, verified});	
+		result = await insert_one(db, 'users', {email, name, password: hash, blood_group, pincode, phone_number, verified, image});	
 
 		if(result != null)
 		{

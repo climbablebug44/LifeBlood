@@ -43,7 +43,7 @@ function set_routes()
 	const router_send_number = require('./shareNumber/shareNumber')(db);
 	const router_experience = require('./experience/experience.js');
 
-	app.use(express.static('backend/public'));
+	app.use(express.static('public'));
 	app.use(cors());
 
 	app.use(express.json());

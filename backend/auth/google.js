@@ -18,9 +18,10 @@ router.post('/google', async (req, res) => {
 		audience: GOOGLE_CLIENT_ID,
 	});
 
-	const { name, email,picture } = ticket.getPayload();
+	const { name, email, picture } = ticket.getPayload();
 	const verified = true;
-	console.log(picture);
+	if(!picture)
+		picture = "http://localhost:4000/default_user_image.jpg";
 	let first_time = true;
 	let result = await get_one(db, 'users', { email });
 	if(result != null)
@@ -28,11 +29,11 @@ router.post('/google', async (req, res) => {
 		first_time = false;
 	}
 	else
-		result = await insert_one(db, 'users', { email, name, verified });
+		result = await insert_one(db, 'users', { email, name, "image":picture, verified });
 	if(result != null)
 	{
 		const userId = first_time ? result.insertedId.toString() : result._id.toString();
-		console.log('Auth with google, user_id:', userId);
+		//console.log('Auth with google, user_id:', userId);
 		const jwttoken = jwt.sign(
 			{
 				email,
