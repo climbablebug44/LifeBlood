@@ -199,7 +199,7 @@ export default class NewReq extends Component {
     requestFormSubmitHandler = (event) => {
         console.log("state", this.state);
         event.preventDefault();
-        fetch("http://localhost:4000/api/feed", {
+        fetch("/api/feed", {
             method: "POST",
             body: JSON.stringify({
                 name: this.state.enteredName,

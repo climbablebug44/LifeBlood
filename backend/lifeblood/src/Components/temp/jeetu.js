@@ -21,7 +21,7 @@ class Navbar extends Component {
     
     if(token!==null)
     {
-      fetch("http://localhost:4000/api/shareNumber/"+localStorage.getItem("userId"))
+      fetch("/api/shareNumber/"+localStorage.getItem("userId"))
       .then(res=>{
         return res.json();
       })

@@ -60,7 +60,7 @@ class App extends Component {
 	}
 	loginHandler = (event, data) => {
 		event.preventDefault();
-		fetch('http://localhost:4000/api/login', {
+		fetch('/api/login', {
 			method: 'POST',
 			headers: {
 				"content-Type": "application/json",
@@ -106,7 +106,7 @@ class App extends Component {
 
 	}
 	googleLoginHandler = (event, token) => {
-		fetch("http://localhost:4000/api/auth/google", {
+		fetch("/api/auth/google", {
 			method: "POST",
 			body: JSON.stringify({
 				token: token
@@ -183,7 +183,7 @@ class App extends Component {
 			this.setState({ error: { message: "confirmPassword must match password" }, isAuth: false });
 			return;
 		}
-		fetch("http://localhost:4000/api/signup", {
+		fetch("/api/signup", {
 			method: "POST",
 			headers: {
 				"content-Type": "application/json",
@@ -221,7 +221,7 @@ class App extends Component {
 	DetailsFormHandler = (event, Data) => {
 		event.preventDefault();
 
-		fetch("http://localhost:4000/api/DetailsForm", {
+		fetch("/api/DetailsForm", {
 			method: "POST",
 			headers: {
 				"content-Type": "application/json",
@@ -251,7 +251,7 @@ class App extends Component {
 	}
 	updatePasswordHandler = (event, data, token) => {
 		event.preventDefault();
-		fetch("http://localhost:4000/api/resetpassword/updatepassword", {
+		fetch("/api/resetpassword/updatepassword", {
 			method: "POST",
 			headers: {
 				'Content-Type': "application/json"

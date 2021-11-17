@@ -22,13 +22,14 @@ const LOC_AUTH = LOC_API + '/auth';
 const LOC_DETAILS_FORM = LOC_API + '/DetailsForm';
 const LOC_PROFILE = LOC_API + '/profile';
 const LOC_DONOR_FORM = LOC_API + '/donorform';
-const LOC_SEND_NUMBER = LOC_API +'/shareNumber'
+const LOC_SEND_NUMBER = LOC_API + '/shareNumber'
 const LOC_EXPERIENCE = LOC_API + '/experience';
+const path = require("path");
+
 
 let db;
 
-function set_routes()
-{
+function set_routes() {
 	const router_check_user = require('./check_user.js');
 	const router_login = require('./login/login')(db);
 	const router_feed = require('./feed/feed')(db);
@@ -65,19 +66,25 @@ function set_routes()
 	app.use(LOC_DONOR_FORM, router_donor_form);
 	app.use(LOC_SEND_NUMBER, router_send_number);
 	app.use(LOC_EXPERIENCE, router_experience);
+
+	app.use(express.static(path.join(__dirname, "lifeblood", "build")))
+
+	// ...
+	// Right before your app.listen(), add this:
+	app.get("*", (req, res) => {
+		res.sendFile(path.join(__dirname, "lifeblood", "build", "index.html"));
+	});
 }
 
-;(async function() {
-	try
-	{
+; (async function () {
+	try {
 		db = await connectToDB(DB_URL);
 		set_routes();
 		app.listen(port, () => {
 			console.log(`App listening at http://localhost:${port}`);
 		})
 	}
-	catch(err)
-	{
+	catch (err) {
 		console.log('ERROR:', err);
 	}
 })();

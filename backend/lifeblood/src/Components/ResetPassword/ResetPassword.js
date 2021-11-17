@@ -11,7 +11,7 @@ const ResetPassword = ()=>{
     const ResetPasswordSubmitHandler = (event)=>{
         event.preventDefault();
         setSuccess(true);
-        fetch("http://localhost:4000/api/resetpassword/sendlink",{
+        fetch("/api/resetpassword/sendlink",{
             method:"POST",
             headers:{
                 "content-Type":"application/json",

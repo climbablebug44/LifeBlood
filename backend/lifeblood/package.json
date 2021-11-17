@@ -26,9 +26,10 @@
     "styled-components": "^5.3.3",
     "web-vitals": "^1.1.2"
   },
+  "proxy": "http://localhost:4000/",
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm run-script build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

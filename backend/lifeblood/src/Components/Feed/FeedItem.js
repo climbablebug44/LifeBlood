@@ -18,6 +18,28 @@ const FeedItem = (props) => {
         localStorage.setItem("receiverId", props.id);
         history.replace('/donorForm');
     }
+
+    const firstDate = new Date(props.postedDate);
+    const date = new Date();
+    const d2 = date.toISOString();
+    console.log(d2)
+    const secondDate = new Date(d2);
+    console.log(secondDate)
+    const difference = Math.abs(date - firstDate) / 1000;
+    console.log(difference);
+
+    let dateToShow = '';
+
+    if (difference < 60) {
+        dateToShow = `${difference} seconds`
+    } else if (difference < 3600) {
+        dateToShow = `${Math.floor(difference / 60)} minutes`;
+    } else {
+        dateToShow = `${Math.floor(difference / 3600)} hours`;
+    }
+
+    console.log(dateToShow)
+
     return (
         <li className={styles.list}>
             <div className={styles.upper}>
@@ -27,7 +49,7 @@ const FeedItem = (props) => {
                 <div>
                     <h4>{props.name}</h4>
                     <p>is looking for <span>{props.blood}</span> blood in <span>{props.address}</span></p>
-                    <h5>{props.time}</h5>
+                    <h5>{dateToShow}</h5>
                 </div>
             </div>
             <div className={styles.middle}>

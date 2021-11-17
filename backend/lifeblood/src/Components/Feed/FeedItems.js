@@ -31,7 +31,7 @@ export default class FeedItems extends React.Component {
 
 
     fetchData(sortBy) {
-        var req = "http://localhost:4000/api/feed/";
+        var req = "/api/feed/";
 
         const { lat, long } = this.props.location;
 
@@ -92,7 +92,7 @@ export default class FeedItems extends React.Component {
             const data = this.state.data.features;
             return (data.map((person, index) => {
                 const x = person.properties;
-                return <FeedItem center={{ long: person.geometry.coordinates[0], lat: person.geometry.coordinates[1] }} id={x.id} key={x.id} name={x.name} reason={x.reason} age={x.age} blood={x.bloodGrp} unit={1} />
+                return <FeedItem center={{ long: person.geometry.coordinates[0], lat: person.geometry.coordinates[1] }} id={x.id} key={x.id} name={x.name} postedDate={x.posted_on} reason={x.reason} age={x.age} blood={x.bloodGrp} unit={1} />
             }));
         }
         return (<React.Fragment>

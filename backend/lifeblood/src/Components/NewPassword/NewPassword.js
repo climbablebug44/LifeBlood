@@ -7,7 +7,7 @@ const NewPassword = ()=>{
     }
     const newPasswordFormSubmitHandler = (event)=>{
        event.preventDefault();
-       fetch("http://localhost:4000/api/",{
+       fetch("/api/",{
            method:"POST",
            headers:{
                "content-Type":"application/json"

@@ -13,7 +13,7 @@ export default class MapPage extends Component {
 	}
 
 	componentDidMount() {
-		fetch("http://localhost:4000/api/feed/").then(
+		fetch("/api/feed/").then(
 			response => {
 				if (response.status !== 200) {
 					throw new Error("invalid response from server");

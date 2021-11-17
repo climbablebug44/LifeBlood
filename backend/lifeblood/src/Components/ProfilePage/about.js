@@ -16,7 +16,7 @@ const About = () => {
         setUser(newUser);
     }
 
-    var req = "http://localhost:4000/api/profile";
+    var req = "/api/profile";
 
     useEffect(() => {
         fetch(req, requestOptions).then(

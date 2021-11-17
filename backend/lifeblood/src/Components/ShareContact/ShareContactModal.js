@@ -7,7 +7,7 @@ const ShareContactModal = (props)=>{
         if (event.target.value==='yes')
         {
             //const receiverId = localStorage.getItem("receiverId");
-            fetch("http://localhost:4000/api/shareNumber/123",{
+            fetch("/api/shareNumber/123",{
                 method:"POST",
                 headers:{"content-Type":"application/json"}
                 ,
@@ -27,7 +27,7 @@ const ShareContactModal = (props)=>{
                 console.log(err);
             })
 
-            fetch(`http://localhost:4000/api/shareNumber/delete/${localStorage.getItem("userId")}/${props.donorId}/${props.feedId}`)
+            fetch(`/api/shareNumber/delete/${localStorage.getItem("userId")}/${props.donorId}/${props.feedId}`)
             .then(res=>{
               return res.json()
             })
@@ -41,7 +41,7 @@ const ShareContactModal = (props)=>{
         }
         else{
             
-            fetch(`http://localhost:4000/api/shareNumber/delete/${localStorage.getItem("userId")}/${props.donorId}/${props.feedId}`)
+            fetch(`/api/shareNumber/delete/${localStorage.getItem("userId")}/${props.donorId}/${props.feedId}`)
             .then(res=>{
               return res.json()
             })

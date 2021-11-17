@@ -6,7 +6,7 @@ const ShareNoModal = (props)=>{
         if (event.target.value==='yes')
         {
             const receiverId = localStorage.getItem("receiverId");
-            fetch("http://localhost:4000/api/shareNumber",{
+            fetch("/api/shareNumber",{
             method:"POST",
             headers:{"content-Type":"application/json"},
             body:JSON.stringify({
