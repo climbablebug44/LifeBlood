@@ -10,7 +10,7 @@ RUN npm i
 WORKDIR /app/backend/lifeblood/
 
 RUN npm i
-RUN npm install worker-loader
+# RUN npm install worker-loader
 
 RUN npm run-script build
 
