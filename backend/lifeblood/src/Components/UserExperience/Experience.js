@@ -2,6 +2,14 @@ import React from "react";
 import styles from './Experience.module.css'
 
 const Experience = props => {
+
+    var date = new Date(props.item.date);
+    var s;
+    if(props.item.user === null || props.item.user === undefined)
+        s = "Anonymous";
+    else    
+        s = props.item.user;
+
     return <div className={styles.experience}>
         <div className={styles['user-info']}>
             <div className={styles.image}>
@@ -9,8 +17,8 @@ const Experience = props => {
             </div>
 
             <div className={styles.name_date}>
-                <h3>{props.item.user}</h3>
-                <h4>{props.item.date}</h4>
+                <h3>{s}</h3>
+                <h4>{date.toLocaleString()}</h4>
             </div>
         </div>
         <div className={styles.text}>

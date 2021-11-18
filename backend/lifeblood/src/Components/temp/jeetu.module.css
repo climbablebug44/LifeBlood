@@ -9,6 +9,7 @@
   z-index: 99;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   height: 80px;
+  box-sizing: border-box;
 }
 
 .icon {
@@ -78,6 +79,7 @@
   display: none;
   font-size: 25px;
   cursor: pointer;
+  transform: translateX(-100%);
 }
 
 .menu-icon .onn {

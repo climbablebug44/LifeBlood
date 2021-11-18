@@ -20,9 +20,10 @@ const Footer = () => {
           <div className={Styles.footercol}>
             <h4>get help</h4>
             <ul>
+              <li> <Link to="/experience">User Experience</Link></li>
               <li> <Link to="/faq">FAQ</Link></li>
               <li> <Link to="/locations">Locations</Link></li>
-              <li> <Link to="/">point3</Link></li>
+
               <li> <Link to="/">point4</Link></li>
             </ul>
           </div>
