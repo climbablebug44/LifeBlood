@@ -26,11 +26,11 @@ const DonorForm = props => {
     } 
     const healthChangeHandler = (event)=>{
         setHealth(event.target.value)
-        console.log(event.target.value);
+        //console.log(event.target.value);
     }
     const checkBoxHandler = (event)=>{
         setCheckBox([...checkBox,event.target.value]);
-        console.log("check->", ...checkBox);
+        //console.log("check->", ...checkBox);
     }
     const tattooHandler = (event)=>{
         setTattoo(event.target.value);
@@ -89,7 +89,7 @@ const DonorForm = props => {
             return res.json();
         })
         .then(data=>{
-            console.log(data);
+            //console.log(data);
             if(data.eligible===true)
             {
                localStorage.setItem("isVerified",true)

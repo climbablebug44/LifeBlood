@@ -31,7 +31,7 @@ const FeedItem = (props) => {
     let dateToShow = '';
 
     if (difference < 60) {
-        dateToShow = `${difference} seconds`
+        dateToShow = `${Math.floor(difference)} seconds`
     } else if (difference < 3600) {
         dateToShow = `${Math.floor(difference / 60)} minutes`;
     } else {

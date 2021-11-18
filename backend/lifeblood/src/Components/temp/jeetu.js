@@ -41,7 +41,7 @@ class Navbar extends Component {
   }
 
   handleClick = () => {
-    this.setState({open:!this.state.open});
+    this.setState({open:!this.state.open, clicked: !this.state.clicked});
   };
   displayMessage = ( n ) => {
    // this.setState({feedId:n.feedId,donorId:n.donorId});

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './about.module.css';
-import image from '../../assets/victer.jpeg';
+import image from '../../assets/userprofile.svg';
 
 const About = () => {
 

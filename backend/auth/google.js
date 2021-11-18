@@ -11,6 +11,12 @@ const { GOOGLE_CLIENT_ID, JWT_SECRET } = require('../backend_api_key.json');
 let db;
 
 router.post('/google', async (req, res) => {
+	if(!req.body.token)
+	{
+		res.status(422).json({'message':'failed'});
+		return ;
+	}
+	
 	const {token} =  req.body;
 
 	const ticket = await client.verifyIdToken({

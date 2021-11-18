@@ -10,7 +10,7 @@ const ExperiencePage = (props) => {
     const [enteredExpe, setEnteredExpe] = useState('');
     const [experienceData,setExperienceData] = useState([]);
     useEffect(()=>{
-        fetch("http://localhost:4000/api/experience/get")
+        fetch("/api/experience/get")
         .then(res=>{
             if(res.status!==200)
             {
@@ -19,6 +19,7 @@ const ExperiencePage = (props) => {
             return res.json();
         })
         .then(resData=>{
+            resData.reverse();
             setExperienceData(resData);
             console.log(experienceData);
         })
@@ -43,7 +44,7 @@ const ExperiencePage = (props) => {
         const userName = localStorage.getItem("userName");
         const date = new Date().toISOString();
         console.log(date);
-        fetch("http://localhost:4000/api/experience/add",{
+        fetch("/api/experience/add",{
             method:"POST",
             headers:{"content-Type":"application/json"},
 
@@ -68,7 +69,7 @@ const ExperiencePage = (props) => {
             .catch(err=>{
                 console.log(err);
             })
-            fetch("http://localhost:4000/api/experience/get")
+            fetch("/api/experience/get")
         .then(res=>{
             if(res.status!==200)
             {
@@ -77,12 +78,14 @@ const ExperiencePage = (props) => {
             return res.json();
         })
         .then(resData=>{
+            console.log("resdata = ", resData);
+            resData.reverse();
             setExperienceData(resData);
-            console.log(experienceData,"**");
+            //console.log(experienceData,"**");
         })
         .catch(err=>{
             console.log(err);
-            console.log('**');
+            //console.log('**');
         })
 
         setEnteredTitle('');

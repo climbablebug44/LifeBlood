@@ -8,11 +8,11 @@ const Conversation = (props) => {
       const friendId = props.conversation.member.find((m) !== props.currentUser._id)
       fetch('/api/users' + friendId)
          .then((res) => {
-            console.log(res);
+            //console.log(res);
             setConversation(res);
          })
          .catch(err => {
-            console.log(err);
+            //console.log(err);
          })
    }, [])
    return (
