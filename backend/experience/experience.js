@@ -33,9 +33,9 @@ router.post('/add', async (req, res) => {
 
     const experience = new Experience({
 
-        user: req.body.username,
+        user: req.body.user,
         title: req.body.title,
-        experience: req.body.content,
+        content: req.body.experience,
         date: req.body.date
     });
     try {

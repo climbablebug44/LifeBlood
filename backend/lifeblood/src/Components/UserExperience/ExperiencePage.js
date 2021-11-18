@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Experience from "./Experience";
 import styles from './ExperiencePage.module.css';
 
@@ -8,11 +8,9 @@ const ExperiencePage = (props) => {
 
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredExpe, setEnteredExpe] = useState('');
-<<<<<<< HEAD
-    fetch("/api/get")
-=======
-    fetch("http://localhost:4000/api/experience/get")
->>>>>>> d52852b180788b059346bbdf3fccb74aec1ed964
+    const [experienceData,setExperienceData] = useState([]);
+    useEffect(()=>{
+        fetch("http://localhost:4000/api/experience/get")
         .then(res=>{
             if(res.status!==200)
             {
@@ -21,14 +19,15 @@ const ExperiencePage = (props) => {
             return res.json();
         })
         .then(resData=>{
-            experienceData.push(resData
-            );
-            console.log(resData);
+            setExperienceData(resData);
+            console.log(experienceData);
         })
         .catch(err=>{
             console.log(err);
             console.log('**');
         })
+    },[])
+   
     const inputChangeHandler = (event) => {
         setEnteredTitle(event.target.value)
     };
@@ -44,18 +43,15 @@ const ExperiencePage = (props) => {
         const userName = localStorage.getItem("userName");
         const date = new Date().toISOString();
         console.log(date);
-<<<<<<< HEAD
-        fetch("/api/experience/add",{
-=======
         fetch("http://localhost:4000/api/experience/add",{
->>>>>>> d52852b180788b059346bbdf3fccb74aec1ed964
             method:"POST",
             headers:{"content-Type":"application/json"},
 
             body:JSON.stringify({
                 title:enteredTitle,
-                username:userName,
+                user:userName,
                 date:date,
+                //userId:localhost.getItem("userId"),
                 experience:enteredExpe
             })
         })
@@ -72,14 +68,30 @@ const ExperiencePage = (props) => {
             .catch(err=>{
                 console.log(err);
             })
+            fetch("http://localhost:4000/api/experience/get")
+        .then(res=>{
+            if(res.status!==200)
+            {
+                throw new Error("Error");
+            }
+            return res.json();
+        })
+        .then(resData=>{
+            setExperienceData(resData);
+            console.log(experienceData,"**");
+        })
+        .catch(err=>{
+            console.log(err);
+            console.log('**');
+        })
 
         setEnteredTitle('');
         setEnteredExpe('')
     };
 
     const list = experienceData.map(item => {
-        //return <Experience  item={item} />
-        console.log(item);
+        return <Experience key={item._id} item={item} />
+        
     })
 
     return <div className={styles.container}>
@@ -171,9 +183,7 @@ const ExperiencePage = (props) => {
         setEnteredExpe('')
     };
 
-    const list = experienceData.map(item => {
-        return <Experience key={item._id} item={item} />
-    })
+    
 
     return <div className={styles.container}>
 

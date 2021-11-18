@@ -15,7 +15,7 @@ const Experience = props => {
         </div>
         <div className={styles.text}>
             <span>{props.item.title}</span>
-            <div>{props.item.experience}</div>
+            <div>{props.item.content}</div>
         </div>
     </div>
 }
