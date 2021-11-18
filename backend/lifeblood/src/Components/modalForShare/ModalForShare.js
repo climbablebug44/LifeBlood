@@ -5,7 +5,6 @@ import ShareNoModal from '../ShareNoModal/ShareNoModal';
 const ModalForShare = (props)=>{
     return (
         <React.Fragment>
-            <Backdrop/>
             <ShareNoModal handleClose = {props.handleClose}/>
         </React.Fragment>
     )

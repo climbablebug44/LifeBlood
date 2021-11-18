@@ -133,3 +133,9 @@ body {
 body::-webkit-scrollbar {
     display: none;
 }
+
+@media only screen and (max-width: 800px) {
+    .inner-container p {
+        margin-bottom: 30px;
+    }
+  }
