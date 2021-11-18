@@ -18,28 +18,35 @@ mongoose.connect(DB_URL, {
         console.error(err);
     })
 
-router.get('/give', (req, res) => {
+router.get('/get', (req, res) => {
     Experience.find()
-        .populate('user')
-        .sort({'createdAt':-1})
+        //.populate('user')
+        //.sort({'createdAt':-1})
         .then(experiences => res.json(experiences))
         .catch(err => res.status(400).json('Error' + err));
 });
 
 router.post('/add', async (req, res) => {
-    console.log(req.user);
+    console.log('User', req.body.user);
+    console.log('Title', req.body.title);
+    console.log('Experience', req.body.experience);
+
     const experience = new Experience({
 
-        user: req.username,
+        user: req.body.username,
         title: req.body.title,
-        content: req.body.content
+        experience: req.body.content,
+        date: req.body.date
     });
     try {
         const savedExperience = await experience.save();
-        const savedExperienceWithUserData = await experience.findById(savedExperience._id).populate('user');
-        res.send(savedExperienceWithUserData);
+        res.status(200).json(savedExperience);
+        console.log(savedExperience);
+        //const savedExperienceWithUserData = await experience.findById(savedExperience._id).populate('user');
+        //res.send(savedExperienceWithUserData);
     }catch(err) {
         res.status(400).send(err);
+        console.log('Error', err);
     }
 
 })
