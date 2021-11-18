@@ -35,7 +35,7 @@ router.post('/add', async (req, res) => {
 
         user: req.body.user,
         title: req.body.title,
-        content: req.body.experience,
+        experience: req.body.experience,
         date: req.body.date
     });
     try {
