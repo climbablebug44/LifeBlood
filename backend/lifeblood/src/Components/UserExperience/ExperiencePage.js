@@ -8,7 +8,11 @@ const ExperiencePage = (props) => {
 
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredExpe, setEnteredExpe] = useState('');
+<<<<<<< HEAD
     fetch("/api/get")
+=======
+    fetch("http://localhost:4000/api/experience/get")
+>>>>>>> d52852b180788b059346bbdf3fccb74aec1ed964
         .then(res=>{
             if(res.status!==200)
             {
@@ -40,7 +44,11 @@ const ExperiencePage = (props) => {
         const userName = localStorage.getItem("userName");
         const date = new Date().toISOString();
         console.log(date);
+<<<<<<< HEAD
         fetch("/api/experience/add",{
+=======
+        fetch("http://localhost:4000/api/experience/add",{
+>>>>>>> d52852b180788b059346bbdf3fccb74aec1ed964
             method:"POST",
             headers:{"content-Type":"application/json"},
 
