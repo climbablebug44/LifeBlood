@@ -52,7 +52,7 @@ export default class FeedItems extends React.Component {
         }
 
 
-        console.log("[fetching from] : ", req);
+        // console.log("[fetching from] : ", req);
 
         fetch(req).then(
             response => {
@@ -66,7 +66,7 @@ export default class FeedItems extends React.Component {
                 data: data_
             })
         }).catch(error => {
-            console.log("[error-log]: ", error);
+            // console.log("[error-log]: ", error);
         });
 
         this.forceUpdate();

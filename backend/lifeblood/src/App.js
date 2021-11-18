@@ -47,7 +47,7 @@ class App extends Component {
 		if (google === 1) {
 			this.setState({ googleLoginCount: 1 })
 		}
-		console.log(token, this.state.googleLoginCount);
+		//console.log(token, this.state.googleLoginCount);
 		const userId = localStorage.getItem("userId");
 		const userName = localStorage.getItem("userName");
 
@@ -71,7 +71,7 @@ class App extends Component {
 			}),
 		})
 			.then((res) => {
-				console.log(res);
+				//console.log(res);
 				if (res.status === 422) {
 					throw new Error("Validation Error");
 				}
@@ -100,7 +100,7 @@ class App extends Component {
 
 			})
 			.catch(err => {
-				console.log(err);
+				//console.log(err);
 				this.setState({ isAuth: false, error: err });
 			})
 
@@ -122,7 +122,7 @@ class App extends Component {
 				return res.json()
 			})
 			.then(resData => {
-				console.log(resData);
+				//console.log(resData);
 				this.setState({
 					isAuth: true,
 					googleLogin: true,
@@ -151,7 +151,7 @@ class App extends Component {
 
 			})
 			.catch(err => {
-				console.log(err);
+				//console.log(err);
 				this.setState({ isAuth: false, error: err });
 			})
 
@@ -209,7 +209,7 @@ class App extends Component {
 			})
 			.then(resData => {
 				this.setState({ isAuth: false });
-				console.log(resData);
+				//console.log(resData);
 				localStorage.setItem("email", resData.email);
 				this.props.history.push('/verify');
 
@@ -241,12 +241,12 @@ class App extends Component {
 				return res.json();
 			})
 			.then(resData => {
-				console.log(resData);
+				//console.log(resData);
 				this.setState({ googleLoginCount: 0 })
 				window.location.reload();
 			})
 			.catch(err => {
-				console.log(err);
+				//console.log(err);
 			})
 	}
 	updatePasswordHandler = (event, data, token) => {
@@ -271,7 +271,7 @@ class App extends Component {
 				this.props.history.replace("/login");
 			})
 			.catch(err => {
-				console.log(err);
+				//console.log(err);
 				this.setState({ error: err, isAuth: false })
 			})
 	}

@@ -14,7 +14,7 @@ const Chat = () => {
   const ENDPOINT = 'localhost:4000';
   useEffect(()=>{
     socket = io(ENDPOINT);
-    console.log(socket);
+    //console.log(socket);
     socket.emit('join',{name},(error)=>{
       if(error)
       {

@@ -2,7 +2,7 @@ import React from 'react';
 import  ReactDOM  from 'react-dom';
 import './ShareContactModal.css';
 const ShareContactModal = (props)=>{
-    console.log(props.userId, props.donorId);
+    // console.log(props.userId, props.donorId);
     const clickHandler = (event)=>{
         if (event.target.value==='yes')
         {
@@ -21,10 +21,10 @@ const ShareContactModal = (props)=>{
                 return res.json();
             })
             .then(resData=>{
-                console.log(resData);
+                // console.log(resData);
             })
             .catch(err=>{
-                console.log(err);
+                // console.log(err);
             })
 
             fetch(`/api/shareNumber/delete/${localStorage.getItem("userId")}/${props.donorId}/${props.feedId}`)
@@ -36,7 +36,7 @@ const ShareContactModal = (props)=>{
               props.handleClose();
             })
             .catch(err=>{
-                console.log(err);
+                // console.log(err);
             })
         }
         else{
@@ -46,11 +46,11 @@ const ShareContactModal = (props)=>{
               return res.json()
             })
             .then(resData=>{
-              console.log(resData);
+              // console.log(resData);
               props.handleClose();
             })
             .catch(err=>{
-                console.log(err);
+                // console.log(err);
             })
             props.handleClose();
         }

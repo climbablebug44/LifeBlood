@@ -24,10 +24,10 @@ const NewPassword = ()=>{
            return res.json()
        })
        .then(resData=>{
-           console.log("updated");
+           //console.log("updated");
        })
        .catch(res=>{
-           console.log(res);
+           //console.log(res);
        })
     }
  return(
