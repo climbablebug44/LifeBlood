@@ -14,11 +14,11 @@ import API_KEY from './api_key.json';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer } from './layers';
-//import mapboxgl from 'mapbox-gl';
+import mapboxgl from 'mapbox-gl';
 // notice the exclamation point in the import.
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
-//mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 const MAPBOX_TOKEN = API_KEY.mapboxgl;
 

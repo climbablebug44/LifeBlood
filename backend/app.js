@@ -6,7 +6,7 @@ const { DB_URL } = require('./backend_api_key.json');
 const connectToDB = require('./database/connectToDB');
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 //const DB_URL = "mongodb+srv://backend_user:backenddbuser@login-credentials.dv01o.mongodb.net/LifeBlood?retryWrites=true&w=majority"; 
 //const DB_URL = "mongodb://localhost:27017/LifeBlood";
 

@@ -19,5 +19,4 @@ USER myuser
 
 WORKDIR /app/backend/
 
-EXPOSE 4000
 CMD ["npm", "start"]
