@@ -20,11 +20,11 @@ const ShareNoModal = (props)=>{
             return res.json();
         })
         .then(data=>{
-            console.log(data);
+            // console.log(data);
             props.handleClose();
         })
         .catch(err=>{
-            console.log(err);
+            // console.log(err);
         })
         }
         else{

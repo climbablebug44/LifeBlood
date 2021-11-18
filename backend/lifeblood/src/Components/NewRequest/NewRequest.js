@@ -197,7 +197,7 @@ export default class NewReq extends Component {
     }
 
     requestFormSubmitHandler = (event) => {
-        console.log("state", this.state);
+        //console.log("state", this.state);
         event.preventDefault();
         fetch("/api/feed", {
             method: "POST",
@@ -226,12 +226,13 @@ export default class NewReq extends Component {
                 return res.json();
             })
             .then(resData => {
-                console.log("reached");
+                //console.log("reached");
                 this.setState({
                     ...this.state,
                     redirect: true
                 });
-            }).catch(error => { console.log(error); });
+            }).catch(error => { //console.log(error); 
+            });
     }
 
     onResetHandler = () =>{

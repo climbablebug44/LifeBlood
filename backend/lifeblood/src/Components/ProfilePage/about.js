@@ -29,11 +29,11 @@ const About = () => {
         ).then(data_ => {
             changeUser(data_)
         }).catch(error => {
-            console.log("[error-log]: ", error);
+            // console.log("[error-log]: ", error);
         });
     }, [])
 
-    console.log("user = ", user)
+    // console.log("user = ", user)
 
     if (user != null)
         return (

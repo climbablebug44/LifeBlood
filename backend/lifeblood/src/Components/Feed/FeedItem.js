@@ -10,7 +10,7 @@ const FeedItem = (props) => {
     const history = useHistory();
     const clickHandler = (event) => {
         const token = localStorage.getItem("token");
-        console.log(token);
+        //// console.log(token);
         if (!token) {
             history.replace('/login');
             return;
@@ -22,11 +22,11 @@ const FeedItem = (props) => {
     const firstDate = new Date(props.postedDate);
     const date = new Date();
     const d2 = date.toISOString();
-    console.log(d2)
+    // console.log(d2)
     const secondDate = new Date(d2);
-    console.log(secondDate)
+    // console.log(secondDate)
     const difference = Math.abs(date - firstDate) / 1000;
-    console.log(difference);
+    // console.log(difference);
 
     let dateToShow = '';
 
@@ -38,7 +38,7 @@ const FeedItem = (props) => {
         dateToShow = `${Math.floor(difference / 3600)} hours`;
     }
 
-    console.log(dateToShow)
+    // console.log(dateToShow)
 
     return (
         <li className={styles.list}>

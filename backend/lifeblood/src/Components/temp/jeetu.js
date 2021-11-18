@@ -26,16 +26,16 @@ class Navbar extends Component {
         return res.json();
       })
       .then(resData=>{
-        console.log(resData.messages);
+        // console.log(resData.messages);
         this.setState({
           message:resData.messages.map(obj=>{
             return obj;
           })
         })
-        console.log(this.state.message);
+        // console.log(this.state.message);
       })
       .catch(err=>{
-        console.log(err);
+        // console.log(err);
       })
   }
   }

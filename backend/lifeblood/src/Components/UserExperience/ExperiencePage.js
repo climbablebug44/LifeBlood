@@ -19,17 +19,17 @@ const ExperiencePage = (props) => {
         .then(resData=>{
             experienceData.push(resData
             );
-            console.log(resData);
+            // console.log(resData);
         })
         .catch(err=>{
-            console.log(err);
-            console.log('**');
+            // console.log(err);
+            // console.log('**');
         })
     const inputChangeHandler = (event) => {
         setEnteredTitle(event.target.value)
     };
 
-    console.log(experienceData);
+    // console.log(experienceData);
 
     const textAreaChangeHandler = (event) => {
         setEnteredExpe(event.target.value)
@@ -39,7 +39,7 @@ const ExperiencePage = (props) => {
         event.preventDefault();
         const userName = localStorage.getItem("userName");
         const date = new Date().toISOString();
-        console.log(date);
+        // console.log(date);
         fetch("http://localhost:4000/api/experience/add",{
             method:"POST",
             headers:{"content-Type":"application/json"},
@@ -59,10 +59,10 @@ const ExperiencePage = (props) => {
                 return res.json();
             })
             .then(resData=>{
-                console.log(resData);
+                // console.log(resData);
             })
             .catch(err=>{
-                console.log(err);
+                // console.log(err);
             })
 
         setEnteredTitle('');
@@ -71,7 +71,7 @@ const ExperiencePage = (props) => {
 
     const list = experienceData.map(item => {
         //return <Experience  item={item} />
-        console.log(item);
+        // console.log(item);
     })
 
     return <div className={styles.container}>
@@ -121,7 +121,7 @@ const ExperiencePage = (props) => {
             experienceData.push(resData.data);
         })
         .catch(err => {
-            console.log(err);
+            // console.log(err);
         })
     const inputChangeHandler = (event) => {
         setEnteredTitle(event.target.value)
@@ -135,7 +135,7 @@ const ExperiencePage = (props) => {
         event.preventDefault();
         const userName = localStorage.getItem("userName");
         const date = new Date().toISOString();
-        console.log(date);
+        // console.log(date);
         fetch("/api/experience", {
             method: "POST",
             "content-Type": "application-json",
@@ -153,10 +153,10 @@ const ExperiencePage = (props) => {
                 return res.json();
             })
             .then(resData => {
-                console.log(resData);
+                // console.log(resData);
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
             })
 
         setEnteredTitle('');

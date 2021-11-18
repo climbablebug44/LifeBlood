@@ -29,10 +29,10 @@ const ResetPassword = ()=>{
             return res.json();
         })
         .then(resData=>{
-            console.log("sent successfully");
+            // console.log("sent successfully");
         })
         .catch(err=>{
-            console.log(err);
+            // console.log(err);
         })
     }
     return (
