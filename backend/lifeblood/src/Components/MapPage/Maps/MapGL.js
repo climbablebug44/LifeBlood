@@ -15,6 +15,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer } from './layers';
 import mapboxgl from 'mapbox-gl';
+import SectionThirdHome from "../../HomePage/SectionThirdHome";
 // notice the exclamation point in the import.
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
@@ -182,7 +183,7 @@ export default class RMapGL extends Component {
 						}}
 						auto />}
 
-					<Source
+					{(this.PEOPLE != null && this.PEOPLE!= undefined) && <Source
 						id="people"
 						type="geojson"
 						data={this.PEOPLE}
@@ -192,7 +193,7 @@ export default class RMapGL extends Component {
 						<Layer {...clusterLayer} />
 						<Layer {...clusterCountLayer} />
 						<Layer {...unclusteredPointLayer} />
-					</Source>
+					</Source>}
 
 					{this.drawInformationLayer()}
 

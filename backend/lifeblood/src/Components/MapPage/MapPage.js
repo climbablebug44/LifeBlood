@@ -44,7 +44,7 @@ export default class MapPage extends Component {
 
 				<div className={styles.container}>
 					<div className={styles.list}>
-						<p>Nearby Available Users</p>
+						<p>Nearby Requests</p>
 						<ul>
 							{this.state.data.features.map((person, index) => (
 								<li onClick={(event) => this.handleListItemClick(index, event)} className={styles['list-item']} key={index}>
