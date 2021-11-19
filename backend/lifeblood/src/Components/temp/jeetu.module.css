@@ -79,7 +79,7 @@
   display: none;
   font-size: 25px;
   cursor: pointer;
-  transform: translateX(-100%);
+  transform: translateX(-50%);
 }
 
 .menu-icon .onn {

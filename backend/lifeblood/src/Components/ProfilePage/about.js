@@ -9,7 +9,7 @@ const About = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userID: localStorage.getItem("userId") })
     }
-
+    const img = localStorage.getItem("image") || image;
     const [user, setUser] = useState({});
 
     const changeUser = (newUser) => {
@@ -41,7 +41,7 @@ const About = () => {
                 <div className={styles.contain}>
                     <div className={styles['container-1']}>
                         <div className={styles.image}>
-                            <img alt="<profile photu>" src={image} />
+                            <img alt="<profile photu>" src={img} />
                         </div>
                         <div className={styles.name}>
                             {user.name}
