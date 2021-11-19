@@ -10,13 +10,13 @@ let db;
 
 router.post('/sendlink', async (req, res) => {
 	let email = req.body.email;
-	console.log('/ sendlink called for email:', email);
+	//console.log('/ sendlink called for email:', email);
 
 	let result = await get_one(db, 'users', { email });
 	if(result != null)
 	{
-		const reset_url = 'http://localhost:3000/reset/' + result._id;
-		console.log(reset_url);
+		const reset_url = 'https://lifeblood-synergy.herokuapp.com/reset/' + result._id;
+		//console.log(reset_url);
 		send_mail({
 			to: result.email,
 			subject: 'Reset your LifeBlood Password',

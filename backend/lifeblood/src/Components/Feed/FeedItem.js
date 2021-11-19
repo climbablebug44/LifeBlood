@@ -67,8 +67,7 @@ const FeedItem = (props) => {
                 <div className={styles['section-1']}>
                     <div className={styles['highlight-blood']}>{props.blood}</div>
                     <div>
-                        <h5>Blood Donors Needed For</h5>
-                        <p>{props.address}</p>
+                        <h5>Blood Donors Needed</h5>
                     </div>
                 </div>
                 <div className={styles['section-2']}></div>

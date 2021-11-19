@@ -17,7 +17,7 @@ router.get('/:user_id/', async (req, res) => {
 	filter = {'_id': new ObjectID(req.params.user_id)};
 	let result = await update_one(db, 'users', filter, { $set: {'verified': true} });
 	
-	res.redirect('http://localhost:3000/login');
+	res.redirect('https://lifeblood-synergy.herokuapp.com/login');
 	/*
 	if(result != null)
 		res.;

@@ -7,32 +7,29 @@ let db;
 const send_mail = require('../mail/send_mail');
 var ObjectID = require('mongodb').ObjectId;
 router.post('/',async (req,res)=>{
-	console.log(req.body);
+	//console.log(req.body);
   const feedId = req.body.feedId;
   const donorId = req.body.donorId;
 	
   filter = {'_id': new ObjectID(feedId)};
   let result = await get_one(db,'feed',filter);
   let user = await get_one(db,'users',{'_id':new ObjectID(donorId)});  
-	console.log(user,"user");
-  console.log("//");
-  console.log(result,"//");
+	//console.log(user,"user");
+  //console.log(result,"//");
   const receiverId = result.receiverId;
-	console.log("revcid: ",receiverId);
-  console.log("***");
+	//console.log("revcid: ",receiverId);
   let receiver = await get_one(db, 'users', {'_id': new ObjectID(receiverId)});
-	console.log('Receiver:', receiver);
 	
 	// Adding message({ feedId, donorId }) to db
 	filter = {'_id': new ObjectID(receiverId)};
-  var name = user.name
+  	var name = user.name
 	let push_message = { 
 		$push: {
 			"messages": { feedId, donorId, name}
 		}
 	};
 	result = await update_one(db, 'users', filter, push_message);
-	console.log("result",result);
+	//console.log("result",result);
 
   client.messages.create({
       body:`${user.name} Wants to donote blood. visit "http://localhost:3000"`,
@@ -41,7 +38,7 @@ router.post('/',async (req,res)=>{
   })
   .then(mess=>{
       res.status(200).json({'message':'send'})
-      console.log(mess);
+      //console.log(mess);
   })
   .catch(err=>{
       console.log(err);
@@ -50,7 +47,7 @@ router.post('/',async (req,res)=>{
   { 
     send_mail({
         to:receiver.email,
-        html:`${user.name} wants to donate blood visit: http://localhost:3000`,
+        html:`${user.name} wants to donate blood visit: https://lifeblood-synergy.herokuapp.com/`,
         subject:'SomeOne wants to connects You'
     });
   }
@@ -63,16 +60,16 @@ router.get('/:id',async (req,res)=>{
 	}
         let filter = {'_id': new ObjectID(req.params.id)};
         let result = await get_one(db,'users',filter);
-        console.log(result.messages);
+        //console.log(result.messages);
         res.status(200).json({"messages":result.messages}); 
 })
 router.post('/123',async (req,res)=>{
-  console.log(req.body)
+  //console.log(req.body)
   let filter = {'_id': new ObjectID(req.body.donorId)};
   let filter1 = {'_id':new ObjectID(req.body.userId)}
   let donor = await get_one(db,'users',filter);
   let user = await get_one(db,'users',filter1);
-  console.log(user,"hui hui", donor);
+  //console.log(user,"hui hui", donor);
   if(donor!==null)
   {
     send_mail({

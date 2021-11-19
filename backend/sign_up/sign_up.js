@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
 	let pincode = req.body.pincode
 	let phone_number = req.body.phoneNumber
 	let verified = false
-	let image = "http://localhost:4000/default_user_image.jpg"
+	let image = "https://lifeblood-synergy.herokuapp.com/default_user_image.jpg"
 	let result = await get_one(db, 'users', {email});
 	if(result != null)
 	{
@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
 		if(result != null)
 		{
 			//console.log(result.insertedId.toString());
-			const verification_url = 'http://localhost:4000/api/verify/' + result.insertedId.toString();
+			const verification_url = 'https://lifeblood-synergy.herokuapp.com/api/verify/' + result.insertedId.toString();
 			console.log(verification_url);
 			send_mail({
 				to: email,

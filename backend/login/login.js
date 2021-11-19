@@ -8,16 +8,8 @@ const {get_one} = require('../database/db_utils');
 let db;
 
 router.post('/', async (req, res) => {
-	
-	/*
-	console.log(req.signedCookies);
-	if(req.hasOwnProperty('signedCookies') && ('username' in req.signedCookies))
-	{
-		console.log(`Signed in username: ${req.signedCookies.username}`);
-		res.redirect('/dashboard');
-	}
-	*/
-	console.log(req.body);
+		
+	//console.log(req.body);
 
 	email = req.body.email;
 	password = req.body.password;
