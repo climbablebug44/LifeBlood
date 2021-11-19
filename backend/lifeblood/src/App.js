@@ -183,6 +183,7 @@ class App extends Component {
 			this.setState({ error: { message: "confirmPassword must match password" }, isAuth: false });
 			return;
 		}
+		localStorage.setItem("email", data.email);
 		fetch("/api/signup", {
 			method: "POST",
 			headers: {
@@ -210,7 +211,7 @@ class App extends Component {
 			.then(resData => {
 				this.setState({ isAuth: false });
 				//console.log(resData);
-				localStorage.setItem("email", resData.email);
+				
 				this.props.history.push('/verify');
 
 			})
