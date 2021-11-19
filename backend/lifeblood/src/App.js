@@ -117,7 +117,7 @@ class App extends Component {
 		})
 			.then(res => {
 				if (res.status === 422) {
-					throw new Error("Error Occured")
+					return
 				}
 				return res.json()
 			})
