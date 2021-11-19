@@ -7,8 +7,6 @@ const connectToDB = require('./database/connectToDB');
 
 const app = express();
 const port = process.env.PORT || 4000;
-//const DB_URL = "mongodb+srv://backend_user:backenddbuser@login-credentials.dv01o.mongodb.net/LifeBlood?retryWrites=true&w=majority"; 
-//const DB_URL = "mongodb://localhost:27017/LifeBlood";
 
 const LOC_API = '/api';
 const LOC_LOGIN = LOC_API + '/login';

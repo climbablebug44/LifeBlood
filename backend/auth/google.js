@@ -27,7 +27,7 @@ router.post('/google', async (req, res) => {
 	const { name, email, picture } = ticket.getPayload();
 	const verified = true;
 	if(!picture)
-		picture = "http://localhost:4000/default_user_image.jpg";
+		picture = "https://lifeblood-synergy.herokuapp.com/default_user_image.jpg";
 	let first_time = true;
 	let result = await get_one(db, 'users', { email });
 	if(result != null)
@@ -39,7 +39,6 @@ router.post('/google', async (req, res) => {
 	if(result != null)
 	{
 		const userId = first_time ? result.insertedId.toString() : result._id.toString();
-		//console.log('Auth with google, user_id:', userId);
 		const jwttoken = jwt.sign(
 			{
 				email,

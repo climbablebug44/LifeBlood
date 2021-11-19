@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 	filter = {'_id': new ObjectID(user_id)}
 	const fields = {_id: 0, password: 0, verified: 0};
 
-	let result = await get_one(db, 'users', filter, fields); //, fields);
+	let result = await get_one(db, 'users', filter, fields);
 	if(result != null)
 	{	
 		res.status(200).json(result);

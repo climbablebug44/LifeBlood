@@ -18,7 +18,6 @@ function compare(a, b)
 		return 0;
 }
 
-//This function takes in latitude and longitude of two location and returns the distance between them as the crow flies (in km)
 function calcCrow(lat1, lon1, lat2, lon2) 
 {
 	var R = 6371; // km
@@ -34,7 +33,6 @@ function calcCrow(lat1, lon1, lat2, lon2)
 	return d;
 }
 
-// Converts numeric degrees to radians
 function toRad(Value) 
 {
 	return Value * Math.PI / 180;
@@ -55,7 +53,7 @@ function compare_by_distance(a, b)
 
 router.get('/', async (req, res) => {
 
-	console.log('Get /feed with params:', req.query);
+	//console.log('Get /feed with params:', req.query);
 	
 	let filter = {} 
 	result = await get_all(db, 'feed', filter);	
@@ -66,8 +64,6 @@ router.get('/', async (req, res) => {
 		user_lat = req.query.lat;
 		user_long = req.query.long;
 		result.sort(compare_by_distance);
-		//console.log('------After sorting by distance:------');
-		//console.log(result);
 	}
 	else
 		result.sort(compare);
@@ -77,7 +73,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:bg', async (req, res) => {
 
-	console.log('Get /feed/:bg with params:', req.params);
+	//console.log('Get /feed/:bg with params:', req.params);
 
 	let bg = req.params.bg;
 	let blood_group;
@@ -107,7 +103,7 @@ router.get('/:bg', async (req, res) => {
 
 router.post('/', async (req, res) => {
 	
-	console.log('POST TO /feed');
+	//console.log('POST TO /feed');
 	const { name, age, state, contact, city, bloodGrp, reason, aadhar, pincode, hospital, latitude, longitude, userId } = req.body;
 	const data = {};
 	data.receiverId = userId;
