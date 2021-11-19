@@ -183,7 +183,7 @@ class App extends Component {
 			this.setState({ error: { message: "confirmPassword must match password" }, isAuth: false });
 			return;
 		}
-		localStorage.setItem("email", data.email);
+		localStorage.setItem("email",data.email);
 		fetch("/api/signup", {
 			method: "POST",
 			headers: {
@@ -358,7 +358,7 @@ class App extends Component {
 		return (
 			<React.Fragment>
 				<Navbar isAuth={this.state.isAuth} onLogout={this.logoutHandler} socket={this.state.socket} />
-				<ErrorHandler error={this.state.error} onHandle={this.errorHandle} />
+				
 				{routes}
 				{this.state.googleLogin && this.state.googleLoginCount === 1 && <DisplayModal Details={this.DetailsFormHandler} />}
 
@@ -369,5 +369,5 @@ class App extends Component {
 	}
 }
 export default withRouter(App);
-//
+//<ErrorHandler error={this.state.error} onHandle={this.errorHandle} />
 // <DOUWantTOConnectModal/>
